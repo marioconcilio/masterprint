@@ -5,4 +5,6 @@ RSpec.describe Chapa, type: :model do
   it { should validate_presence_of(:comp) }
   it { should validate_presence_of(:qtde) }
   it { should validate_presence_of(:moeda) }
+
+  it { should belong_to(:chapa_marca) }
 end

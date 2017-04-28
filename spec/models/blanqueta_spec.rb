@@ -6,4 +6,6 @@ RSpec.describe Blanqueta, type: :model do
   it { should validate_presence_of(:qtde) }
   it { should validate_presence_of(:moeda) }
   it { should validate_presence_of(:nome) }
+
+  it { should belong_to(:blanqueta_lona) }
 end
