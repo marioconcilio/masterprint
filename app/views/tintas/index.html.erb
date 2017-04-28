@@ -1,0 +1,26 @@
+<h1>Tintas</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cor</th>
+      <th>Marca</th>
+      <th>Preço Lata</th>
+      <th>Lata com</th>
+      <th>Qtde</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tintas.each do |tinta| %>
+      <tr>
+        <td> <%= tinta.nome %> </td>
+        <td> <%= tinta.marca %> </td>
+        <td> <%= tinta.preco_un %> </td>
+        <td> <%= tinta.un %>kg </td>
+        <td> <%= tinta.qtde %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
