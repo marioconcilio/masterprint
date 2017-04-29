@@ -5,7 +5,7 @@ class Variado < ApplicationRecord
                         :un,
                         :moeda
 
-  default_scope -> { order(nome: :asc) }
+  default_scope -> { order(:nome) }
 
   def preco_un
     if self.moeda == 'USD'

@@ -3,4 +3,6 @@ class BlanquetaLona < ApplicationRecord
                         :preco
 
   has_many :blanquetas, dependent: :destroy
+
+  default_scope -> { order(:lonas) }
 end

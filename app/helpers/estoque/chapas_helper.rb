@@ -1,0 +1,2 @@
+module Estoque::ChapasHelper
+end

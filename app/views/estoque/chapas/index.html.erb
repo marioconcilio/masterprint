@@ -1,0 +1,26 @@
+<h1>Chapas</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tamanho</th>
+      <th>Marca</th>
+      <th>Preço Un</th>
+      <th>Preço Avulso</th>
+      <th>Qtde</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chapas.each do |c| %>
+      <tr>
+        <td> <%= c.size %> </td>
+        <td> <%= c.chapa_marca.marca %> </td>
+        <td> <%= c.preco_un %> </td>
+        <td> <%= c.preco_avulso %> </td>
+        <td> <%= c.qtde %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

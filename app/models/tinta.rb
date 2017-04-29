@@ -6,7 +6,7 @@ class Tinta < ApplicationRecord
                         :un,
                         :moeda
 
-  default_scope -> { order(marca: :asc, nome: :asc) }
+  default_scope -> { order(:marca, :nome) }
 
   def preco_un
     preco = self.preco_kg * self.un

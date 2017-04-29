@@ -4,11 +4,9 @@
   <thead>
     <tr>
       <th>Tamanho</th>
-      <th></th>
-      <th></th>
       <th>Nome</th>
-      <th>Grs</th>
       <th>Tipo</th>
+      <th>Grs</th>
       <th>Caixa com</th>
       <th>Preço da caixa</th>
       <th>Qtde</th>
@@ -18,12 +16,10 @@
   <tbody>
     <% @envelopes.each do |e| %>
       <tr>
-        <td> <%= e.larg %> </td>
-        <td>x</td>
-        <td> <%= e.comp %> </td>
+        <td> <%= e.size %> </td>
         <td> <%= e.nome %> </td>
-        <td> <%= e.grs %>g </td>
         <td> <%= e.tipo %> </td>
+        <td> <%= e.grs %>g </td>
         <td> <%= e.un %> </td>
         <td> <%= e.preco_un %> </td>
         <td> <%= e.qtde %> </td>
