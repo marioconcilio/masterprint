@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20170427214926) do
     t.integer  "qtde"
     t.string   "moeda",          limit: 3
     t.integer  "chapa_marca_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["chapa_marca_id"], name: "index_chapas_on_chapa_marca_id", using: :btree
   end
 

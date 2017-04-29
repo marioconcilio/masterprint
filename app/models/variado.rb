@@ -8,7 +8,12 @@ class Variado < ApplicationRecord
   default_scope -> { order(nome: :asc) }
 
   def preco_un
-
+    if self.moeda == 'USD'
+      dolar = Dolar.first.value
+      "R$ %.2f" % (self.preco * dolar).round(1)
+    else
+      "R$ %.2f" % self.preco.round(1)
+    end
   end
 
 end

@@ -1,0 +1,2 @@
+module Estoque::QuimicosHelper
+end
