@@ -1,0 +1,25 @@
+<div id="estoque">
+  <table class="table table-hover sortable">
+    <thead>
+      <tr>
+        <th>Tamanho</th>
+        <th>Máquina</th>
+        <th>Lonas</th>
+        <th>Preço</th>
+        <th>Qtde</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @blanquetas.each do |b| %>
+        <tr>
+          <td> <%= b.size %> </td>
+          <td> <%= b.nome %> </td>
+          <td> <%= b.blanqueta_lona.lonas %> lonas </td>
+          <td> <%= b.preco_un %> </td>
+          <td> <%= b.qtde %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

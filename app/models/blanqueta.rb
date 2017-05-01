@@ -23,4 +23,12 @@ class Blanqueta < ApplicationRecord
     '%03d x %03d' % [self.larg, self.comp]
   end
 
+  def self.search(term)
+    if term
+      where('nome ILIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
+
 end

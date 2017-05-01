@@ -1,26 +1,10 @@
 <h1>Blanquetas</h1>
 
-<table class="table table-striped sortable">
-  <thead>
-    <tr>
-      <th>Tamanho</th>
-      <th>Máquina</th>
-      <th>Lonas</th>
-      <th>Preço</th>
-      <th>Qtde</th>
-    </tr>
-  </thead>
+<%= form_tag '/estoque/blanquetas', method: :get, id: 'estoque_search', class: 'form-inline' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: "form-control" %>
+    <%= submit_tag "Procurar", name: nil, class: 'btn-info' %>
+  </p>
+<% end %>
 
-  <tbody>
-    <% @blanquetas.each do |b| %>
-      <tr>
-        <td> <%= b.size %> </td>
-        <td> <%= b.nome %> </td>
-        <td> <%= b.blanqueta_lona.lonas %> lonas </td>
-        <td> <%= b.preco_un %> </td>
-        <td> <%= b.qtde %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>
+<div id="estoque"><%= render 'all' %></div>
