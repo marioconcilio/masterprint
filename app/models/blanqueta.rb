@@ -11,12 +11,12 @@ class Blanqueta < ApplicationRecord
 
   def preco_un
     if self.moeda == 'USD'
-      preco = self.blanqueta_lona.preco * Dolar.first.value
+      preco = self.blanqueta_lona.preco * Settings.dolar.blanquetas
     else
       preco = self.blanqueta_lona.preco
     end
 
-    'R$ %.2f' % (self.larg * self.comp * preco / 1000000).round(1)
+    (self.larg * self.comp * preco / 1000000).round(1)
   end
 
   def size
@@ -25,7 +25,11 @@ class Blanqueta < ApplicationRecord
 
   def self.search(term)
     if term
-      where('nome ILIKE ?', "%#{term}%")
+      if is_numeric? term
+        where('nome ILIKE ? or larg=? or comp=?', "%#{term}%", term.to_i, term.to_i)
+      else
+        where('nome ILIKE ?', "%#{term}%")
+      end
     else
       all
     end

@@ -1,12 +1,12 @@
 <div id="estoque">
-  <table class="table table-hover sortable">
+  <table class="table table-hover table-striped sortable">
     <thead>
       <tr>
         <th>Tamanho</th>
         <th>Máquina</th>
         <th>Lonas</th>
-        <th>Preço</th>
-        <th>Qtde</th>
+        <th class="text-right">Preço</th>
+        <th class="text-center">Qtde</th>
       </tr>
     </thead>
 
@@ -16,8 +16,8 @@
           <td> <%= b.size %> </td>
           <td> <%= b.nome %> </td>
           <td> <%= b.blanqueta_lona.lonas %> lonas </td>
-          <td> <%= b.preco_un %> </td>
-          <td> <%= b.qtde %> </td>
+          <td class="text-right"> <%= format_currency(b.preco_un) %> </td>
+          <td class="text-center"> <%= b.qtde %> </td>
         </tr>
       <% end %>
     </tbody>
