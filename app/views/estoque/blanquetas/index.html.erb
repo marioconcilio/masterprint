@@ -1,10 +1,3 @@
 <h1>Blanquetas</h1>
 
-<%= form_tag '/estoque/blanquetas', method: :get, id: 'estoque_search', class: 'form-inline pull-right' do %>
-  <p>
-    <%= text_field_tag :search, params[:search], class: 'form-control' %>
-    <%= submit_tag "Procurar", name: nil, class: 'btn btn-primary' %>
-  </p>
-<% end %>
-
-<div id="estoque"><%= render 'all' %></div>
+<div id="estoque" class="container"> <%= render 'list' %> </div>

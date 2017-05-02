@@ -1,0 +1,43 @@
+<%= search_form_for @search, remote: true, url: estoque_blanquetas_path , method: :get do |f| %>
+
+  <div class="form-inline pull-right">
+    <%= f.search_field :nome_or_larg_or_comp_cont, class: 'form-control'%>
+    <div class="btn-group">
+      <%= f.submit 'Pesquisar', name: nil, class: 'btn btn-primary' %>
+      <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+    </div>
+  </div>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>
+          <%= sort_link @search, :larg, [:larg, :comp], 'Tamanho', {}, { remote: true, method: :get } %>
+        </th>
+        <th>
+          <%= sort_link @search, :nome, 'Máquina', {}, { remote: true, method: :get } %>
+        </th>
+        <th>
+          <%= sort_link @search, :blanqueta_lona_lonas, 'Lonas', {}, { remote: true, method: :get } %>
+        </th>
+        <th class="text-right">
+          <%= sort_link @search, :preco_un, 'Preço Unidade', {}, { remote: true, method: :get } %>
+        </th>
+        <th class="text-center">
+          <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |b| %>
+        <tr>
+          <td> <%= b.size %> </td>
+          <td> <%= b.nome %> </td>
+          <td> <%= b.blanqueta_lona.lonas %> lonas </td>
+          <td class="text-right"> <%= format_currency(b.preco_un) %> </td>
+          <td class="text-center"> <%= b.qtde %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -4,4 +4,5 @@ class ApplicationRecord < ActiveRecord::Base
   def self.is_numeric?(s)
     !!Float(s) rescue false
   end
+
 end

@@ -23,16 +23,17 @@ class Blanqueta < ApplicationRecord
     '%03d x %03d' % [self.larg, self.comp]
   end
 
-  def self.search(term)
-    if term
-      if is_numeric? term
-        where('nome ILIKE ? or larg=? or comp=?', "%#{term}%", term.to_i, term.to_i)
-      else
-        where('nome ILIKE ?', "%#{term}%")
-      end
-    else
-      all
+  private
+    ransacker :preco_un do
+      Arel.sql('larg * comp * blanqueta_lonas.preco')
     end
-  end
+
+    ransacker :larg do
+      Arel.sql('larg::text')
+    end
+
+    ransacker :comp do
+      Arel.sql('comp::text')
+    end
 
 end
