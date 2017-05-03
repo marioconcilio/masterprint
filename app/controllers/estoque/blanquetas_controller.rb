@@ -1,5 +1,4 @@
 class Estoque::BlanquetasController < ApplicationController
-  before_action :clear_search_index
 
   # GET /estoque/blanquetas
   def index
