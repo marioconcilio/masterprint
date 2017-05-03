@@ -10,10 +10,6 @@ require 'csv'
 
 PATH = "#{Rails.root}/lib/seeds"
 
-# Dolar
-Dolar.create! value: 3.30
-ChapaDolar.create! value: 3.60
-
 # Blanqueta Lonas
 BlanquetaLona.transaction do
   lonas = CSV.read("#{PATH}/blanqueta_lonas.csv")
