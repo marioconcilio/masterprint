@@ -1,24 +1,2 @@
-<h1>Variados</h1>
-
-<table class="table table-striped sortable">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Unidade</th>
-      <th>Preço</th>
-      <th>Qtde</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @variados.each do |v| %>
-      <tr>
-        <td> <%= v.nome %> </td>
-        <td> <%= v.un %> </td>
-        <td> <%= v.preco_un %> </td>
-        <td> <%= v.qtde %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>
+<h1> <%= controller_name.classify.pluralize %> </h1>
+<div id="estoque" class="container"> <%= render 'list' %> </div>

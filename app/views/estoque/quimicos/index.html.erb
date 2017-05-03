@@ -1,26 +1,2 @@
-<h1>Químicos</h1>
-
-<table class="table table-striped sortable">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Marca</th>
-      <th>Unidade</th>
-      <th>Preço</th>
-      <th>Qtde</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @quimicos.each do |q| %>
-      <tr>
-        <td> <%= q.nome %> </td>
-        <td> <%= q.marca %> </td>
-        <td> <%= q.un %> </td>
-        <td> <%= q.preco_un %> </td>
-        <td> <%= q.qtde %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>
+<h1> <%= controller_name.classify.pluralize %> </h1>
+<div id="estoque" class="container"> <%= render 'list' %> </div>

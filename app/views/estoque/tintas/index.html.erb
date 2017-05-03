@@ -1,26 +1,2 @@
-<h1>Tintas</h1>
-
-<table class="table table-striped sortable">
-  <thead>
-    <tr>
-      <th>Cor</th>
-      <th>Marca</th>
-      <th>Preço Lata</th>
-      <th>Lata com</th>
-      <th>Qtde</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tintas.each do |tinta| %>
-      <tr>
-        <td> <%= tinta.nome %> </td>
-        <td> <%= tinta.marca %> </td>
-        <td> <%= tinta.preco_un %> </td>
-        <td> <%= tinta.un %>kg </td>
-        <td> <%= tinta.qtde %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>
+<h1> <%= controller_name.classify.pluralize %> </h1>
+<div id="estoque" class="container"> <%= render 'list' %> </div>

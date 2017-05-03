@@ -2,7 +2,8 @@ class Estoque::VariadosController < ApplicationController
 
   # GET /estoque/variados
   def index
-    @variados = Variado.all
+    @search = Variado.ransack(params[:q])
+    @products = @search.result
   end
 
 end

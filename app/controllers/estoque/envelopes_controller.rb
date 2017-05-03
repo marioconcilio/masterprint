@@ -2,7 +2,8 @@ class Estoque::EnvelopesController < ApplicationController
 
   # GET /estoque/envelopes
   def index
-    @envelopes = Envelope.all
+    @search = Envelope.ransack(params[:q])
+    @products = @search.result
   end
 
 end

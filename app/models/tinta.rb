@@ -11,11 +11,15 @@ class Tinta < ApplicationRecord
   def preco_un
     preco = self.preco_kg * self.un
     if self.moeda == 'USD'
-      dolar = Dolar.first.value
-      "R$ %.2f" % (preco * dolar).round(1)
+      (preco * Settings.dolar.tintas).round(1)
     else
-      "R$ %.2f" % preco.round(1)
+      preco.round(1)
     end
   end
+
+  private
+    ransacker :preco_un do
+      Arel.sql('preco_kg * un')
+    end
 
 end

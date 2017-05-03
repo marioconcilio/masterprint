@@ -10,7 +10,7 @@ class Chapa < ApplicationRecord
 
   def preco
     if self.moeda == 'USD'
-      preco = self.chapa_marca.preco * ChapaDolar.first.value
+      preco = self.chapa_marca.preco * Settings.dolar.chapas
     else
       preco = self.chapa_marca.preco
     end
@@ -18,16 +18,25 @@ class Chapa < ApplicationRecord
     (self.larg * self.comp * preco / 1000000).round(1)
   end
 
-  def preco_un
-    'R$ %.2f' % self.preco
-  end
-
   def preco_avulso
-    'R$ %.2f' % (self.preco * 1.27).round(1)
+    (self.preco * Settings.chapa.avulso).round(1)
   end
 
   def size
     '%03d x %03d' % [self.larg, self.comp]
   end
+
+  private
+    ransacker :preco_un do
+      Arel.sql('larg * comp * chapa_marcas.preco')
+    end
+
+    ransacker :larg do
+      Arel.sql('larg::text')
+    end
+
+    ransacker :comp do
+      Arel.sql('comp::text')
+    end
 
 end

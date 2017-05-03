@@ -11,11 +11,28 @@ class Envelope < ApplicationRecord
   default_scope -> { order(:nome, :larg, :comp, :tipo, :grs) }
 
   def preco_un
-    'R$ %.2f' % (self.preco_milheiro * self.un / 1000)
+    (self.preco_milheiro * self.un / 1000)
   end
 
   def size
     '%03d x %03d' % [self.larg, self.comp]
   end
+
+  private
+    ransacker :preco_un do
+      Arel.sql('preco_milheiro * un / 1000')
+    end
+
+    ransacker :larg do
+      Arel.sql('larg::text')
+    end
+
+    ransacker :comp do
+      Arel.sql('comp::text')
+    end
+
+    ransacker :grs do
+      Arel.sql('grs::text')
+    end
 
 end
