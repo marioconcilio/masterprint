@@ -11,7 +11,7 @@ class Envelope < ApplicationRecord
   default_scope -> { order(:nome, :larg, :comp, :tipo, :grs) }
 
   def preco_un
-    (self.preco_milheiro * self.un / 1000)
+    (self.preco_milheiro * self.un / 1000).round(1)
   end
 
   def size

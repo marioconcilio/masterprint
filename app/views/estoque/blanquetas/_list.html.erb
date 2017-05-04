@@ -17,7 +17,7 @@
         <th>
           <%= sort_link @search, :nome, 'Máquina', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :blanqueta_lona_lonas, 'Lonas', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-right">
@@ -33,7 +33,7 @@
         <tr>
           <td> <%= b.size %> </td>
           <td> <%= b.nome %> </td>
-          <td> <%= b.blanqueta_lona.lonas %> lonas </td>
+          <td class="text-center"> <%= b.blanqueta_lona.lonas %> lonas </td>
           <td class="text-right"> <%= format_currency(b.preco_un) %> </td>
           <td class="text-center"> <%= b.qtde %> </td>
         </tr>

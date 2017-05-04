@@ -14,7 +14,7 @@
         <th>
           <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-right">
@@ -29,7 +29,7 @@
       <% @products.each do |v| %>
         <tr>
           <td> <%= v.nome %> </td>
-          <td> <%= v.un %> </td>
+          <td class="text-center"> <%= v.un %> </td>
           <td class="text-right"> <%= format_currency(v.preco_un) %> </td>
           <td class="text-center"> <%= v.qtde %> </td>
         </tr>

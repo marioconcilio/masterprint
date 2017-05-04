@@ -20,10 +20,10 @@
         <th>
           <%= sort_link @search, :tipo, 'Tipo', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :grs, 'Grs', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :un, 'Caixa com', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-right">
@@ -43,8 +43,8 @@
           <td> <%= e.size %> </td>
           <td> <%= e.nome %> </td>
           <td> <%= e.tipo %> </td>
-          <td> <%= e.grs %>g </td>
-          <td> <%= e.un %> </td>
+          <td class="text-center"> <%= e.grs %>g </td>
+          <td class="text-center"> <%= e.un %> </td>
           <td class="text-right"> <%= format_currency(e.preco_un) %> </td>
           <td class="text-right"> <%= format_currency(e.preco_milheiro) %> </td>
           <td class="text-center"> <%= e.qtde %> </td>

@@ -17,7 +17,7 @@
         <th>
           <%= sort_link @search, :marca, 'Marca', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :un, 'Lata com', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-right">
@@ -36,7 +36,7 @@
         <tr>
           <td> <%= t.nome %> </td>
           <td> <%= t.marca %> </td>
-          <td> <%= t.un %>kg </td>
+          <td class="text-center"> <%= t.un %>kg </td>
           <td class="text-right"> <%= format_currency(t.preco_un) %> </td>
           <td class="text-right"> <%= format_currency(t.preco_kg) %> </td>
           <td class="text-center"> <%= t.qtde %> </td>

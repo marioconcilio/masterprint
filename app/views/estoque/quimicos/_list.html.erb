@@ -1,5 +1,6 @@
 <%= search_form_for @search, remote: true, url: estoque_quimicos_path , method: :get do |f| %>
 
+  <!-- Search form -->
   <div class="form-inline pull-right">
     <%= f.search_field :nome_or_marca_cont, class: 'form-control'%>
     <div class="btn-group">
@@ -7,8 +8,10 @@
       <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
     </div>
   </div>
+  <!-- /.search form -->
 
   <table class="table table-hover table-striped">
+
     <thead>
       <tr>
         <th>
@@ -17,7 +20,7 @@
         <th>
           <%= sort_link @search, :marca, 'Marca', {}, { remote: true, method: :get } %>
         </th>
-        <th>
+        <th class="text-center">
           <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-right">
@@ -28,16 +31,18 @@
         </th>
       </tr>
     </thead>
+
     <tbody>
       <% @products.each do |q| %>
         <tr>
           <td> <%= q.nome %> </td>
           <td> <%= q.marca %> </td>
-          <td> <%= q.un %> </td>
+          <td class="text-center"> <%= q.un %> </td>
           <td class="text-right"> <%= format_currency(q.preco_un) %> </td>
           <td class="text-center"> <%= q.qtde %> </td>
         </tr>
       <% end %>
     </tbody>
+
   </table>
 <% end %>
