@@ -56,6 +56,9 @@ gem 'font-awesome-rails'
 # Table search and sort
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+# User secure password
+gem 'bcrypt'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

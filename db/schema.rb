@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427214926) do
+ActiveRecord::Schema.define(version: 20170504204251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 20170427214926) do
     t.string   "moeda",      limit: 3
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "usuario"
+    t.string   "nome"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["usuario"], name: "index_usuarios_on_usuario", unique: true, using: :btree
   end
 
   create_table "variados", force: :cascade do |t|
