@@ -2,25 +2,31 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li>
-        <a href="#">Recados</a>
+        <a href="#">
+          <!-- <i class="fa fa-sticky-note-o fa-lg" aria-hidden="true"></i> -->
+          <%= image_tag('notes.png', size: '25x25') %>
+        </a>
       </li>
       <li>
-        <%= link_to "Estoque", estoque_blanquetas_path %>
+        <%= link_to estoque_blanquetas_path do %>
+          <!-- <i class="fa fa-archive fa-lg" aria-hidden="true"></i> -->
+          <%= image_tag('trolley.png', size: '25x25') %>
+        <% end %>
       </li>
       <li>
-        <a href="#">Overview</a>
+        <a href="#">
+          <%= image_tag('money-bag.png', size: '25x25') %>
+        </a>
       </li>
       <li>
-        <a href="#">Events</a>
+        <a href="#">
+        <%= image_tag('credit-cards.png', size: '25x25') %>
+        </a>
       </li>
       <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Services</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
+        <a href="#">
+          <%= image_tag('agenda.png', size: '25x25') %>
+        </a>
       </li>
     </ul>
   </div>
