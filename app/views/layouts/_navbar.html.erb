@@ -35,7 +35,20 @@
       <!-- navbar-left -->
 
       <ul class="nav navbar-nav navbar-right">
-        <li> <%= link_to "", login_path, class: "fa fa-lock" %> </li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.nome %></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "Sair", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "", login_path, class: "fa fa-sign-in" %>
+          </li>
+        <% end %>
       </ul>
       <!-- navbar-right -->
 
