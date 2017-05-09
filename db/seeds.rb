@@ -16,7 +16,7 @@ Cliente.transaction do
   columns = [:id, :nome, :email, :endereco, :cidade, :uf, :cep]
   Cliente.import columns, clientes, validate: true
 end
-=begin
+
 # Blanqueta Lonas
 BlanquetaLona.transaction do
   lonas = CSV.read("#{PATH}/blanqueta_lonas.csv")
@@ -72,4 +72,3 @@ Variado.transaction do
   column = [:nome, :un, :preco, :moeda, :qtde]
   Variado.import column, variados, validate: :true
 end
-=end

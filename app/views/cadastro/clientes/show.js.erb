@@ -1,0 +1,6 @@
+$modal = $('.modal'),
+$modalBody = $('.modal .modal-body'),
+$modalHeading = $('.modal .modal-header');
+$modalHeading.html("<h4><%= @cliente.nome %></h4>");
+$modalBody.html("<%= escape_javascript(render @cliente) %>");
+$modal.modal();
