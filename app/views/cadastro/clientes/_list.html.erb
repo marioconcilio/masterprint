@@ -40,7 +40,7 @@
           <td> <%= c.cidade %> </td>
           <td class="text-center"> <%= c.uf %> </td>
           <td> <%= format_cep(c.cep) %> </td>
-          <td> <%= link_to 'Detalhes', cadastro_cliente_path(c), remote: true %> </td>
+          <td> <%= link_to 'Detalhes', cadastro_cliente_path(c), remote: false %> </td>
         </tr>
       <% end %>
     </tbody>

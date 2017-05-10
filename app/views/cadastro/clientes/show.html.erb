@@ -1,2 +1,34 @@
 <% provide(:title, "Cliente") %>
-<h1>Cliente</h1>
+<h1>Detalhes do Cliente</h1>
+
+<div class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <%= @cliente.nome %>
+    </div>
+    <div class="panel-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>CNPJ</td>
+            <td><%= format_cnpj(@cliente.id) %></td>
+          </tr>
+          <tr>
+            <td>Endereço</td>
+            <td><%= @cliente.endereco %></td>
+          </tr>
+          <tr>
+            <td>Cidade</td>
+            <td><%= @cliente.cidade %> - <%= @cliente.uf %></td>
+          </tr>
+          <tr>
+            <td>CEP</td>
+            <td><%= @cliente.cep %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%# link_to "Voltar", request.referer.present? ? request.referer : default_path %>
