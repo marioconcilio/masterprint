@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 20170505203929) do
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
   end
 
-  create_table "chapa_dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
     t.decimal  "preco",      precision: 8
@@ -68,12 +62,6 @@ ActiveRecord::Schema.define(version: 20170505203929) do
     t.integer  "cep"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
   end
 
   create_table "envelopes", force: :cascade do |t|

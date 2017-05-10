@@ -5,4 +5,4 @@
 </p>
 
 <%= link_to 'Editar', edit_cadastro_cliente_path(@cliente) %>
-<%= link_to 'Remover', @cliente, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Remover', cadastro_clientes_path(@cliente), method: :delete, data: { confirm: 'Certeza?' } %>
