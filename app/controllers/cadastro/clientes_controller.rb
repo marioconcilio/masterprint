@@ -36,8 +36,13 @@ class Cadastro::ClientesController < ApplicationController
     end
   end
 
+  # GET /cadastro/clientes/new
   def new
     @cliente = Cliente.new
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -51,7 +56,7 @@ class Cadastro::ClientesController < ApplicationController
 
   private
     def cliente_params
-      params.require(:cliente).permit(:nome)
+      params.require(:cliente).permit(:nome, :email, :endereco, :cidade, :uf, :cep)
     end
 
 end

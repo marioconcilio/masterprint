@@ -1,0 +1,25 @@
+<div class="form-inline">
+  <div class="form-group">
+    <%= search_form_for @search, remote: true, url: yield(:url), method: :get do |f| %>
+      <%= f.search_field yield(:search_field), placeholder: yield(:placeholder), class: 'form-control'%>
+
+      <div class="btn-group">
+        <%= f.submit 'Pesquisar', name: nil, class: 'btn btn-primary' %>
+        <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+      </div>
+      <!-- /.btn-group -->
+
+    <% end %>
+  </div>
+  <!-- /.form-group -->
+
+  <div class="form-group pull-right">
+    <%= link_to "Adicionar #{controller_name.classify}",
+                yield(:new_url),
+                remote: true,
+                class: 'btn btn-info' %>
+  </div>
+  <!-- /.form-group .pull-right -->
+
+</div>
+<!-- /.form-inline -->
