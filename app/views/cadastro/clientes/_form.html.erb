@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @cliente, url: yield(:url) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :nome %>
+      <%= f.text_field :nome, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label 'Endereço' %>
+      <%= f.text_field :endereco, class: 'form-control' %>
+
+      <%= f.label :cidade %>
+      <%= f.text_field :cidade, class: 'form-control' %>
+
+      <%= f.label :uf %>
+      <%= f.text_field :uf, class: 'form-control' %>
+
+      <%= f.label :cep %>
+      <%= f.text_field :cep, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

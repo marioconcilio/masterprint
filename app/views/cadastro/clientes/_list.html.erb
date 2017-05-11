@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <table class="table table-hover table-striped">
+  <table class="table table-hover table-striped" id="clickable-row">
     <thead>
       <tr>
         <th>
@@ -18,29 +18,29 @@
           <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
         </th>
         <th>
-          <%= sort_link @search, :un, 'Endereço', {}, { remote: true, method: :get } %>
+          <%= sort_link @search, :endereco, 'Endereço', {}, { remote: true, method: :get } %>
         </th>
         <th>
-          <%= sort_link @search, :preco_un, 'Cidade', {}, { remote: true, method: :get } %>
+          <%= sort_link @search, :cidade, 'Cidade', {}, { remote: true, method: :get } %>
         </th>
         <th class="text-center">
-          <%= sort_link @search, :preco_kg, 'UF', {}, { remote: true, method: :get } %>
+          <%= sort_link @search, :uf, 'UF', {}, { remote: true, method: :get } %>
         </th>
         <th>
-          <%= sort_link @search, :qtde, 'CEP', {}, { remote: true, method: :get } %>
+          <%= sort_link @search, :cep, 'CEP', {}, { remote: true, method: :get } %>
         </th>
       </tr>
     </thead>
     <tbody>
       <% @clientes.each do |c| %>
-        <tr>
+        <tr data-href="<%= cadastro_cliente_path(c) %>">
           <td> <%= format_cnpj(c.id) %> </td>
           <td> <%= c.nome %> </td>
           <td> <%= c.endereco %> </td>
           <td> <%= c.cidade %> </td>
           <td class="text-center"> <%= c.uf %> </td>
           <td> <%= format_cep(c.cep) %> </td>
-          <td> <%= link_to 'Detalhes', cadastro_cliente_path(c), remote: false %> </td>
+          <!-- <td> <%= link_to 'Detalhes', cadastro_cliente_path(c) %> </td> -->
         </tr>
       <% end %>
     </tbody>
@@ -48,4 +48,4 @@
   <%= paginate @clientes %>
 <% end %>
 
-<%= render "layouts/modal" %>
+<%# render "layouts/modal" %>
