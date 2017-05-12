@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require turbolinks-compatibility
 //= require bootstrap-sprockets
+//= require jquery.mask
 //= require_tree .

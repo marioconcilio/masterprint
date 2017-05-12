@@ -60,6 +60,10 @@ gem 'kaminari-bootstrap'
 # User secure password
 gem 'bcrypt'
 
+# Mask inputs
+# http://bit.ly/jquery-mask-gem
+gem 'jquery_mask_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

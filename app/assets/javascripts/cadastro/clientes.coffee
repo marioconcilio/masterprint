@@ -1,3 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+ jQuery ->
+  $('#cliente_id').mask '00.000.000/0000-00'
+  $('#cliente_cep').mask '00000-000'

@@ -1,8 +1,0 @@
-$modal = $('.modal'),
-$modalBody = $('.modal .modal-body'),
-$modalHeader = $('.modal .modal-header');
-$modalFooter = $('.modal .modal-footer');
-$modalHeader.html('<h4><%= @cliente.nome %></h4>');
-$modalBody.html('<%= escape_javascript(render @cliente) %>');
-$modalFooter.append('<button type="button" class="btn btn-default" data-dismiss="modal">Editar</button>');
-$modal.modal();

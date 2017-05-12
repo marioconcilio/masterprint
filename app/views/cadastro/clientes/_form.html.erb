@@ -4,6 +4,15 @@
       <%= form_for @cliente, url: yield(:url), html: { class: 'form-horizontal' } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
+        <% if @show_cnpj %>
+          <div class="form-group">
+            <%= f.label 'CNPJ', class: 'control-label col-sm-2' %>
+            <div class="col-sm-10">
+              <%= f.text_field :id, class: 'form-control' %>
+            </div>
+          </div>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :nome, class: 'control-label col-sm-2' %>
           <div class="col-sm-10">
@@ -35,7 +44,7 @@
         <div class="form-group">
           <%= f.label :uf, class: 'control-label col-sm-2' %>
           <div class="col-sm-3">
-            <%= f.text_field :uf, class: 'form-control' %>
+            <%= f.text_field :uf, maxlength: 2, class: 'form-control' %>
           </div>
 
           <%= f.label :cep, class: 'control-label col-sm-1' %>
