@@ -2,9 +2,6 @@
   <thead>
     <tr>
       <th>
-        <%= sort_link @search, :id, 'CNPJ', {}, { remote: true, method: :get } %>
-      </th>
-      <th>
         <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
       </th>
       <th>
@@ -24,7 +21,6 @@
   <tbody>
     <% @clientes.each do |c| %>
       <tr data-href="<%= cadastro_cliente_path(c) %>">
-        <td> <%= format_cnpj(c.id) %> </td>
         <td> <%= c.nome %> </td>
         <td> <%= c.endereco %> </td>
         <td> <%= c.cidade %> </td>
@@ -37,7 +33,7 @@
 </table>
 
 <div class="row">
-  <div class="col-lg-8 col-lg-offset-4">
+  <div class="col-lg-12 col-lg-offset-4">
     <%= paginate @clientes %>
   </div>
 </div>
