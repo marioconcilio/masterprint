@@ -1,9 +1,7 @@
 $modal = $('.modal');
+$modalContent = $('.modal .modal-content')
+$modalContent.html('<%= j(render "form") %>');
 $modalHeader = $('.modal .modal-header');
-$modalBody = $('.modal .modal-body');
-$modalFooter = $('.modal .modal-footer');
-
 $modalHeader.html('<h3>Editando Cliente</h3>');
-$modalBody.html('<%= j(render "form") %>');
 
 $modal.modal();

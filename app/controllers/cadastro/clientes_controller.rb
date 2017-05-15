@@ -17,7 +17,7 @@ class Cadastro::ClientesController < ApplicationController
       flash[:success] = 'Cliente adicionado'
       redirect_to cadastro_clientes_url
     else
-      render 'new'
+      render :partial => 'flash', :flash => flash
     end
   end
 
@@ -47,7 +47,7 @@ class Cadastro::ClientesController < ApplicationController
       flash[:success] = 'Cliente atualizado'
       redirect_to cadastro_cliente_url
     else
-      render 'edit'
+      puts 'error'
     end
   end
 

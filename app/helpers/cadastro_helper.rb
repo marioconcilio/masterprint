@@ -5,7 +5,7 @@ module CadastroHelper
   end
 
   def format_cep(number)
-    ('%08d' % number).gsub(/\A(\d{5})(\d{3})\Z/, "\\1-\\2")
+    ('%08d' % number).gsub(/\A(\d{5})(\d{3})\Z/, "\\1-\\2") if number
   end
 
 end
