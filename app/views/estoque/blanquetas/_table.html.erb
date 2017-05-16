@@ -1,0 +1,32 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @search, :larg, [:larg, :comp], 'Tamanho', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :nome, 'Máquina', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :blanqueta_lona_lonas, 'Lonas', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-right">
+        <%= sort_link @search, :preco_un, 'Preço Unidade', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |b| %>
+      <tr>
+        <td> <%= b.size %> </td>
+        <td> <%= b.nome %> </td>
+        <td class="text-center"> <%= b.blanqueta_lona.lonas %> lonas </td>
+        <td class="text-right"> <%= format_currency(b.preco_un) %> </td>
+        <td class="text-center"> <%= b.qtde %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

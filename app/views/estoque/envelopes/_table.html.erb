@@ -1,0 +1,44 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @search, :larg, [:larg, :comp], 'Tamanho', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :tipo, 'Tipo', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :grs, 'Grs', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :un, 'Caixa com', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-right">
+        <%= sort_link @search, :preco_un, 'Preço Caixa', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-right">
+        <%= sort_link @search, :preco_milheiro, 'Preço Milheiro', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |e| %>
+      <tr>
+        <td> <%= e.size %> </td>
+        <td> <%= e.nome %> </td>
+        <td> <%= e.tipo %> </td>
+        <td class="text-center"> <%= e.grs %>g </td>
+        <td class="text-center"> <%= e.un %> </td>
+        <td class="text-right"> <%= format_currency(e.preco_un) %> </td>
+        <td class="text-right"> <%= format_currency(e.preco_milheiro) %> </td>
+        <td class="text-center"> <%= e.qtde %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

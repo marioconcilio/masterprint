@@ -1,2 +1,11 @@
-<h1>Químicos</h1>
-<div id="estoque"> <%= render 'list' %> </div>
+<% content_for :navbar do %>
+  <%= render 'estoque/navbar' %>
+<% end %>
+
+<% provide(:url, estoque_quimicos_path) %>
+<% provide(:new_url, new_estoque_quimico_path) %>
+<% provide(:search_field, :nome_or_marca_cont) %>
+<% provide(:placeholder, 'Nome ou marca') %>
+<% provide(:name, 'Químicos') %>
+
+<%= render 'shared/index' %>
