@@ -54,3 +54,12 @@ test:
   timeout: 5000
   username: rails
   password: rails
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: masterprint
+  pool: 5
+  timeout: 5000
+  username: rails
+  password: rails
