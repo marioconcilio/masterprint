@@ -1,2 +1,11 @@
-<h1> <%= controller_name.classify.pluralize %> </h1>
-<div id="estoque"> <%= render 'list' %> </div>
+<% content_for :navbar do %>
+  <%= render 'estoque/navbar' %>
+<% end %>
+
+<% provide(:url, estoque_blanquetas_path) %>
+<% provide(:new_url, new_estoque_blanqueta_path) %>
+<% provide(:search_field, :nome_or_larg_or_comp_cont) %>
+<% provide(:placeholder, 'Nome ou tamanho') %>
+<% provide(:name, 'Blanquetas') %>
+
+<%= render 'shared/index' %>

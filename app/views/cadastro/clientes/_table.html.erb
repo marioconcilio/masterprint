@@ -1,0 +1,39 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :endereco, 'Endereço', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :cidade, 'Cidade', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :uf, 'UF', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :cep, 'CEP', {}, { remote: true, method: :get } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clientes.each do |c| %>
+      <tr data-href="<%= cadastro_cliente_path(c) %>">
+        <td> <%= c.nome %> </td>
+        <td> <%= c.endereco %> </td>
+        <td> <%= c.cidade %> </td>
+        <td class="text-center"> <%= c.uf %> </td>
+        <td> <%= format_cep(c.cep) %> </td>
+        <td> <%= link_to '', cadastro_cliente_path(c), class: 'fa fa-info-circle fa-lg no-underline' %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-lg-8">
+    <%= paginate @clientes %>
+  </div>
+</div>

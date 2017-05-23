@@ -1,2 +1,0 @@
-module Estoque::EnvelopesHelper
-end

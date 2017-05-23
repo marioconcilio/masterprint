@@ -27,5 +27,7 @@ module Masterprint
     config.active_record.time_zone_aware_types = [:datetime]
     config.encoding = "utf-8"
     config.time_zone = 'Brasilia'
+
+    config.exceptions_app = self.routes
   end
 end

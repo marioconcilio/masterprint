@@ -1,0 +1,49 @@
+$bgDefault      : #006437
+$bgHighlight    : #00522d
+$bgActive       : #003d22
+$colHighlight   : #00a35a
+
+// padding for navbar and sidebar
+body
+  padding-top: 50px
+  padding-left: 65px
+
+// custom classes
+.row-margin
+  margin-top: 20px
+
+.no-underline
+  text-decoration: none !important
+
+.table-borderless
+  td, th
+    border: 0 !important
+
+/*
+ custmomize theme color
+ */
+a
+  color: $bgDefault
+  text-decoration: none
+
+  &:hover, &:focus
+    color: $bgHighlight
+
+.btn-primary
+  color: white
+  background-color: $bgDefault
+  border-color: $bgHighlight
+
+  &:hover, &:focus
+    background-color: $bgHighlight
+    border-color: $bgHighlight
+
+  &:active, &:active:hover
+    background-color: $bgActive
+    border-color: $bgActive
+
+.pagination > li >
+  a, span
+    color: $bgDefault
+  a:hover, span:hover, a:focus, span:focus
+    color: $bgDefault

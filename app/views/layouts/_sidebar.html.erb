@@ -3,13 +3,11 @@
     <ul class="sidebar-nav">
       <li>
         <a href="#">
-          <!-- <i class="fa fa-sticky-note-o fa-lg" aria-hidden="true"></i> -->
           <%= image_tag('notes.png', size: '25x25') %>
         </a>
       </li>
       <li>
         <%= link_to estoque_blanquetas_path do %>
-          <!-- <i class="fa fa-archive fa-lg" aria-hidden="true"></i> -->
           <%= image_tag('trolley.png', size: '25x25') %>
         <% end %>
       </li>
@@ -24,25 +22,22 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <%= link_to cadastro_clientes_path do %>
           <%= image_tag('agenda.png', size: '25x25') %>
-        </a>
+        <% end %>
       </li>
     </ul>
+    <!-- /.sidebar-nav -->
+
   </div>
   <!-- /.sidebar-wrapper -->
 
   <div id="page-content-wrapper">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>"><%= message %></div>
-          <% end %>
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+
+    <%= yield %>
   </div>
   <!-- /.page-content-wrapper -->
 

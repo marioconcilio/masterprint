@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require moment
-//= require bootstrap-sortable
+//= require jquery.turbolinks
 //= require turbolinks
+//= require turbolinks-compatibility
 //= require bootstrap-sprockets
+//= require jquery.mask
 //= require_tree .

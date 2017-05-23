@@ -1,0 +1,79 @@
+<%= form_for @cliente, remote: true, url: yield(:url), html: { class: 'form-horizontal' } do |f| %>
+
+<div class="modal-header">
+  <h3>Olar</h3>
+</div>
+<!-- /.modal-header -->
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <% if @show_cnpj %>
+          <div class="form-group">
+            <%= f.label 'CNPJ', class: 'control-label col-sm-2' %>
+            <div class="col-sm-10">
+              <%= f.text_field :id, class: 'form-control' %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :nome, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <%= f.text_field :nome, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10" %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Endereço', class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <%= f.text_field :endereco, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :cidade, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <%= f.text_field :cidade, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :uf, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.text_field :uf, class: 'form-control' %>
+          </div>
+
+          <%= f.label :cep, class: 'control-label col-sm-1' %>
+          <div class="col-sm-6">
+            <%= f.text_field :cep, value: "#{format_cep(@cliente.cep)}", class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.modal-body -->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+</div>
+<!-- /.modal-footer -->
+
+<% end %>
+
+

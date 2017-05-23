@@ -26,16 +26,13 @@ gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
-# Sort tables
-gem 'momentjs-rails'
-gem 'rails_bootstrap_sortable'
+# Turbolinks with jQuery events
+gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -56,8 +53,16 @@ gem 'font-awesome-rails'
 # Table search and sort
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+# Table pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 # User secure password
 gem 'bcrypt'
+
+# Mask inputs
+# http://bit.ly/jquery-mask-gem
+gem 'jquery_mask_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
