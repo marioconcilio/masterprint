@@ -26,9 +26,9 @@
       <tr>
         <td> <%= t.nome %> </td>
         <td> <%= t.marca %> </td>
-        <td class="text-center"> <%= t.un %>kg </td>
+        <td class="text-center"> <%= format_decimal(t.un) %>kg </td>
         <td class="text-right"> <%= format_currency(t.preco_un) %> </td>
-        <td class="text-right"> <%= format_currency(t.preco_kg) %> </td>
+        <td class="text-right"> <%= format_currency(t.preco_kg, t.moeda) %> </td>
         <td class="text-center"> <%= t.qtde %> </td>
       </tr>
     <% end %>

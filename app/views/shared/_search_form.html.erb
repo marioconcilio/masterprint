@@ -13,7 +13,7 @@
   </div>
   <!-- /.form-group -->
 
-  <% if content_for? :new_url %>
+  <% if logged_in? && content_for?(:new_url) %>
     <div class="form-group pull-right">
       <%= link_to "Adicionar #{controller_name.classify}",
                   yield(:new_url),

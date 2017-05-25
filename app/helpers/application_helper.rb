@@ -4,12 +4,19 @@ module ApplicationHelper
     current_page?(link_path) ? "active" : ""
   end
 
-  def format_currency(value)
+  def format_currency(value, currency='BRL')
+    unit = currency == 'BRL'? 'R$' : 'US$'
     number_to_currency(value,
-                       unit: 'R$',
+                       unit: unit,
                        separator: ',',
                        delimiter: '.',
                        precision: 2)
+  end
+
+  def format_decimal(value)
+    number_with_delimiter(value,
+                          delimiter: '.',
+                          separator: ',')
   end
 
 end

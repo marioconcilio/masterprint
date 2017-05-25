@@ -11,4 +11,31 @@ class Estoque::TintasController < ApplicationController
     end
   end
 
+  # POST /estoque/tintas
+  def create
+    @tinta = Tinta.new(tinta_params)
+    if @tinta.save
+      flash[:success] = 'Produto adicionado'
+      redirect_to estoque_tintas_url
+    else
+      respond_to do |format|
+        format.js { render 'new' }
+      end
+    end
+  end
+
+  # GET /estoque/tintas/new
+  def new
+    @tinta = Tinta.new
+
+    respond_to do |format|
+      format.js { render 'estoque/new' }
+    end
+  end
+
+  private
+    def tinta_params
+      params.require(:tinta).permit(:nome, :marca, :preco_kg, :qtde, :moeda, :un)
+    end
+
 end

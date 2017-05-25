@@ -1,4 +1,4 @@
- jQuery ->
+jQuery ->
   options = onKeyPress: (uf, event, currentField, options) ->
     currentField.val uf.toUpperCase()
     return
