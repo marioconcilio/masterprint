@@ -29,35 +29,38 @@
           <%= f.label 'Preço Kg', class: 'control-label col-sm-2' %>
           <div class="col-sm-3">
             <%= f.collection_select :moeda,
-                                      moedas,
-                                      :value,
-                                      :text,
-                                      { include_blank: false },
-                                      { class: 'form-control' } %>
+                                    moedas,
+                                    :value,
+                                    :text,
+                                    { include_blank: false },
+                                    { class: 'form-control' } %>
           </div>
           <div class="col-sm-3" %>
-            <%= f.text_field :preco_kg, class: 'form-control' %>
+            <%= f.text_field :preco_kg, class: 'form-control calculable' %>
           </div>
+
         </div>
 
         <div class="form-group">
           <%= f.label 'Lata com', class: 'control-label col-sm-2' %>
           <div class="col-sm-3">
-            <%= f.text_field :un, class: 'form-control' %>
+            <%= f.text_field :un, class: 'form-control calculable' %>
           </div>
 
-          <%= f.label :quantidade, class: 'control-label col-sm-2' %>
-          <div class="col-sm-3">
-            <p class="form-control-static">0</p>
+          <%= f.label :total, class: 'control-label col-sm-2' %>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="tinta_total">R$ 0,00</p>
           </div>
         </div>
 
         <div class="form-group">
           <%= f.label :quantidade, class: 'control-label col-sm-2' %>
           <div class="col-sm-3">
-            <%= f.number_field :qtde, value: '0', class: 'form-control' %>
+            <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
           </div>
         </div>
+
+        <%= f.hidden_field :dolar, value: Settings.dolar.tintas %>
 
       </div>
       <!-- /.col-lg-12 -->

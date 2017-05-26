@@ -19,7 +19,7 @@ class Estoque::VariadosController < ApplicationController
       redirect_to estoque_variados_url
     else
       respond_to do |format|
-        format.js { render 'new' }
+        format.js { render 'estoque/new' }
       end
     end
   end

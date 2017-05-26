@@ -19,7 +19,7 @@ class Estoque::TintasController < ApplicationController
       redirect_to estoque_tintas_url
     else
       respond_to do |format|
-        format.js { render 'new' }
+        format.js { render 'estoque/new' }
       end
     end
   end
