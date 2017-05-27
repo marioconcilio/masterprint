@@ -35,6 +35,9 @@ class Estoque::TintasController < ApplicationController
 
   private
     def tinta_params
+      params[:tinta][:preco_kg].gsub!('.', '')
+      params[:tinta][:preco_kg].gsub!(',', '.')
+      params[:tinta][:un].gsub!(',', '.')
       params.require(:tinta).permit(:nome, :marca, :preco_kg, :qtde, :moeda, :un)
     end
 

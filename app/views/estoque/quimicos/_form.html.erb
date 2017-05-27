@@ -1,4 +1,4 @@
-<%= form_for @tinta, remote: true, url: yield(:url), html: { class: 'form-horizontal' } do |f| %>
+<%= form_for @quimico, remote: true, url: yield(:url), html: { class: 'form-horizontal' } do |f| %>
 
 <div class="modal-header">
   <h3>Olar</h3>
@@ -36,20 +36,15 @@
                                     { class: 'form-control' } %>
           </div>
           <div class="col-sm-3" %>
-            <%= f.text_field :preco_kg, class: 'form-control calculable' %>
+            <%= f.text_field :preco, class: 'form-control calculable' %>
           </div>
 
         </div>
 
         <div class="form-group">
-          <%= f.label 'Lata com', class: 'control-label col-sm-2' %>
+          <%= f.label 'Unidade', class: 'control-label col-sm-2' %>
           <div class="col-sm-3">
             <%= f.text_field :un, class: 'form-control calculable' %>
-          </div>
-
-          <%= f.label 'Preço Lata', class: 'control-label col-sm-3' %>
-          <div class="col-sm-4">
-            <p class="form-control-static" id="tinta_total">R$ 0,00</p>
           </div>
         </div>
 
@@ -60,7 +55,6 @@
           </div>
         </div>
 
-        <%= f.hidden_field :dolar, value: Settings.dolar.tintas %>
       </div>
       <!-- /.col-lg-12 -->
     </div>
