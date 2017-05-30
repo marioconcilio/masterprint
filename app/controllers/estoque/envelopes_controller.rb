@@ -40,5 +40,4 @@ class Estoque::EnvelopesController < ApplicationController
       params.require(:envelope).permit(:larg, :comp, :grs, :nome, :tipo, :preco_milheiro, :qtde, :moeda, :un)
     end
 
-
 end

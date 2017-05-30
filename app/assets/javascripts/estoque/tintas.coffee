@@ -10,10 +10,10 @@ jQuery ->
     else
       total = un * kg
 
-    $('#tinta_total').text accounting.formatMoney(total, 'R$ ', 2, '.', ',')
+    $('#tinta_total').text accounting.formatMoney(total.toFixed(1), 'R$ ', 2, '.', ',')
     return
 
-  $('body').on 'keyup', '.calculable', ->
+  $('body').on 'keyup', '.tin-calculable', ->
     calculate()
     return
 

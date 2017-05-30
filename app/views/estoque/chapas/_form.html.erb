@@ -1,0 +1,68 @@
+<%= form_for @chapa, remote: true, url: yield(:url), html: { class: 'form-horizontal' } do |f| %>
+
+<div class="modal-header">
+  <h3>Olar</h3>
+</div>
+<!-- /.modal-header -->
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="form-group">
+          <%= f.label :tamanho, class: 'control-label col-sm-2' %>
+          <div class="col-sm-2">
+            <%= f.text_field :larg, class: 'form-control chp-calculable' %>
+          </div>
+
+          <div class="col-sm-2">
+            <%= f.text_field :comp, class: 'form-control chp-calculable' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :marca, class: 'control-label col-sm-2' %>
+          <div class="col-sm-4">
+            <%= f.select :chapa_marca_id,
+                          ChapaMarca.all.map { |c|
+                            [ c.marca_and_esp, c.id, { price: c.preco } ]
+                          },
+                          { include_blank: false },
+                          { class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Preço', class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <p class="form-control-static" id="chapa_total">R$ 0,00</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :quantidade, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
+          </div>
+        </div>
+
+        <%= f.hidden_field :dolar, value: Settings.dolar.chapas %>
+        <%= f.hidden_field :moeda, value: 'USD' %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.modal-body -->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+</div>
+<!-- /.modal-footer -->
+
+<% end %>

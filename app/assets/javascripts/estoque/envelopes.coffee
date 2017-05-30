@@ -10,10 +10,10 @@ jQuery ->
     else
       total = un * mil / 1000
 
-    $('#envelope_total').text accounting.formatMoney(total, 'R$ ', 2, '.', ',')
+    $('#envelope_total').text accounting.formatMoney(total.toFixed(1), 'R$ ', 2, '.', ',')
     return
 
-  $('body').on 'keyup', '.calculable', ->
+  $('body').on 'keyup', '.env-calculable', ->
     calculate()
     return
 
@@ -21,5 +21,8 @@ jQuery ->
     calculate()
     return
 
+  $('#envelope_larg').mask '#'
+  $('#envelope_comp').mask '#'
+  $('#envelope_grs').mask '#'
   $('#envelope_un').mask '#'
   $('#envelope_preco_milheiro').mask '#.##0,00', reverse: true, placeholder: '0,00'
