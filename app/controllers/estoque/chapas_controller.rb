@@ -7,7 +7,7 @@ class Estoque::ChapasController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js { render 'estoque/index' }
+      format.js
     end
   end
 
@@ -18,19 +18,14 @@ class Estoque::ChapasController < ApplicationController
       flash[:success] = 'Produto adicionado'
       redirect_to estoque_chapas_url
     else
-      respond_to do |format|
-        format.js { render 'estoque/new' }
-      end
+      respond_to :js
     end
   end
 
   # GET /estoque/chapas/new
   def new
     @chapa = Chapa.new
-
-    respond_to do |format|
-      format.js { render 'estoque/new' }
-    end
+    respond_to :js
   end
 
   private

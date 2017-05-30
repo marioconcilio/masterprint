@@ -7,7 +7,7 @@ class Estoque::TintasController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js { render 'estoque/index' }
+      format.js
     end
   end
 
@@ -18,19 +18,14 @@ class Estoque::TintasController < ApplicationController
       flash[:success] = 'Produto adicionado'
       redirect_to estoque_tintas_url
     else
-      respond_to do |format|
-        format.js { render 'estoque/new' }
-      end
+      respond_to :js
     end
   end
 
   # GET /estoque/tintas/new
   def new
     @tinta = Tinta.new
-
-    respond_to do |format|
-      format.js { render 'estoque/new' }
-    end
+    respond_to :js
   end
 
   private

@@ -7,7 +7,7 @@ class Estoque::VariadosController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js { render 'estoque/index' }
+      format.js
     end
   end
 
@@ -18,19 +18,14 @@ class Estoque::VariadosController < ApplicationController
       flash[:success] = 'Produto adicionado'
       redirect_to estoque_variados_url
     else
-      respond_to do |format|
-        format.js { render 'estoque/new' }
-      end
+      respond_to :js
     end
   end
 
   # GET /estoque/variados/new
   def new
     @variado = Variado.new
-
-    respond_to do |format|
-      format.js { render 'estoque/new' }
-    end
+    respond_to :js
   end
 
   private
