@@ -10,13 +10,23 @@ require 'csv'
 
 PATH = "#{Rails.root}/lib/seeds"
 
+=begin
 # Clientes
 Cliente.transaction do
   clientes = CSV.read("#{PATH}/clientes.csv", col_sep: ';')
   columns = [:id, :nome, :email, :endereco, :cidade, :uf, :cep]
   Cliente.import columns, clientes, validate: true
 end
+=end
 
+# Recebimentos
+Recebimento.transaction do
+  recebimentos = CSV.read("#{PATH}/recebimentos.csv")
+  columns = [:id, :vencimento, :status, :valor, :cliente_id]
+  Recebimento.import columns, recebimentos, validate: true
+end
+
+=begin
 # Blanqueta Lonas
 BlanquetaLona.transaction do
   lonas = CSV.read("#{PATH}/blanqueta_lonas.csv")
@@ -72,3 +82,4 @@ Variado.transaction do
   column = [:nome, :un, :preco, :moeda, :qtde]
   Variado.import column, variados, validate: :true
 end
+=end

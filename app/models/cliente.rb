@@ -8,4 +8,6 @@ class Cliente < ApplicationRecord
                         :cidade,
                         :uf,
                         :cep
+
+  has_many :recebimentos
 end

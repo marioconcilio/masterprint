@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505203929) do
+ActiveRecord::Schema.define(version: 20170601003339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20170505203929) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
+  end
+
+  create_table "chapa_dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "chapa_marcas", force: :cascade do |t|
@@ -64,6 +70,12 @@ ActiveRecord::Schema.define(version: 20170505203929) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
   create_table "envelopes", force: :cascade do |t|
     t.string   "nome"
     t.decimal  "preco_milheiro",           precision: 8, scale: 2
@@ -87,6 +99,26 @@ ActiveRecord::Schema.define(version: 20170505203929) do
     t.integer  "qtde"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+  end
+
+  create_table "receber_boletos", id: :bigserial, force: :cascade do |t|
+    t.date     "vencimento"
+    t.string   "status"
+    t.decimal  "valor",      precision: 12, scale: 2
+    t.bigint   "cliente_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["cliente_id"], name: "index_receber_boletos_on_cliente_id", using: :btree
+  end
+
+  create_table "recebimentos", id: :bigserial, force: :cascade do |t|
+    t.date     "vencimento"
+    t.string   "status"
+    t.decimal  "valor",      precision: 12, scale: 2
+    t.bigint   "cliente_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["cliente_id"], name: "index_recebimentos_on_cliente_id", using: :btree
   end
 
   create_table "tintas", force: :cascade do |t|
@@ -121,4 +153,6 @@ ActiveRecord::Schema.define(version: 20170505203929) do
 
   add_foreign_key "blanquetas", "blanqueta_lonas"
   add_foreign_key "chapas", "chapa_marcas"
+  add_foreign_key "receber_boletos", "clientes"
+  add_foreign_key "recebimentos", "clientes"
 end
