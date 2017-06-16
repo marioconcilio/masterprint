@@ -66,6 +66,9 @@ gem 'bcrypt', '~> 3.1.11'
 # http://bit.ly/jquery-mask-gem
 gem 'jquery_mask_rails'
 
+# AJAX file uploads with jQuery
+gem 'remotipart', '~> 1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

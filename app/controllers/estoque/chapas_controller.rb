@@ -15,10 +15,12 @@ class Estoque::ChapasController < ApplicationController
   def create
     @chapa = Chapa.new(chapa_params)
     if @chapa.save
-      flash[:success] = 'Produto adicionado'
+      flash[:success] = 'Chapa adicionada'
       redirect_to estoque_chapas_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

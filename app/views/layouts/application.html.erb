@@ -8,18 +8,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= body_logged_in? %>">
     <header>
       <%= render 'layouts/navbar' %>
     </header>
 
+    <%= render 'shared/spinner' %>
     <% if logged_in? %>
       <%= render 'layouts/sidebar' %>
     <% else %>
       <div class="container">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
+        <%= render 'layouts/flash' %>
         <%= yield %>
       </div>
     <% end %>

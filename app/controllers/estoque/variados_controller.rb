@@ -18,7 +18,9 @@ class Estoque::VariadosController < ApplicationController
       flash[:success] = 'Produto adicionado'
       redirect_to estoque_variados_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

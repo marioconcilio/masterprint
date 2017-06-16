@@ -15,10 +15,12 @@ class Estoque::QuimicosController < ApplicationController
   def create
     @quimico = Quimico.new(quimico_params)
     if @quimico.save
-      flash[:success] = 'Produto adicionado'
+      flash[:success] = 'Químico adicionado'
       redirect_to estoque_quimicos_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

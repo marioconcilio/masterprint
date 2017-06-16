@@ -1,0 +1,39 @@
+<%= form_for @recebimento, remote: true, url: '#', multipart: true, authenticity_token: true, html: { class: 'form-horizontal' } do |f| %>
+
+<div class="modal-header">
+  <h3>Olar</h3>
+</div>
+<!-- /.modal-header -->
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <% if @error %>
+          <div id="error_explanation">
+            <div class="alert alert-danger">
+              <p><%= @error %></p>
+            </div>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.file_field :import_file %>
+        </div>
+
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.modal-body -->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= f.submit 'Importar', class: 'btn btn-primary' %>
+</div>
+<!-- /.modal-footer -->
+
+<% end %>

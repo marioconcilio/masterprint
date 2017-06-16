@@ -7,10 +7,14 @@ class SessionsController < ApplicationController
     user = Usuario.find_by(usuario: params[:session][:user].downcase)
     if user.try(:authenticate, params[:session][:password])
       log_in user
-      redirect_to estoque_blanquetas_path
+
+      url = session[:return_to] || root_url
+      session[:return_to] = nil
+      url = root_url if url.eql?('/logout')
+      redirect_to url
     else
       flash.now[:danger] = 'Usuário/senha inválidos'
-      render 'new'
+      render :new
     end
   end
 

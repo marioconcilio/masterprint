@@ -1,1 +1,1 @@
-$('#tableview').html '<%= j(render("table")) %>'
+$('#chp-tableview').html '<%= j(render("table")) %>'

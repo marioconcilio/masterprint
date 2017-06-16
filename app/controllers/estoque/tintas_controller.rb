@@ -15,10 +15,12 @@ class Estoque::TintasController < ApplicationController
   def create
     @tinta = Tinta.new(tinta_params)
     if @tinta.save
-      flash[:success] = 'Produto adicionado'
+      flash[:success] = 'Tinta adicionada'
       redirect_to estoque_tintas_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

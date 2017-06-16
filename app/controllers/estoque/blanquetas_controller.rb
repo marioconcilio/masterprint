@@ -15,10 +15,12 @@ class Estoque::BlanquetasController < ApplicationController
   def create
     @blanqueta = Blanqueta.new(blanqueta_params)
     if @blanqueta.save
-      flash[:success] = 'Produto adicionado'
+      flash[:success] = 'Blanqueta adicionada'
       redirect_to estoque_blanquetas_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

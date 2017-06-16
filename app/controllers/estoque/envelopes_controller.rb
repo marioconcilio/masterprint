@@ -15,10 +15,12 @@ class Estoque::EnvelopesController < ApplicationController
   def create
     @envelope = Envelope.new(envelope_params)
     if @envelope.save
-      flash[:success] = 'Produto adicionado'
+      flash[:success] = 'Envelope adicionado'
       redirect_to estoque_envelopes_url
     else
-      respond_to :js
+      respond_to do |format|
+        format.js { render 'new' }
+      end
     end
   end
 

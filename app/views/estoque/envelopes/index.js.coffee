@@ -1,1 +1,1 @@
-$('#tableview').html '<%= j(render("table")) %>'
+$('#env-tableview').html '<%= j(render("table")) %>'

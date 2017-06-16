@@ -1,11 +1,8 @@
 class Recebimento < ApplicationRecord
-  ABERTO      = 'ABERTO'
-  PAGO        = 'LQ'
-  CARTORIO    = 'CARTORIO'
-  PROTESTADO  = 'PROTESTADO'
-
-  paginates_per  30
+  paginates_per 50
   default_scope -> { order(vencimento: :desc) }
+  scope :status, -> (status) { where('status ilike ?', status) }
+
   validates_presence_of :vencimento,
                         :valor,
                         :status
@@ -13,19 +10,28 @@ class Recebimento < ApplicationRecord
   belongs_to :cliente
 
   def vencido?
-    self.status == ABERTO && DateTime.now > self.vencimento
+    self.status == FinanceiroHelper::Aberto && DateTime.now > self.vencimento
   end
 
   def pago?
-    self.status == PAGO
+    self.status == FinanceiroHelper::Pago
   end
 
   def em_cartorio?
-    self.status == CARTORIO
+    self.status == FinanceiroHelper::Cartorio
   end
 
   def protestado?
-    self.status == PROTESTADO
+    self.status == FinanceiroHelper::Protesto
   end
+
+  private
+    ransacker :numero do
+      Arel.sql 'recebimentos.id::text'
+    end
+
+    ransacker :numero_order do
+      Arel.sql 'recebimentos_order(recebimentos.id)'
+    end
 
 end

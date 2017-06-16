@@ -3,12 +3,18 @@ $bgHighlight    : #00522d
 $bgActive       : #003d22
 $colHighlight   : #00a35a
 
-// padding for navbar and sidebar
+/*
+ * padding for navbar and sidebar
+ */
 body
   padding-top: 50px
-  padding-left: 65px
 
-// custom classes
+  &.logged-in
+    padding-left: 65px
+
+/*
+ * custom classes
+ */
 .row-margin
   margin-top: 20px
 
@@ -24,7 +30,7 @@ body
   padding: 0 !important
 
 /*
- custmomize theme color
+ * custmomize theme color
  */
 a
   color: $bgDefault
@@ -33,18 +39,68 @@ a
   &:hover, &:focus
     color: $bgHighlight
 
+/*
+ * btn-primary
+ */
 .btn-primary
   color: white
   background-color: $bgDefault
   border-color: $bgHighlight
 
-  &:hover, &:focus
+  &:hover, &:focus, &.focus
     background-color: $bgHighlight
     border-color: $bgHighlight
 
-  &:active, &:active:hover
+  &:active, &.active
     background-color: $bgActive
     border-color: $bgActive
+
+  &:active:hover
+    background-color: $bgActive
+    border-color: $bgActive
+
+  &:active:hover, &.active:hover,
+  &:active:focus, &.active:focus,
+  &:active.focus, &.active.focus
+    color: white
+    background-color: $bgActive
+    border-color: $bgActive
+
+  &.disabled:hover, &[disabled]:hover,
+  &.disabled:focus, &[disabled]:focus,
+  &.disabled.focus, &[disabled].focus
+    color: white
+    background-color: $bgActive
+    border-color: $bgActive
+
+.open
+  >
+    .dropdown-toggle.btn-primary,
+    .dropdown-toggle.btn-primary:hover,
+    .dropdown-toggle.btn-primary:focus,
+    .dropdown-toggle.btn-primary.focus
+      color: white
+      background-color: $bgActive
+      border-color: $bgActive
+
+.dropdown-menu >
+  li > a
+    &:hover, &:focus
+      text-decoration: none
+      color: #ffffff
+      background-color: $bgDefault
+
+  .active > a
+    color: #ffffff
+    text-decoration: none
+    outline: 0
+    background-color: $bgDefault
+
+    &:hover, &:focus
+      color: #ffffff
+      text-decoration: none
+      outline: 0
+      background-color: $bgDefault
 
 .pagination > li >
   a, span

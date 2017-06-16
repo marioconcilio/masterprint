@@ -20,10 +20,17 @@ Rails.application.routes.draw do
   end
 
   namespace :financeiro do
-    resources :recebimentos
+    resources :recebimentos, only: [:index, :show, :update] do
+      collection do
+        get   'remessa'
+        post  'remessa', to: 'recebimentos#import_remessa'
+        get   'retorno'
+        post  'retorno', to: 'recebimentos#import_retorno'
+      end
+    end
   end
 
-  match "/404", :to => "errors#not_found", :via => :all
-  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 
 end

@@ -1,38 +1,87 @@
-<table class="table table-hover table-striped">
-  <thead>
-    <tr>
-      <th>
-        <%= sort_link @search, :id, 'Número', {}, { remote: true, method: :get } %>
-      </th>
-      <th>
-        <%= sort_link @search, :cliente_nome, 'Cliente', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="text-center">
-        <%= sort_link @search, :vencimento, 'Vencimento', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="text-center">
-        <%= sort_link @search, :status, 'Situação', {}, { remote: true, method: :get } %>
-      </th>
-      <th>
-        <%= sort_link @search, :cep, 'CEP', {}, { remote: true, method: :get } %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bills.each do |b| %>
-      <tr data-href="<%= financeiro_recebimento_path(b) %>" class="<%= row_status(b) %>">
-        <td> <%= format_id(b.id) %> </td>
-        <td> <%= b.cliente.nome %> </td>
-        <td class="text-center"> <%= format_date(b.vencimento) %> </td>
-        <td class="text-center"> <%= b.status %> </td>
-        <td> <%= link_to '', financeiro_recebimento_path(b), class: 'fa fa-info-circle fa-lg no-underline' %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- pagination and filter btn-group -->
+<div class="row">
+  <div class="col-lg-6">
+    <%= paginate @bills, remote: true %>
+  </div>
+
+  <div class="col-lg-6 text-right">
+    <div class="btn-group" style="margin: 20px 0;">
+      <%= link_to 'Todos',
+                  financeiro_recebimentos_path,
+                  remote: true,
+                  class: active_button(nil) %>
+
+      <%= link_to 'Em aberto',
+                  financeiro_recebimentos_path(status: FinanceiroHelper::Aberto.downcase),
+                  remote: true,
+                  class: active_button(FinanceiroHelper::Aberto.downcase) %>
+
+      <%= link_to 'Pagos',
+                  financeiro_recebimentos_path(status: FinanceiroHelper::Pago.downcase),
+                  remote: true,
+                  class: active_button(FinanceiroHelper::Pago.downcase) %>
+
+      <%= link_to 'Cartório',
+                  financeiro_recebimentos_path(status: FinanceiroHelper::Cartorio.downcase),
+                  remote: true,
+                  class: active_button(FinanceiroHelper::Cartorio.downcase) %>
+
+      <%= link_to 'Protestados',
+                  financeiro_recebimentos_path(status: FinanceiroHelper::Protesto.downcase),
+                  remote: true,
+                  class: active_button(FinanceiroHelper::Protesto.downcase) %>
+    </div>
+    <!-- /.btn-group -->
+  </div>
+  <!-- /.col-lg-6 text-right -->
+</div>
+<!-- /.row -->
 
 <div class="row">
-  <div class="col-lg-8">
-    <%= paginate @bills %>
+  <div class="col-lg-12">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>
+            <%= sort_link @search, :numero_order, 'Número', {}, { remote: true, method: :get } %>
+          </th>
+          <th>
+            <%= sort_link @search, :cliente_nome, 'Cliente', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-center">
+            <%= sort_link @search, :vencimento, 'Vencimento', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-right">
+            <%= sort_link @search, :valor, 'Valor', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-center">
+            <%= sort_link @search, :status, 'Situação', {}, { remote: true, method: :get } %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bills.each do |b| %>
+          <tr  class="<%= bill_status(b) %>">
+            <td> <%= format_bill_number(b.id) %> </td>
+            <td> <%= b.cliente.nome %> </td>
+            <td class="text-center"> <%= format_date(b.vencimento) %> </td>
+            <td class="text-right"> <%= format_currency(b.valor) %> </td>
+            <td class="text-center"> <%= b.status %> </td>
+            <td> <%= link_to '',
+                             financeiro_recebimento_path(b),
+                             remote: true,
+                             class: 'fa fa-info-circle fa-lg no-underline' %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <%= paginate @bills, remote: true %>
   </div>
 </div>

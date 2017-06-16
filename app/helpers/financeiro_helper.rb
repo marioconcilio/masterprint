@@ -1,10 +1,14 @@
 module FinanceiroHelper
+  Aberto   = 'Em aberto'
+  Pago     = 'Pago'
+  Cartorio = 'Cartório'
+  Protesto = 'Protestado'
 
   def format_date(date)
     date.strftime('%d/%m/%y')
   end
 
-  def format_id(id)
+  def format_bill_number(id)
     number = id / 1000
 
     # 503
@@ -13,19 +17,31 @@ module FinanceiroHelper
     # 503 001
     else
       parcel = id % 1000
-      '%03d %03d' % [number, parcel]
+      '%03d/%03d' % [number, parcel]
     end
   end
 
-  def row_status(bill)
+  def bill_status(bill)
     if bill.pago?
-      'success'
+      'paid'
     elsif bill.em_cartorio?
-      'warning'
+      'court'
     elsif bill.protestado?
-      'danger'
+      'protested'
     elsif bill.vencido?
-      'info'
+      'overdue'
+    else
+      'open'
+    end
+  end
+
+  def active_button(button)
+    if button == nil && params[:status] == nil
+      'btn btn-default active'
+    elsif button == params[:status]
+      'btn btn-default active'
+    else
+      'btn btn-default'
     end
   end
 

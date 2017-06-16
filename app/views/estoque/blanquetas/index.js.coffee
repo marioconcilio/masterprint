@@ -1,1 +1,1 @@
-$('#tableview').html '<%= j(render("table")) %>'
+$('#blq-tableview').html '<%= j(render("table")) %>'

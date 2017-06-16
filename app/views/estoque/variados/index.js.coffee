@@ -1,1 +1,1 @@
-$('#tableview').html '<%= j(render("table")) %>'
+$('#var-tableview').html '<%= j(render("table")) %>'
