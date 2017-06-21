@@ -18,37 +18,73 @@
         <table class="table table-borderless">
           <tbody>
             <tr>
-              <td>Nome</td>
+              <td><%= label_tag :nome %></td>
               <td><%= @cliente.nome %></td>
             </tr>
             <tr>
-              <td>CNPJ</td>
+              <td><%= label_tag 'CNPJ' %></td>
               <td><%= format_cnpj(@cliente.id) %></td>
             </tr>
             <tr>
-              <td>Endereço</td>
+              <td><%= label_tag 'Endereço' %></td>
               <td><%= @cliente.endereco %></td>
             </tr>
             <tr>
-              <td>Cidade</td>
+              <td><%= label_tag :cidade %></td>
               <td><%= @cliente.cidade %> - <%= @cliente.uf %></td>
             </tr>
             <tr>
-              <td>CEP</td>
+              <td><%= label_tag 'CEP' %></td>
               <td><%= format_cep(@cliente.cep) %></td>
             </tr>
             <tr>
-              <td>Email</td>
+              <td><%= label_tag :email %></td>
               <td><%= @cliente.email %></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <!-- /.col-lg-6 -->
+
+    <div class="col-lg-6">
+      <div class="well">
+        <legend>Dados</legend>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td><%= label_tag :aberto %></td>
+              <td><%= format_currency @aberto %></td>
+            </tr>
+            <tr>
+              <td><%= label_tag :vencido %></td>
+              <td><%= format_currency @vencido %></td>
+            </tr>
+            <tr>
+              <td><%= label_tag 'Em cartório' %></td>
+              <td class="text-primary"><%= format_currency @cartorio %></td>
+            </tr>
+            <tr>
+              <td><%= label_tag :protestado %></td>
+              <td class="text-danger"><%= format_currency @protesto %></td>
+            </tr>
+            <tr style="font-size: 18px">
+              <td colspan=2><br></td>
+            </tr>
+            <tr style="font-size: 18px">
+              <td colspan=2><br></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+
   </div>
+  <!-- /.row -->
 
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
       <div class="btn-group">
         <%= link_to 'Voltar', cadastro_clientes_path,
                     class: 'btn btn-default' %>
@@ -67,7 +103,23 @@
   </div>
   <!-- /.row -->
 
+  <% unless @bills.empty? %>
+    <hr>
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>A Receber</h3>
+      </div>
+    </div>
+
+    <!-- table view -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="cli-tableview-bills"><%= render 'table_bills' %></div>
+      </div>
+    </div>
+  <% end %>
+
 </div>
 <!-- /.container-fluid -->
 
-<%= render "shared/modal" %>
+<%= render 'shared/modal' %>

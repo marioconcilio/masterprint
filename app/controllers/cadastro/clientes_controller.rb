@@ -5,6 +5,8 @@ class Cadastro::ClientesController < ApplicationController
     if logged_in?
       @search = Cliente.ransack(params[:q])
       @clientes = @search.result.page(params[:page])
+
+      respond_to :html, :js
     else
       redirect_to login_path
     end
@@ -40,6 +42,20 @@ class Cadastro::ClientesController < ApplicationController
   # GET /cadastro/clientes/:id
   def show
     @cliente = Cliente.find(params[:id])
+    @search = Recebimento.where(cliente: @cliente).ransack(params[:q])
+
+    @aberto = ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{@cliente.id})").getvalue(0,0)
+    @vencido = ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{@cliente.id})").getvalue(0,0)
+    @cartorio = ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{@cliente.id})").getvalue(0,0)
+    @protesto = ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{@cliente.id})").getvalue(0,0)
+
+    if params[:status]
+      @bills = @search.result.status(params[:status]).page(params[:page]).per(20)
+    else
+      @bills = @search.result.page(params[:page]).per(20)
+    end
+
+    respond_to :html, :js
   end
 
   # PUT /cadastro/cliente/:id

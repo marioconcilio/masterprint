@@ -6,11 +6,16 @@ module ApplicationHelper
 
   def format_currency(value, currency='BRL')
     unit = currency == 'BRL'? 'R$' : 'US$'
-    number_to_currency(value,
-                       unit: unit,
-                       separator: ',',
-                       delimiter: '.',
-                       precision: 2)
+
+    if value
+      number_to_currency(value,
+                         unit: unit,
+                         separator: ',',
+                         delimiter: '.',
+                         precision: 2)
+    else
+      '-'
+    end
   end
 
   def format_decimal(value)
