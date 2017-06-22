@@ -57,3 +57,6 @@ config/environments/*.local.yml
 
 # Seeds
 /lib/seeds/
+
+# Assets
+/public/assets/
