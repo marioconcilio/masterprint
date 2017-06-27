@@ -9,4 +9,12 @@ module EstoqueHelper
     return [brl, usd]
   end
 
+  def qty_class(product)
+    if product.qtde <= 0
+      'danger'
+    else
+      ''
+    end
+  end
+
 end

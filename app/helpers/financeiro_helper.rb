@@ -35,14 +35,4 @@ module FinanceiroHelper
     end
   end
 
-  def active_button(button)
-    if button == nil && params[:status] == nil
-      'btn btn-default active'
-    elsif button == params[:status]
-      'btn btn-default active'
-    else
-      'btn btn-default'
-    end
-  end
-
 end

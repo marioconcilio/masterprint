@@ -4,6 +4,16 @@ module ApplicationHelper
     current_page?(link_path) ? 'active' : ''
   end
 
+  def active_button(args)
+    if args.values.first == nil && params[args.keys.first] == nil
+      'btn btn-default active'
+    elsif args.values.first.to_s == params[args.keys.first]
+      'btn btn-default active'
+    else
+      'btn btn-default'
+    end
+  end
+
   def format_currency(value, currency='BRL')
     unit = currency == 'BRL'? 'R$' : 'US$'
 

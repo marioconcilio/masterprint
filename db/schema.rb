@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601003339) do
+ActiveRecord::Schema.define(version: 20170627193320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20170601003339) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
+  end
+
+  create_table "chapa_dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "chapa_marcas", force: :cascade do |t|
@@ -64,6 +70,22 @@ ActiveRecord::Schema.define(version: 20170601003339) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cortado_papeis", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "un"
+    t.decimal  "preco",                precision: 8, scale: 2
+    t.integer  "qtde"
+    t.string   "moeda",      limit: 3
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  create_table "dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
   create_table "envelopes", force: :cascade do |t|
     t.string   "nome"
     t.decimal  "preco_milheiro",           precision: 8, scale: 2
@@ -76,6 +98,30 @@ ActiveRecord::Schema.define(version: 20170601003339) do
     t.string   "tipo"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+  end
+
+  create_table "papeis", force: :cascade do |t|
+    t.integer  "grs"
+    t.integer  "larg"
+    t.integer  "comp"
+    t.integer  "fls"
+    t.decimal  "peso",          precision: 7, scale: 3
+    t.string   "marca"
+    t.integer  "qtde"
+    t.integer  "papel_tipo_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "subtipo"
+    t.index ["papel_tipo_id"], name: "index_papeis_on_papel_tipo_id", using: :btree
+  end
+
+  create_table "papel_tipos", force: :cascade do |t|
+    t.string   "tipo"
+    t.string   "descricao"
+    t.decimal  "preco_kg",             precision: 8, scale: 2
+    t.string   "moeda",      limit: 3
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "quimicos", force: :cascade do |t|
@@ -131,5 +177,6 @@ ActiveRecord::Schema.define(version: 20170601003339) do
 
   add_foreign_key "blanquetas", "blanqueta_lonas"
   add_foreign_key "chapas", "chapa_marcas"
+  add_foreign_key "papeis", "papel_tipos"
   add_foreign_key "recebimentos", "clientes"
 end

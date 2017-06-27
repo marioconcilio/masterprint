@@ -9,27 +9,27 @@
       <%= link_to 'Todos',
                   cadastro_cliente_path(@cliente),
                   remote: true,
-                  class: active_button(nil) %>
+                  class: active_button(status: nil) %>
 
       <%= link_to 'Em aberto',
                   cadastro_cliente_path(@cliente, status: FinanceiroHelper::Aberto.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Aberto.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Aberto.downcase) %>
 
       <%= link_to 'Pagos',
                   cadastro_cliente_path(@cliente, status: FinanceiroHelper::Pago.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Pago.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Pago.downcase) %>
 
       <%= link_to 'Cartório',
                   cadastro_cliente_path(@cliente, status: FinanceiroHelper::Cartorio.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Cartorio.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Cartorio.downcase) %>
 
       <%= link_to 'Protestados',
                   cadastro_cliente_path(@cliente, status: FinanceiroHelper::Protesto.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Protesto.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Protesto.downcase) %>
     </div>
     <!-- /.btn-group -->
   </div>

@@ -1,0 +1,3 @@
+module Estoque::PapeisHelper
+
+end

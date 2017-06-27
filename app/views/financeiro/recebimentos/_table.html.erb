@@ -9,27 +9,27 @@
       <%= link_to 'Todos',
                   financeiro_recebimentos_path,
                   remote: true,
-                  class: active_button(nil) %>
+                  class: active_button(status: nil) %>
 
       <%= link_to 'Em aberto',
                   financeiro_recebimentos_path(status: FinanceiroHelper::Aberto.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Aberto.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Aberto.downcase) %>
 
       <%= link_to 'Pagos',
                   financeiro_recebimentos_path(status: FinanceiroHelper::Pago.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Pago.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Pago.downcase) %>
 
       <%= link_to 'Cartório',
                   financeiro_recebimentos_path(status: FinanceiroHelper::Cartorio.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Cartorio.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Cartorio.downcase) %>
 
       <%= link_to 'Protestados',
                   financeiro_recebimentos_path(status: FinanceiroHelper::Protesto.downcase),
                   remote: true,
-                  class: active_button(FinanceiroHelper::Protesto.downcase) %>
+                  class: active_button(status: FinanceiroHelper::Protesto.downcase) %>
     </div>
     <!-- /.btn-group -->
   </div>
@@ -70,7 +70,7 @@
             <td> <%= link_to '',
                              financeiro_recebimento_path(b),
                              remote: true,
-                             class: 'fa fa-info-circle fa-lg no-underline' %> </td>
+                             class: 'fa fa-plus-square no-underline' %> </td>
           </tr>
         <% end %>
       </tbody>

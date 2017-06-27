@@ -1,0 +1,103 @@
+<%= form_for [:estoque, @papel], remote: true, html: { class: 'form-horizontal' } do |f| %>
+
+<div class="modal-header">
+  <h3>Olar</h3>
+</div>
+<!-- /.modal-header -->
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="form-group">
+          <%= f.label :tipo, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <%= f.select  :papel_tipo_id,
+                          PapelTipo.all.map { |p|
+                            [ p, p.id, { price: p.preco_kg } ]
+                          },
+                          { include_blank: true },
+                          { class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :subtipo, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <%= f.text_field :subtipo, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :grs, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.text_field :grs, class: 'form-control ppl-calculable' %>
+          </div>
+
+          <%= f.label :formato, class: 'control-label col-sm-2' %>
+          <div class="col-sm-2">
+            <%= f.text_field :larg, class: 'form-control ppl-calculable' %>
+          </div>
+
+          <div class="col-sm-2">
+            <%= f.text_field :comp, class: 'form-control ppl-calculable' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :folhas, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.text_field :fls, class: 'form-control ppl-calculable' %>
+          </div>
+
+          <%= f.label :marca, class: 'control-label col-sm-2' %>
+          <div class="col-sm-4">
+            <%= f.text_field :marca, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :qtde, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :peso, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <p class="form-control-static" id="papel_peso_static">0,000 kg</p>
+          </div>
+
+          <%= f.label 'Preço Kg', class: 'control-label col-sm-2' %>
+          <div class="col-sm-5">
+            <p class="form-control-static" id="papel_kg">R$ 0,00</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :pacote, class: 'control-label col-sm-2' %>
+          <div class="col-sm-10">
+            <p class="form-control-static" id="papel_total">R$ 0,00</p>
+          </div>
+        </div>
+
+        <%= f.hidden_field :peso %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.modal-body -->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+</div>
+<!-- /.modal-footer -->
+
+<% end %>

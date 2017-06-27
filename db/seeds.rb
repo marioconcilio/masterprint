@@ -17,7 +17,6 @@ Cliente.transaction do
   columns = [:id, :nome, :email, :endereco, :cidade, :uf, :cep]
   Cliente.import columns, clientes, validate: true
 end
-=end
 
 # Recebimentos
 Recebimento.transaction do
@@ -26,7 +25,6 @@ Recebimento.transaction do
   Recebimento.import columns, recebimentos, validate: true
 end
 
-=begin
 # Blanqueta Lonas
 BlanquetaLona.transaction do
   lonas = CSV.read("#{PATH}/blanqueta_lonas.csv")
@@ -81,5 +79,19 @@ Variado.transaction do
   variados = CSV.read("#{PATH}/variados.csv")
   column = [:nome, :un, :preco, :moeda, :qtde]
   Variado.import column, variados, validate: :true
+end
+
+# Papel Tipos
+PapelTipo.transaction do
+  tipos = CSV.read("#{PATH}/papel_tipos.csv")
+  column = [:tipo, :descricao, :preco_kg, :moeda]
+  PapelTipo.import(column, tipos, validate: :true)
+end
+
+# Papeis
+Papel.transaction do
+  papeis = CSV.read("#{PATH}/papeis.csv")
+  column = [:papel_tipo_id, :subtipo, :grs, :larg, :comp, :fls, :marca, :peso, :qtde]
+  Papel.import(column, papeis, validate: :true)
 end
 =end

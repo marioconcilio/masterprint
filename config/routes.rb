@@ -7,12 +7,18 @@ Rails.application.routes.draw do
   delete  '/logout',  to: 'sessions#destroy'
 
   namespace :estoque do
-    resources :blanquetas
-    resources :chapas
-    resources :envelopes
-    resources :quimicos
-    resources :tintas
-    resources :variados
+    [:blanquetas,
+     :chapas,
+     :envelopes,
+     :papeis,
+     :cortado_papeis,
+     :quimicos,
+     :tintas,
+     :variados].each do |r|
+        resources r do
+          get :movimento
+        end
+    end
   end
 
   namespace :cadastro do
@@ -22,10 +28,10 @@ Rails.application.routes.draw do
   namespace :financeiro do
     resources :recebimentos, only: [:index, :show, :update] do
       collection do
-        get   'remessa'
-        post  'remessa', to: 'recebimentos#import_remessa'
-        get   'retorno'
-        post  'retorno', to: 'recebimentos#import_retorno'
+        get   :remessa
+        post  :remessa, to: 'recebimentos#import_remessa'
+        get   :retorno
+        post  :retorno, to: 'recebimentos#import_retorno'
       end
     end
   end

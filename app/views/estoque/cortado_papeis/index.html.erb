@@ -1,0 +1,37 @@
+<% content_for :navbar do %>
+  <%= render 'estoque/navbar' %>
+<% end %>
+
+<% provide(:url, estoque_cortado_papeis_path) %>
+<% provide(:new_url, new_estoque_cortado_papel_path) %>
+<% provide(:search_field, :nome_cont) %>
+<% provide(:placeholder, 'Nome') %>
+
+<div class="container-fluid">
+
+  <!-- header -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1>Papéis Cortados</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- search form -->
+  <div class="row">
+    <div class="col-lg-12">
+      <%= render 'shared/search_form' %>
+    </div>
+  </div>
+
+  <!-- table view -->
+  <div class="row row-margin">
+    <div class="col-lg-12">
+      <div id="ppc-tableview"><%= render 'table' %></div>
+    </div>
+  </div>
+
+</div>
+
+<%= render "shared/modal" %>

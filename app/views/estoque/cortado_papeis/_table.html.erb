@@ -1,0 +1,35 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-right">
+        <%= sort_link @search, :preco_un, 'Preço', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |p| %>
+      <tr>
+        <td> <%= p.nome %> </td>
+        <td class="text-center"> <%= p.un %> </td>
+        <td class="text-right"> <%= format_currency(p.preco_un) %> </td>
+        <td class="text-center"> <%= p.qtde %> </td>
+
+        <% if @logged_in %>
+          <td><%= link_to '',
+                          estoque_cortado_papel_movimento_path(p),
+                          remote: true,
+                          class: 'fa fa-exchange no-underline' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
