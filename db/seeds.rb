@@ -80,7 +80,6 @@ Variado.transaction do
   column = [:nome, :un, :preco, :moeda, :qtde]
   Variado.import column, variados, validate: :true
 end
-=end
 
 # Papel Tipos
 PapelTipo.transaction do
@@ -95,3 +94,4 @@ Papel.transaction do
   column = [:papel_tipo_id, :subtipo, :grs, :larg, :comp, :fls, :marca, :peso, :qtde]
   Papel.import(column, papeis, validate: :true)
 end
+=end

@@ -33,7 +33,7 @@ class Papel < ApplicationRecord
   end
 
   def to_s
-    "#{self.papel_tipo} #{self.subtipo} #{self.grs}g #{size} #{self.fls}fls #{self.marca}"
+    "#{self.papel_tipo.tipo} #{self.subtipo} #{self.grs}g #{size} #{self.fls}fls #{self.marca}"
   end
 
   private
