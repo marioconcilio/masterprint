@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
 
+  # GET /login
   def new
+    session[:return_to] ||= request.referer
+    respond_to :js
   end
 
+  # POST /login
   def create
     user = Usuario.find_by(usuario: params[:session][:user].downcase)
     if user.try(:authenticate, params[:session][:password])
@@ -13,11 +17,14 @@ class SessionsController < ApplicationController
       url = root_url if url.eql?('/logout')
       redirect_to url
     else
-      flash.now[:danger] = 'Usuário/senha inválidos'
-      render :new
+      @error = 'Usuário/senha inválidos'
+      respond_to do |format|
+        format.js { render :new }
+      end
     end
   end
 
+  # DELETE /logout
   def destroy
     log_out
     redirect_to root_url

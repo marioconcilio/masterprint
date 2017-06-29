@@ -8,7 +8,7 @@ class Cadastro::ClientesController < ApplicationController
 
       respond_to :html, :js
     else
-      redirect_to login_path
+      redirect_to '/404'
     end
   end
 

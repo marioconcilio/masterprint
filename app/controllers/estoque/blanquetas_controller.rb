@@ -5,10 +5,7 @@ class Estoque::BlanquetasController < ApplicationController
     @search = Blanqueta.joins(:blanqueta_lona).ransack(params[:q])
     @products = @search.result.includes(:blanqueta_lona)
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   # POST /estoque/blanquetas

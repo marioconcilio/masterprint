@@ -3,8 +3,16 @@ $ ->
   $('.spinner').hide()
 
   # show spinner on AJAX start
-  $(document).ajaxStart ->
-    $('.spinner').show()
+  ajaxLoadTimeout = undefined
+  $(document).ajaxStart(->
+    ajaxLoadTimeout = setTimeout((->
+      $('.spinner').show()
+      return
+    ), 500)
+    return
+  ).ajaxSuccess ->
+    clearTimeout ajaxLoadTimeout
+    $('.spinner').hide()
     return
 
   # hide spinner on AJAX stop

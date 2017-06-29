@@ -14,7 +14,6 @@ module Financeiro
 
         respond_to :html, :js
       else
-        session[:return_to] ||= request.referer
         redirect_to login_path
       end
     end
