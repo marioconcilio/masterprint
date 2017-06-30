@@ -43,4 +43,14 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def last_visited
+    url = session[:return_to] || root_url
+    session[:return_to] = nil
+    if url == forbidden_url || url == not_found_url || url == internal_error_url
+      url = root_url
+    end
+
+    return url
+  end
+
 end

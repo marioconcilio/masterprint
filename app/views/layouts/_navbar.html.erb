@@ -13,14 +13,18 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav">
-        <%= yield :navbar %>
+        <% if content_for? :navbar %>
+          <%= yield :navbar %>
+        <% else %>
+          <%= render 'estoque/navbar' %>
+        <% end %>
       </ul>
       <!-- /.navbar-left -->
 
       <ul class="nav navbar-nav navbar-right">
         <% if Rails.env.development? %>
-          <li style="background-color: crimson">
-            <%= link_to 'development', '#', class: 'btn btn-link disabled' %>
+          <li class="disabled" style="background-color: crimson">
+            <%= link_to 'Development', '#' %>
           </li>
         <% end %>
         <% if logged_in? %>

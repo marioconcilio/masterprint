@@ -14,7 +14,7 @@ module Financeiro
 
         respond_to :html, :js
       else
-        redirect_to login_path
+        redirect_to forbidden_url
       end
     end
 

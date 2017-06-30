@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Masterprint</title>
+    <title>Masterprint <%= 'Dev' if Rails.env.development? %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -22,6 +22,7 @@
         <%= yield %>
       </div>
     <% end %>
+    <%= render "shared/modal" %>
 
   <%= debug(params) if Rails.env.development? %>
   </body>

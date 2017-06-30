@@ -8,7 +8,7 @@ class Cadastro::ClientesController < ApplicationController
 
       respond_to :html, :js
     else
-      redirect_to '/404'
+      redirect_to forbidden_url
     end
   end
 

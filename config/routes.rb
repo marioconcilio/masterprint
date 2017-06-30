@@ -36,7 +36,8 @@ Rails.application.routes.draw do
     end
   end
 
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
+  match "/403", to: "errors#forbidden", as: :forbidden, via: :all
+  match "/404", to: "errors#not_found", as: :not_found, via: :all
+  match "/500", to: "errors#internal_server_error", as: :internal_error, via: :all
 
 end

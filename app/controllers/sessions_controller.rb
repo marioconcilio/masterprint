@@ -12,10 +12,7 @@ class SessionsController < ApplicationController
     if user.try(:authenticate, params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-
-      url = session[:return_to] || root_url
-      session[:return_to] = nil
-      redirect_to url
+      redirect_to last_visited
     else
       @error = 'Usuário/senha inválidos'
       respond_to do |format|
@@ -26,8 +23,9 @@ class SessionsController < ApplicationController
 
   # DELETE /logout
   def destroy
+    session[:return_to] ||= request.referer
     log_out if logged_in?
-    redirect_to root_url
+    redirect_to last_visited
   end
 
 end

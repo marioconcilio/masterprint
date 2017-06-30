@@ -1,7 +1,11 @@
 module ApplicationHelper
 
   def active_class(link_path)
-    current_page?(link_path) ? 'active' : ''
+    if request.fullpath == root_path
+      link_path == estoque_blanquetas_path ? 'active' : ''
+    else
+      current_page?(link_path) ? 'active' : ''
+    end
   end
 
   def active_button(args)
