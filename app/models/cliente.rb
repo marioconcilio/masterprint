@@ -9,4 +9,5 @@ class Cliente < ApplicationRecord
                         :cep
 
   has_many :recebimentos
+  has_many :cheques
 end
