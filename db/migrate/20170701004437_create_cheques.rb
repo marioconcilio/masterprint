@@ -5,6 +5,7 @@ class CreateCheques < ActiveRecord::Migration[5.0]
       t.integer :numero
       t.string :emitente
       t.decimal :valor, precision: 10, scale: 2
+      t.date :data_deposito
       t.references :cliente, foreign_key: true
 
       t.timestamps

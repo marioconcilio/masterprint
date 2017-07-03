@@ -4,3 +4,9 @@
 <li>
   <%= link_to 'A Pagar', '#' %>
 </li>
+<li class="<%= active_class(financeiro_cheques_path) %>">
+  <%= link_to 'Cheques', financeiro_cheques_path %>
+</li>
+<li class="<%= active_class(financeiro_depositos_path) %>">
+  <%= link_to 'Depósitos', financeiro_depositos_path %>
+</li>

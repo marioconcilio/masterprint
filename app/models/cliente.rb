@@ -8,6 +8,11 @@ class Cliente < ApplicationRecord
                         :uf,
                         :cep
 
-  has_many :recebimentos
-  has_many :cheques
+  has_many :recebimentos, dependent: :destroy
+  has_many :cheques, dependent: :destroy
+
+  def to_s
+    self.nome
+  end
+
 end

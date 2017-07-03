@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Cheque, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:banco) }
+  it { should validate_presence_of(:numero) }
+  it { should validate_presence_of(:emitente) }
+  it { should validate_presence_of(:valor) }
+  it { should validate_presence_of(:data_deposito) }
+
+  it { should belong_to(:cliente) }
+  it { should belong_to(:deposito) }
 end

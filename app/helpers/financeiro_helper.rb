@@ -4,10 +4,6 @@ module FinanceiroHelper
   Cartorio = 'Cartório'
   Protesto = 'Protestado'
 
-  def format_date(date)
-    date.strftime('%d/%m/%y')
-  end
-
   def format_bill_number(id)
     number = id / 1000
 

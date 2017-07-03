@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   end
 
   namespace :financeiro do
+    resources :cheques
+    resources :depositos
+
     resources :recebimentos, only: [:index, :show, :update] do
       collection do
         get   :remessa
