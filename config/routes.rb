@@ -16,7 +16,9 @@ Rails.application.routes.draw do
      :tintas,
      :variados].each do |r|
         resources r do
-          get :movimento
+          member do
+            get :movimento
+          end
         end
     end
   end
@@ -27,7 +29,13 @@ Rails.application.routes.draw do
 
   namespace :financeiro do
     resources :cheques
-    resources :depositos
+    resources :depositos do
+      collection do
+        get     :ch,      to: 'depositos#search'
+        post    :ch,      to: 'depositos#add'
+        delete  'ch/:id', to: 'depositos#remove', as: :ch_remove
+      end
+    end
 
     resources :recebimentos, only: [:index, :show, :update] do
       collection do

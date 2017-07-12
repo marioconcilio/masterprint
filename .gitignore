@@ -60,3 +60,8 @@ config/environments/*.local.yml
 
 # Assets
 /public/assets/
+
+### Redis ###
+# Ignore redis binary dump (dump.rdb) files
+
+*.rdb

@@ -53,4 +53,10 @@ module SessionsHelper
     return url
   end
 
+  def auth_user!
+    unless logged_in?
+      redirect_to forbidden_url
+    end
+  end
+
 end

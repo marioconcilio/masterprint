@@ -1,15 +1,12 @@
 class Cadastro::ClientesController < ApplicationController
+  before_action :auth_user!
 
   # GET /cadastro/clientes
   def index
-    if logged_in?
-      @search = Cliente.ransack(params[:q])
-      @clientes = @search.result.page(params[:page])
+    @search = Cliente.ransack(params[:q])
+    @clientes = @search.result.page(params[:page])
 
-      respond_to :html, :js
-    else
-      redirect_to forbidden_url
-    end
+    respond_to :html, :js
   end
 
   # POST /cadastro/clientes

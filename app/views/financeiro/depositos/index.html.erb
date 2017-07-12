@@ -4,8 +4,6 @@
 
 <% provide(:url, financeiro_depositos_path) %>
 <% provide(:new_url, new_financeiro_deposito_path) %>
-<% provide(:search_field, :titular_cont) %>
-<% provide(:placeholder, 'Titular') %>
 
 <div class="container-fluid">
 
@@ -21,7 +19,30 @@
   <!-- search form -->
   <div class="row">
     <div class="col-lg-12">
-      <%= render 'shared/search_form' %>
+      <div class="form-inline">
+        <div class="form-group">
+          <%= search_form_for @search, remote: true, url: yield(:url), method: :get do |f| %>
+            <%= f.search_field :titular_cont, placeholder: 'Titular', class: 'form-control'%>
+
+            <div class="btn-group">
+              <%= f.submit 'Pesquisar', name: nil, class: 'btn btn-primary' %>
+              <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+            </div>
+            <!-- /.btn-group -->
+
+          <% end %>
+        </div>
+        <!-- /.form-group -->
+
+        <div class="form-group pull-right">
+          <%= link_to 'Novo Depósito',
+                      yield(:new_url),
+                      class: 'btn btn-info' %>
+        </div>
+        <!-- /.form-group .pull-right -->
+
+      </div>
+      <!-- /.form-inline -->
     </div>
   </div>
 

@@ -1,3 +1,7 @@
+<% content_for :navbar do %>
+  <%= render 'financeiro/navbar' %>
+<% end %>
+
 <div class="container-fluid">
 
   <!-- header -->
@@ -5,6 +9,62 @@
     <div class="col-lg-12">
       <div class="page-header">
         <h1>Novo Depósito</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- form -->
+  <div class="row">
+    <div class="col-lg-8 col-sm-offset-2">
+      <div class="well bs-component">
+        <%= form_for [:financeiro, @deposito], html: { class: 'form-horizontal' } do |f| %>
+          <legend>Dados Bancários</legend>
+          <%= render 'shared/error_messages', object: f.object %>
+
+          <div class="form-group">
+            <%= f.label :titular, class: 'control-label col-sm-2' %>
+            <div class="col-sm-9">
+              <%= f.text_field :titular, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :banco, class: 'control-label col-sm-2' %>
+            <div class="col-sm-2">
+              <%= f.text_field :banco, class: 'form-control' %>
+            </div>
+
+            <%= f.label 'Agência', class: 'control-label col-sm-1' %>
+            <div class="col-sm-2">
+              <%= f.text_field :agencia, class: 'form-control' %>
+            </div>
+
+            <%= f.label :conta, class: 'control-label col-sm-1' %>
+            <div class="col-sm-3">
+              <%= f.text_field :conta, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :total, class: 'control-label col-sm-2' %>
+            <div class="col-sm-5">
+              <p class="form-control-static" id="deposito_total_static">R$ 0,00</p>
+            </div>
+          </div>
+          <%= f.hidden_field :total %>
+
+          <button type="button" class="btn btn-default">Voltar</button>
+          <%= f.submit 'Salvar', class: "btn btn-primary" %>
+        <% end %>
+
+        <legend>Cheques</legend>
+        <%= form_tag ch_financeiro_depositos_path, method: :get, remote: true, id: 'search-form' do %>
+          <%= text_field_tag :search, params[:search], placeholder: 'Número do cheque' %>
+          <%= submit_tag 'Procurar' %>
+        <% end %>
+
+        <div id="cheques-tableview"><%= render 'cheques' %></div>
+
       </div>
     </div>
   </div>

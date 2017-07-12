@@ -11,8 +11,12 @@ class Cheque < ApplicationRecord
   belongs_to :cliente, optional: true
   belongs_to :deposito, optional: true
 
+  def self.search(number)
+    where("numero = #{number}")
+  end
+
   private
-    ransacker :numero do
+    ransacker :numero_text do
       Arel.sql('numero::text')
     end
 

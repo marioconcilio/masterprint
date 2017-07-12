@@ -30,7 +30,7 @@ class Estoque::CortadoPapeisController < ApplicationController
 
   # GET /estoque/cortado_papeis/:id/movimento
   def movimento
-    @papel = CortadoPapel.find(params[:cortado_papel_id])
+    @papel = CortadoPapel.find(params[:id])
     respond_to :js
   end
 

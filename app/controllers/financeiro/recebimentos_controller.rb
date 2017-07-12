@@ -1,21 +1,18 @@
 module Financeiro
   class RecebimentosController < ApplicationController
     include RecebimentosHelper
+    before_action :auth_user!
 
     # GET /financeiro/recebimentos
     def index
-      if logged_in?
-        @search = Recebimento.joins(:cliente).ransack(params[:q])
-        if params[:status]
-          @bills = @search.result.includes(:cliente).status(params[:status]).page(params[:page])
-        else
-          @bills = @search.result.includes(:cliente).page(params[:page])
-        end
-
-        respond_to :html, :js
+      @search = Recebimento.joins(:cliente).ransack(params[:q])
+      if params[:status]
+        @bills = @search.result.includes(:cliente).status(params[:status]).page(params[:page])
       else
-        redirect_to forbidden_url
+        @bills = @search.result.includes(:cliente).page(params[:page])
       end
+
+      respond_to :html, :js
     end
 
     # GET /financeiro/recebimentos/remessa

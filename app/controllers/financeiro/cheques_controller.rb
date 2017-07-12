@@ -1,15 +1,12 @@
 class Financeiro::ChequesController < ApplicationController
+  before_action :auth_user!
 
   # GET /financeiro/cheques
   def index
-    if logged_in?
-      @search = Cheque.left_joins(:cliente).ransack(params[:q])
-      @cheques = @search.result.includes(:cliente).page(params[:page])
+    @search = Cheque.left_joins(:cliente).ransack(params[:q])
+    @cheques = @search.result.includes(:cliente).page(params[:page])
 
-      respond_to :html, :js
-    else
-      redirect_to forbidden_url
-    end
+    respond_to :html, :js
   end
 
   # POST /financeiro/cheques

@@ -34,7 +34,7 @@
 
   # GET /estoque/papeis/:id/movimento
   def movimento
-    @papel = Papel.includes(:papel_tipo).find(params[:papel_id])
+    @papel = Papel.includes(:papel_tipo).find(params[:id])
     respond_to :js
   end
 

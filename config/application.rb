@@ -30,5 +30,8 @@ module Masterprint
     config.assets.enabled = true
 
     config.exceptions_app = self.routes
+
+    # redis
+    config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
   end
 end

@@ -4,7 +4,8 @@ module ApplicationHelper
     if request.fullpath == root_path
       link_path == estoque_blanquetas_path ? 'active' : ''
     else
-      current_page?(link_path) ? 'active' : ''
+      # current_page?(link_path) ? 'active' : ''
+      request.fullpath.include?(link_path) ? 'active' : ''
     end
   end
 

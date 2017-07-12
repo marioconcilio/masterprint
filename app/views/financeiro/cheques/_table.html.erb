@@ -20,14 +20,14 @@
           <th>
             <%= sort_link @search, :emitente, 'Emitente', {}, { remote: true, method: :get } %>
           </th>
-          <th class="text-right">
-            <%= sort_link @search, :valor, 'Valor', {}, { remote: true, method: :get } %>
+          <th>
+            <%= sort_link @search, :nome, 'Cliente', {}, { remote: true, method: :get } %>
           </th>
           <th class="text-center">
             <%= sort_link @search, :data_deposito, 'Data p/ Depósito', {}, { remote: true, method: :get } %>
           </th>
-          <th>
-            <%= sort_link @search, :nome, 'Cliente', {}, { remote: true, method: :get } %>
+          <th class="text-right">
+            <%= sort_link @search, :valor, 'Valor', {}, { remote: true, method: :get } %>
           </th>
         </tr>
       </thead>
@@ -37,9 +37,9 @@
             <td> <%= format_banco(c.banco) %> </td>
             <td> <%= format_numero(c.numero) %> </td>
             <td> <%= c.emitente %> </td>
-            <td class="text-right"> <%= format_currency(c.valor) %> </td>
-            <td class="text-center"> <%= format_date(c.data_deposito) %> </td>
             <td> <%= c.cliente %> </td>
+            <td class="text-center"> <%= format_date(c.data_deposito) %> </td>
+            <td class="text-right"> <%= format_currency(c.valor) %> </td>
           </tr>
         <% end %>
       </tbody>
