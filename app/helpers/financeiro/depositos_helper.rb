@@ -29,7 +29,7 @@ module Financeiro::DepositosHelper
 
   private
     def cache_name
-      "#{session[:user_id]}_cheques".to_sym
+      "#{session[:user_id]}_cheques"
     end
 
 end
