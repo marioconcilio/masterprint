@@ -10,3 +10,11 @@
     </ul>
   </div>
 <% end %>
+
+<% if @error_message %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <p><%= @error_message %>.</p>
+    </div>
+  </div>
+<% end %>

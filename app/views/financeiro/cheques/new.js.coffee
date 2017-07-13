@@ -1,5 +1,5 @@
 modalContent = $('.modal .modal-content')
-modalContent.html '<%= j(render "form") %>'
+modalContent.html '<%= j(render "new") %>'
 
 modalHeader = $('.modal .modal-header')
 modalHeader.html '<h3>Novo Cheque</h3>'

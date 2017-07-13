@@ -7,33 +7,39 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
+        <p>Existem <%= @result.size %> cheques com o número <%= format_numero(@result.first.numero) %>.</p>
+        <p>Por favor, escolha um:</p>
+      </div>
+    </div>
 
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Banco</th>
-            <th>Número</th>
-            <th>Emitente</th>
-            <th class="text-right">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @result.each do |c| %>
+    <div class="row row-margin">
+      <div class="col-lg-12">
+        <table class="table table-hover table-striped">
+          <thead>
             <tr>
-              <td><%= format_banco(c.banco) %></td>
-              <td><%= format_numero(c.numero) %></td>
-              <td><%= c.emitente %></td>
-              <td class="text-right"><%= format_currency(c.valor) %></td>
-              <td><%= button_to '',
-                              ch_financeiro_depositos_path(ch: c.as_json),
-                              method: :post,
-                              remote: true,
-                              class: 'fa fa-check no-underline' %></td>
+              <th>Banco</th>
+              <th>Número</th>
+              <th>Emitente</th>
+              <th class="text-right">Valor</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+          </thead>
+          <tbody>
+            <% @result.each do |c| %>
+              <tr>
+                <td><%= format_banco(c.banco) %></td>
+                <td><%= format_numero(c.numero) %></td>
+                <td><%= c.emitente %></td>
+                <td class="text-right"><%= format_currency(c.valor) %></td>
+                <td>
+                  <%= button_to ch_financeiro_depositos_path(ch: c.as_json), remote: true,
+                                class: 'btn-link' do %>
+                                  <i class="fa fa-lg fa-check"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
       <!-- /.col-lg-12 -->
     </div>
@@ -45,6 +51,5 @@
 
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-
 </div>
 <!-- /.modal-footer -->

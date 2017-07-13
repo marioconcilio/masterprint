@@ -27,6 +27,16 @@ module Financeiro::DepositosHelper
     JSON.load($redis[cache_name])
   end
 
+  def get_total
+    array = read_cache
+
+    if array.nil?
+      0
+    else
+      array.map { |ch| ch['valor'].to_f }.reduce(0, :+)
+    end
+  end
+
   private
     def cache_name
       "#{session[:user_id]}_cheques"

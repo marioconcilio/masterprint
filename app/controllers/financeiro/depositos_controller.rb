@@ -15,35 +15,51 @@ module Financeiro
     # POST /financeiro/depositos
     def create
       @deposito = Deposito.new(deposito_params)
+
       if @deposito.save
-        flash[:success] = 'Depósito adicionado'
-        redirect_to financeiro_depositos_url
-      else
-        render :new
+        # update cheques.deposito_id
+        all_updated = read_cache.map { |ch| Cheque.find(ch['id']) }
+          .map { |ch| ch.update_attribute(:deposito_id, @deposito.id) }
+          .reduce(:&)
+
+        if all_updated
+          flash[:success] = 'Depósito adicionado'
+          clear_cache
+          redirect_to financeiro_depositos_url and return
+        else
+          @error_message = 'Não foi possível atualizar cheque'
+          clear_cache
+          Deposito.delete(@deposito.id)
+        end
       end
+
+      @cheques = read_cache
+      render :new
+      # redirect_to new_financeiro_deposito_url
     end
 
     # GET /financeiro/depositos/new
     def new
       @deposito = Deposito.new
       @cheques = read_cache
-      # clear_cache
     end
 
     # GET /financeiro/depositos/ch
     def search
-      if params[:search] && params[:search].size > 0
-        @result = Cheque.search(params[:search])
+      unless params[:ch_search].try(:empty?)
+        @result = Cheque.search(params[:ch_search])
 
-        if @result.size == 1
+        case @result.size
+        when 0
+        when 1
           write_to_cache(@result.first)
         else
-          render :choose
+          render :choose and return
         end
       end
 
       @cheques = read_cache
-      respond_to :js
+      render :cheques
     end
 
     # POST /financeiro/depositos/ch
@@ -57,18 +73,12 @@ module Financeiro
     def remove
       remove_from_cache(params[:id])
       @cheques = read_cache
-      render :search
+      render :cheques
     end
 
     private
       def deposito_params
-        params[:deposito][:total].gsub!('.', '')
-        params[:deposito][:total].gsub!(',', '.')
-        params.require(:deposito).permit(:total,
-                                         :banco,
-                                         :agencia,
-                                         :conta,
-                                         :titular)
+        params.require(:deposito).permit!
       end
 
       def cheque_params

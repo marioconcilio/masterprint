@@ -40,6 +40,10 @@
             <td> <%= c.cliente %> </td>
             <td class="text-center"> <%= format_date(c.data_deposito) %> </td>
             <td class="text-right"> <%= format_currency(c.valor) %> </td>
+            <td> <%= link_to '',
+                             financeiro_cheque_path(c),
+                             remote: true,
+                             class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
           </tr>
         <% end %>
       </tbody>

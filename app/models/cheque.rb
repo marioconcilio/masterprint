@@ -12,7 +12,7 @@ class Cheque < ApplicationRecord
   belongs_to :deposito, optional: true
 
   def self.search(number)
-    where("numero = #{number}")
+    where("numero = #{number} AND deposito_id IS NULL")
   end
 
   private

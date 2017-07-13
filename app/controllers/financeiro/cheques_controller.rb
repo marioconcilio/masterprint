@@ -28,16 +28,18 @@ class Financeiro::ChequesController < ApplicationController
     respond_to :js
   end
 
+  # GET /financeiro/cheques/:id
+  def show
+    @cheque = Cheque.find(params[:id])
+    @deposito = Deposito.find(@cheque.deposito_id) if @cheque.deposito_id
+    respond_to :js
+  end
+
   private
     def cheque_params
       params[:cheque][:valor].gsub!('.', '')
       params[:cheque][:valor].gsub!(',', '.')
-      params.require(:cheque).permit(:banco,
-                                     :numero,
-                                     :emitente,
-                                     :valor,
-                                     :data_deposito,
-                                     :cliente_id)
+      params.require(:cheque).permit!
     end
 
 end
