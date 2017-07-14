@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <legend>Dados</legend>
+
+      <%= form_for [:cadastro, @cliente] do |f| %>
+        <div class="form-group">
+          <%= f.label 'Razão Social' %>
+          <%= content_tag :p, @cliente.razao_social, class: 'form-control-static' %>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6">
+            <%= f.label 'CNPJ' %>
+            <%= content_tag :p, format_cnpj(@cliente.id), class: 'form-control-static' %>
+          </div>
+
+          <div class="col-md-6">
+            <%= f.label 'Inscrição Estadual' %>
+            <%= content_tag :p, format_cnpj(@cliente.id), class: 'form-control-static' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Endereço' %>
+          <%= content_tag :p, @cliente.endereco, class: 'form-control-static' %>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6">
+            <%= f.label :cidade %>
+            <%= content_tag :p, @cliente.cidade, class: 'form-control-static' %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label 'UF' %>
+            <%= content_tag :p, @cliente.uf, class: 'form-control-static' %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label 'CEP' %>
+            <%= content_tag :p, format_cep(@cliente.cep), class: 'form-control-static' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6">
+            <%= f.label :nome %>
+            <%= content_tag :p, @cliente.nome, class: 'form-control-static' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :contato %>
+            <%= content_tag :p, @cliente.contato, class: 'form-control-static' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6">
+            <%= f.label :telefone %>
+            <%= content_tag :p, @cliente.telefone, class: 'form-control-static' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :celular %>
+            <%= content_tag :p, @cliente.celular, class: 'form-control-static' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= content_tag :p, @cliente.email, class: 'form-control-static' %>
+        </div>
+      <% end %>
+
+    </div>
+    <!-- /.well -->
+  </div>
+  <!-- /.col-lg-6 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <div class="btn-group">
+      <%= link_to 'Voltar', cadastro_clientes_path,
+                  class: 'btn btn-default' %>
+      <%= link_to 'Editar',
+                  edit_cadastro_cliente_path(@cliente),
+                  method: :get,
+                  remote: true,
+                  class: 'btn btn-primary' %>
+      <%= link_to 'Remover',
+                  cadastro_cliente_path(@cliente),
+                  method: :delete,
+                  data: { confirm: 'Deseja remover o cliente?' },
+                  class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>
+<!-- /.row -->

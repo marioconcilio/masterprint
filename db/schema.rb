@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703204539) do
+ActiveRecord::Schema.define(version: 20170714181040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,18 @@ ActiveRecord::Schema.define(version: 20170703204539) do
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
   end
 
-  create_table "chapa_marcas", force: :cascade do |t|
-    t.string   "marca"
-    t.decimal  "preco",      precision: 8, scale: 2
-    t.string   "esp"
+  create_table "chapa_dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "chapa_marcas", force: :cascade do |t|
+    t.string   "marca"
+    t.decimal  "preco",      precision: 8
+    t.string   "esp"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "chapas", force: :cascade do |t|
@@ -53,29 +59,45 @@ ActiveRecord::Schema.define(version: 20170703204539) do
     t.index ["chapa_marca_id"], name: "index_chapas_on_chapa_marca_id", using: :btree
   end
 
+  create_table "cheque_depositos", force: :cascade do |t|
+    t.decimal  "total",      precision: 10, scale: 2
+    t.integer  "banco"
+    t.integer  "agencia"
+    t.bigint   "conta"
+    t.string   "titular"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
   create_table "cheques", force: :cascade do |t|
     t.integer  "banco"
     t.integer  "numero"
     t.string   "emitente"
-    t.decimal  "valor",         precision: 10, scale: 2
+    t.decimal  "valor",              precision: 10, scale: 2
     t.date     "data_deposito"
     t.bigint   "cliente_id"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "cheque_deposito_id"
     t.integer  "deposito_id"
+    t.index ["cheque_deposito_id"], name: "index_cheques_on_cheque_deposito_id", using: :btree
     t.index ["cliente_id"], name: "index_cheques_on_cliente_id", using: :btree
     t.index ["deposito_id"], name: "index_cheques_on_deposito_id", using: :btree
   end
 
   create_table "clientes", id: :bigserial, force: :cascade do |t|
-    t.string   "nome"
+    t.string   "razao_social"
     t.string   "email"
     t.string   "endereco"
     t.string   "cidade"
     t.string   "uf"
     t.integer  "cep"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "telefone"
+    t.string   "celular"
+    t.string   "nome"
+    t.string   "contato"
   end
 
   create_table "cortado_papeis", force: :cascade do |t|
@@ -96,6 +118,12 @@ ActiveRecord::Schema.define(version: 20170703204539) do
     t.string   "titular"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "dolares", force: :cascade do |t|
+    t.decimal  "value",      precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "envelopes", force: :cascade do |t|
@@ -154,7 +182,6 @@ ActiveRecord::Schema.define(version: 20170703204539) do
     t.bigint   "cliente_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index "recebimentos_order(id)", name: "idx_recebimentos_order", using: :btree
     t.index ["cliente_id"], name: "index_recebimentos_on_cliente_id", using: :btree
   end
 
@@ -191,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170703204539) do
 
   add_foreign_key "blanquetas", "blanqueta_lonas"
   add_foreign_key "chapas", "chapa_marcas"
+  add_foreign_key "cheques", "cheque_depositos"
   add_foreign_key "cheques", "clientes"
   add_foreign_key "cheques", "depositos"
   add_foreign_key "papeis", "papel_tipos"

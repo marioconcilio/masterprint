@@ -1,1 +1,1 @@
-$('#cli-tableview-bills').html '<%= j(render("table_bills")) %>'
+$('#receber-tableview').html '<%= j(render("receber")) %>'

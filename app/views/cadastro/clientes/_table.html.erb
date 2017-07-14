@@ -14,16 +14,16 @@
             <%= sort_link @search, :nome, 'Nome', {}, { remote: true, method: :get } %>
           </th>
           <th>
-            <%= sort_link @search, :endereco, 'Endereço', {}, { remote: true, method: :get } %>
+            <%= sort_link @search, :razao_social, 'Razão Social', {}, { remote: true, method: :get } %>
           </th>
           <th>
-            <%= sort_link @search, :cidade, 'Cidade', {}, { remote: true, method: :get } %>
+            <%= sort_link @search, :contato, 'Contato', {}, { remote: true, method: :get } %>
           </th>
-          <th class="text-center">
-            <%= sort_link @search, :uf, 'UF', {}, { remote: true, method: :get } %>
+          <th class="text-right">
+            <%= sort_link @search, :telefone, 'Telefone', {}, { remote: true, method: :get } %>
           </th>
-          <th>
-            <%= sort_link @search, :cep, 'CEP', {}, { remote: true, method: :get } %>
+          <th class="text-right">
+            <%= sort_link @search, :celular, 'Celular', {}, { remote: true, method: :get } %>
           </th>
         </tr>
       </thead>
@@ -31,10 +31,10 @@
         <% @clientes.each do |c| %>
           <tr>
             <td> <%= c.nome %> </td>
-            <td> <%= c.endereco %> </td>
-            <td> <%= c.cidade %> </td>
-            <td class="text-center"> <%= c.uf %> </td>
-            <td> <%= format_cep(c.cep) %> </td>
+            <td> <%= c.razao_social %> </td>
+            <td> <%= c.contato %> </td>
+            <td class="text-right"> <%= c.telefone %> </td>
+            <td class="text-right"> <%= c.celular %> </td>
             <td> <%= link_to '',
                              cadastro_cliente_path(c),
                              class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
