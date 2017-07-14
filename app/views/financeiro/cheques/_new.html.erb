@@ -12,33 +12,9 @@
         <%= render 'shared/error_messages', object: f.object %>
 
         <div class="form-group">
-          <%= f.label :banco, class: 'control-label col-sm-2' %>
-          <div class="col-sm-3">
-            <%= f.text_field :banco, class: 'form-control' %>
-          </div>
-
-          <%= f.label 'Número', class: 'control-label col-sm-2' %>
-          <div class="col-sm-5">
-            <%= f.text_field :numero, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
           <%= f.label :emitente, class: 'control-label col-sm-2' %>
           <div class="col-sm-10">
             <%= f.text_field :emitente, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :valor, class: 'control-label col-sm-2' %>
-          <div class="col-sm-4">
-            <%= f.text_field :valor, class: 'form-control' %>
-          </div>
-
-          <%= f.label :data, class: 'control-label col-sm-2' %>
-          <div class="col-sm-4">
-            <%= f.text_field :data_deposito, class: 'form-control' %>
           </div>
         </div>
 
@@ -51,6 +27,30 @@
                           },
                           { include_blank: true },
                           { class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :banco, class: 'control-label col-sm-2' %>
+          <div class="col-sm-3">
+            <%= f.text_field :banco, class: 'form-control' %>
+          </div>
+
+          <%= f.label 'Número', class: 'control-label col-sm-2' %>
+          <div class="col-sm-5">
+            <%= f.text_field :numero, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :valor, class: 'control-label col-sm-2' %>
+          <div class="col-sm-4">
+            <%= f.text_field :valor, class: 'form-control' %>
+          </div>
+
+          <%= f.label 'Bom p/', class: 'control-label col-sm-2' %>
+          <div class="col-sm-4">
+            <%= f.text_field :data_deposito, class: 'form-control' %>
           </div>
         </div>
 

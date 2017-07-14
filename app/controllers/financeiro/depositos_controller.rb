@@ -8,7 +8,6 @@ module Financeiro
     def index
       @search = Deposito.ransack(params[:q])
       @depositos = @search.result.page(params[:page])
-
       respond_to :html, :js
     end
 
@@ -66,7 +65,8 @@ module Financeiro
     def add
       ch = Cheque.new(cheque_params.to_h)
       write_to_cache(ch)
-      redirect_to new_financeiro_deposito_path
+      @cheques = read_cache
+      render :cheques
     end
 
     # DELETE /financeiro/depositos/ch/:id
@@ -76,13 +76,20 @@ module Financeiro
       render :cheques
     end
 
+    # GET /financeiro/depositos/:id
+    def show
+      @deposito = Deposito.find(params[:id])
+      @cheques = Cheque.where(deposito_id: @deposito.id)
+      respond_to :js
+    end
+
     private
       def deposito_params
         params.require(:deposito).permit!
       end
 
       def cheque_params
-        params.require(:ch).permit!
+        params.require(:cheque).permit!
       end
 
   end

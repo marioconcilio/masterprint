@@ -23,11 +23,11 @@
           <th>
             <%= sort_link @search, :conta, 'Conta', {}, { remote: true, method: :get } %>
           </th>
+          <th class="text-center">
+            <%= sort_link @search, :created_at, 'Realizado Em', {}, { remote: true, method: :get } %>
+          </th>
           <th class="text-right">
             <%= sort_link @search, :total, 'Total', {}, { remote: true, method: :get } %>
-          </th>
-          <th class="text-center">
-            <%= sort_link @search, :created_at, 'Feito Em', {}, { remote: true, method: :get } %>
           </th>
         </tr>
       </thead>
@@ -38,8 +38,12 @@
             <td> <%= d.banco %> </td>
             <td> <%= d.agencia %> </td>
             <td> <%= d.conta %> </td>
-            <td class="text-right"> <%= format_currency(d.total) %> </td>
             <td class="text-center"> <%= format_date(d.created_at) %> </td>
+            <td class="text-right"> <%= format_currency(d.total) %> </td>
+            <td> <%= link_to '',
+                             financeiro_deposito_path(d),
+                             remote: true,
+                             class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
           </tr>
         <% end %>
       </tbody>

@@ -30,8 +30,8 @@ class Financeiro::ChequesController < ApplicationController
 
   # GET /financeiro/cheques/:id
   def show
-    @cheque = Cheque.find(params[:id])
-    @deposito = Deposito.find(@cheque.deposito_id) if @cheque.deposito_id
+    @cheque = Cheque.left_joins(:deposito).find(params[:id])
+    @deposito = @cheque.deposito
     respond_to :js
   end
 
