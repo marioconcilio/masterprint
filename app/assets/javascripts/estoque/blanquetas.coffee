@@ -17,5 +17,5 @@ jQuery ->
     calculate()
     return
 
-  $('#blanqueta_larg').mask '#'
-  $('#blanqueta_comp').mask '#'
+$('#blanqueta_larg').mask '#'
+$('#blanqueta_comp').mask '#'

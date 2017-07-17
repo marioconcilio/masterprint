@@ -25,14 +25,12 @@ class Cadastro::ClientesController < ApplicationController
   # GET /cadastro/clientes/new
   def new
     @cliente = Cliente.new
-    @show_cnpj = true
     respond_to :js
   end
 
   # GET /cadastro/clientes/:id/edit
   def edit
     @cliente = Cliente.find(params[:id])
-    @show_cnpj = false
     respond_to :js
   end
 
@@ -40,11 +38,6 @@ class Cadastro::ClientesController < ApplicationController
   def show
     @cliente = Cliente.find(params[:id])
     @search = Recebimento.where(cliente: @cliente).ransack(params[:q])
-
-    @aberto = ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{@cliente.id})").getvalue(0,0)
-    @vencido = ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{@cliente.id})").getvalue(0,0)
-    @cartorio = ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{@cliente.id})").getvalue(0,0)
-    @protesto = ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{@cliente.id})").getvalue(0,0)
 
     if params[:status]
       @bills = @search.result.status(params[:status]).page(params[:page]).per(20)

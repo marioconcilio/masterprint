@@ -17,7 +17,7 @@
 
           <div class="col-md-6">
             <%= f.label 'Inscrição Estadual' %>
-            <%= content_tag :p, format_cnpj(@cliente.id), class: 'form-control-static' %>
+            <%= content_tag :p, format_ie(@cliente.ie), class: 'form-control-static' %>
           </div>
         </div>
 
@@ -67,6 +67,30 @@
           <%= f.label :email %>
           <%= content_tag :p, @cliente.email, class: 'form-control-static' %>
         </div>
+      <% end %>
+
+      <% unless @bills.empty? %>
+        <legend>A Receber</legend>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="text-right"><%= label_tag :aberto %></td>
+              <td><%= format_currency total_aberto(@cliente) %></td>
+            </tr>
+            <tr>
+              <td class="text-right"><%= label_tag :vencido %></td>
+              <td><%= format_currency total_vencido(@cliente) %></td>
+            </tr>
+            <tr>
+              <td class="text-right"><%= label_tag 'Em cartório' %></td>
+              <td class="text-primary"><%= format_currency total_cartorio(@cliente) %></td>
+            </tr>
+            <tr>
+              <td class="text-right"><%= label_tag :protestado %></td>
+              <td class="text-danger"><%= format_currency total_protestado(@cliente) %></td>
+            </tr>
+          </tbody>
+        </table>
       <% end %>
 
     </div>

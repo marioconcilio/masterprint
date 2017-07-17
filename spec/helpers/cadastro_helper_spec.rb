@@ -22,4 +22,14 @@ RSpec.describe CadastroHelper, type: :helper do
     end
   end
 
+  context 'ie' do
+    it 'formats' do
+      expect(helper.format_ie(123456789123)).to eq('123.456.789.123')
+    end
+
+    it 'formats with leading zero' do
+      expect(helper.format_ie(1234567890)).to eq('001.234.567.890')
+    end
+  end
+
 end

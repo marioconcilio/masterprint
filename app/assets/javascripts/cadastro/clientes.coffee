@@ -3,5 +3,6 @@ options = onKeyPress: (uf, event, currentField, options) ->
   return
 
 $('#cliente_id').mask '00.000.000/0000-00'
+$('#cliente_ie').mask '000.000.000.000'
 $('#cliente_uf').mask 'SS', options
 $('#cliente_cep').mask '00000-000'

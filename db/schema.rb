@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714181040) do
+ActiveRecord::Schema.define(version: 20170717193820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170714181040) do
     t.string   "celular"
     t.string   "nome"
     t.string   "contato"
+    t.bigint   "ie"
   end
 
   create_table "cortado_papeis", force: :cascade do |t|
