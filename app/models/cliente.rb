@@ -3,10 +3,7 @@ class Cliente < ApplicationRecord
   default_scope -> { order(:nome) }
 
   validates_presence_of :nome,
-                        :endereco,
-                        :cidade,
-                        :uf,
-                        :cep
+                        :contato
 
   has_many :recebimentos, dependent: :destroy
   has_many :cheques, dependent: :destroy

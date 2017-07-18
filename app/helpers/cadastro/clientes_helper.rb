@@ -17,7 +17,7 @@ module Cadastro::ClientesHelper
   end
 
   def active_tabpane?(tab)
-    params[:tab] = 'tab1' unless params[:tab]
+    params[:tab] = 'dados' unless params[:tab]
 
     if params[:tab] == tab
       'tab-pane active fade in'
@@ -27,7 +27,7 @@ module Cadastro::ClientesHelper
   end
 
   def active_tab?(tab)
-    params[:tab] = 'tab1' unless params[:tab]
+    params[:tab] = 'dados' unless params[:tab]
 
     if params[:tab] == tab
       'active'

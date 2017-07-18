@@ -11,11 +11,16 @@
     <div class="col-lg-12">
       <div class="page-header">
         <ul class="nav nav-pills pull-right">
-          <li class="<%= active_tab? 'tab1' %>">
-            <%= link_to 'Dados', '#tab1', 'data-toggle' => 'tab' %>
+          <li class="<%= active_tab? 'dados' %>">
+            <%= link_to 'Dados', '#dados', 'data-toggle' => 'tab' %>
           </li>
-          <li class="<%= active_tab? 'tab2' %>">
-            <%= link_to 'A Receber', '#tab2', 'data-toggle' => 'tab' %>
+            <% if @bills.empty? %>
+              <li class="disabled">
+              <%= link_to 'A Receber', '#receber' %>
+            <% else %>
+              <li class="<%= active_tab? 'receber' %>">
+              <%= link_to 'A Receber', '#receber', 'data-toggle' => 'tab' %>
+            <% end %>
           </li>
         </ul>
         <h1><%= @cliente.nome %></h1>
@@ -25,10 +30,10 @@
 
   <!-- content -->
   <div class="tab-content">
-    <div class="<%= active_tabpane? 'tab1' %>" id="tab1">
+    <div class="<%= active_tabpane? 'dados' %>" id="dados">
       <%= render 'dados' %>
     </div>
-    <div class="<%= active_tabpane? 'tab2' %>" id="tab2">
+    <div class="<%= active_tabpane? 'receber' %>" id="receber">
       <div id="receber-tableview">
         <%= render 'receber' %>
       </div>
@@ -37,5 +42,3 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<%= render 'shared/modal' %>

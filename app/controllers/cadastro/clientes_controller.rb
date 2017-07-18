@@ -72,7 +72,8 @@ class Cadastro::ClientesController < ApplicationController
     def cliente_params
       params[:cliente][:cep].gsub!(/\D/, '') if params[:cliente][:cep]
       params[:cliente][:id].gsub!(/\D/, '') if params[:cliente][:id]
-      params.require(:cliente).permit(:id, :nome, :email, :endereco, :cidade, :uf, :cep)
+      params[:cliente][:ie].gsub!(/\D/, '') if params[:cliente][:ie]
+      params.require(:cliente).permit!
     end
 
 end

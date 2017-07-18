@@ -18,4 +18,6 @@
 //= require turbolinks-compatibility
 //= require bootstrap-sprockets
 //= require jquery.mask
+//= require highcharts
+//= require chartkick
 //= require_tree .

@@ -1,102 +1,91 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="well">
-      <legend>Dados</legend>
-
-      <%= form_for [:cadastro, @cliente] do |f| %>
-        <div class="form-group">
-          <%= f.label 'Razão Social' %>
-          <%= content_tag :p, @cliente.razao_social, class: 'form-control-static' %>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-md-6">
-            <%= f.label 'CNPJ' %>
-            <%= content_tag :p, format_cnpj(@cliente.id), class: 'form-control-static' %>
+  <div class="col-md-7">
+    <div class="panel panel-success">
+      <div class="panel-heading">Dados</div>
+      <div class="panel-body">
+        <%= form_for [:cadastro, @cliente] do |f| %>
+          <div class="form-group">
+            <%= f.label 'Razão Social' %>
+            <%= content_tag :p, @cliente.razao_social, class: 'form-control-static' %>
           </div>
 
-          <div class="col-md-6">
-            <%= f.label 'Inscrição Estadual' %>
-            <%= content_tag :p, format_ie(@cliente.ie), class: 'form-control-static' %>
-          </div>
-        </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <%= f.label 'CNPJ' %>
+              <%= content_tag :p, format_cnpj(@cliente.id), class: 'form-control-static' %>
+            </div>
 
-        <div class="form-group">
-          <%= f.label 'Endereço' %>
-          <%= content_tag :p, @cliente.endereco, class: 'form-control-static' %>
-        </div>
+            <div class="col-md-6">
+              <%= f.label 'Inscrição Estadual' %>
+              <%= content_tag :p, format_ie(@cliente.ie), class: 'form-control-static' %>
+            </div>
+          </div>
 
-        <div class="form-group row">
-          <div class="col-md-6">
-            <%= f.label :cidade %>
-            <%= content_tag :p, @cliente.cidade, class: 'form-control-static' %>
+          <div class="form-group">
+            <%= f.label 'Endereço' %>
+            <%= content_tag :p, @cliente.endereco, class: 'form-control-static' %>
           </div>
-          <div class="col-md-2">
-            <%= f.label 'UF' %>
-            <%= content_tag :p, @cliente.uf, class: 'form-control-static' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.label 'CEP' %>
-            <%= content_tag :p, format_cep(@cliente.cep), class: 'form-control-static' %>
-          </div>
-        </div>
 
-        <div class="form-group row">
-          <div class="col-md-6">
-            <%= f.label :nome %>
-            <%= content_tag :p, @cliente.nome, class: 'form-control-static' %>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <%= f.label :cidade %>
+              <%= content_tag :p, @cliente.cidade, class: 'form-control-static' %>
+            </div>
+            <div class="col-md-2">
+              <%= f.label 'UF' %>
+              <%= content_tag :p, @cliente.uf, class: 'form-control-static' %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label 'CEP' %>
+              <%= content_tag :p, format_cep(@cliente.cep), class: 'form-control-static' %>
+            </div>
           </div>
-          <div class="col-md-6">
-            <%= f.label :contato %>
-            <%= content_tag :p, @cliente.contato, class: 'form-control-static' %>
+
+          <div class="form-group row">
+            <div class="col-md-6">
+              <%= f.label :nome %>
+              <%= content_tag :p, @cliente.nome, class: 'form-control-static' %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :contato %>
+              <%= content_tag :p, @cliente.contato, class: 'form-control-static' %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <div class="col-md-6">
-            <%= f.label :telefone %>
-            <%= content_tag :p, @cliente.telefone, class: 'form-control-static' %>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <%= f.label :telefone %>
+              <%= content_tag :p, @cliente.telefone, class: 'form-control-static' %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :celular %>
+              <%= content_tag :p, @cliente.celular, class: 'form-control-static' %>
+            </div>
           </div>
-          <div class="col-md-6">
-            <%= f.label :celular %>
-            <%= content_tag :p, @cliente.celular, class: 'form-control-static' %>
+
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= content_tag :p, @cliente.email, class: 'form-control-static' %>
           </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= content_tag :p, @cliente.email, class: 'form-control-static' %>
-        </div>
-      <% end %>
-
-      <% unless @bills.empty? %>
-        <legend>A Receber</legend>
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <td class="text-right"><%= label_tag :aberto %></td>
-              <td><%= format_currency total_aberto(@cliente) %></td>
-            </tr>
-            <tr>
-              <td class="text-right"><%= label_tag :vencido %></td>
-              <td><%= format_currency total_vencido(@cliente) %></td>
-            </tr>
-            <tr>
-              <td class="text-right"><%= label_tag 'Em cartório' %></td>
-              <td class="text-primary"><%= format_currency total_cartorio(@cliente) %></td>
-            </tr>
-            <tr>
-              <td class="text-right"><%= label_tag :protestado %></td>
-              <td class="text-danger"><%= format_currency total_protestado(@cliente) %></td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-
+        <% end %>
+      </div>
+      <!-- /.panel-body -->
     </div>
-    <!-- /.well -->
+    <!-- /.panel panel-default -->
   </div>
-  <!-- /.col-lg-6 -->
+  <!-- /.col-md-6 -->
+
+  <div class="col-md-5">
+    <div class="panel panel-success">
+      <div class="panel-heading">A Receber</div>
+      <div class="panel-body">
+        <%= column_chart({ 'Em Aberto' => total_aberto(@cliente),
+                            'Vencido' => total_vencido(@cliente),
+                            'Em Cartório' => total_cartorio(@cliente),
+                            'Protestado' => total_protestado(@cliente) }) %>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- /.row -->
 
