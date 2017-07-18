@@ -14,22 +14,22 @@
         <div class="form-group row">
           <div class="col-sm-2">
             <%= f.label :banco %>
-            <%= f.text_field :banco, class: 'form-control' %>
+            <%= f.text_field :banco, class: 'form-control number-field' %>
           </div>
 
           <div class="col-sm-3">
             <%= f.label 'Número' %>
-            <%= f.text_field :numero, class: 'form-control' %>
+            <%= f.text_field :numero, class: 'form-control number-field' %>
           </div>
 
           <div class="col-sm-3">
             <%= f.label 'Bom p/' %>
-            <%= f.text_field :data_deposito, class: 'form-control' %>
+            <%= f.text_field :data_deposito, class: 'form-control date-field' %>
           </div>
 
           <div class="col-sm-4">
             <%= f.label :valor %>
-            <%= f.text_field :valor, class: 'form-control' %>
+            <%= f.text_field :valor, class: 'form-control money-field' %>
           </div>
         </div>
 

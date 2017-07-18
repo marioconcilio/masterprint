@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   end
 
   namespace :cadastro do
-    resources :clientes
+    resources :clientes do
+      member do
+        get :receber_chart
+      end
+    end
   end
 
   namespace :financeiro do

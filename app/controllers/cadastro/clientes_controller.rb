@@ -68,6 +68,16 @@ class Cadastro::ClientesController < ApplicationController
     redirect_to cadastro_clientes_url
   end
 
+  # GET /cadastro/clientes/receber_chart
+  def receber_chart
+    render json: {
+      'Em Aberto'   => helpers.total_aberto(params[:id]),
+      'Vencido'     => helpers.total_vencido(params[:id]),
+      'Em Cartório' => helpers.total_cartorio(params[:id]),
+      'Protestado'  => helpers.total_protestado(params[:id])
+    }
+  end
+
   private
     def cliente_params
       params[:cliente][:cep].gsub!(/\D/, '') if params[:cliente][:cep]

@@ -14,19 +14,19 @@
         <!-- razao social -->
         <div class="form-group">
           <%= f.label 'Razão Social' %>
-          <%= f.text_field :razao_social, class: 'form-control' %>
+          <%= f.text_field :razao_social, class: 'form-control title-case' %>
         </div>
 
         <!-- cnpj / inscricao estadual -->
         <div class="form-group row">
           <div class="col-md-6">
             <%= f.label 'CNPJ' %>
-            <%= f.text_field :id, class: 'form-control' %>
+            <%= f.text_field :id, class: 'form-control cnpj-field' %>
           </div>
 
           <div class="col-md-6">
             <%= f.label 'Inscrição Estadual' %>
-            <%= f.text_field :ie, class: 'form-control' %>
+            <%= f.text_field :ie, class: 'form-control ie-field' %>
           </div>
         </div>
 
@@ -44,11 +44,11 @@
           </div>
           <div class="col-md-2">
             <%= f.label 'UF' %>
-            <%= f.text_field :uf, class: 'form-control' %>
+            <%= f.text_field :uf, class: 'form-control uf-field' %>
           </div>
           <div class="col-md-4">
             <%= f.label 'CEP' %>
-            <%= f.text_field :cep, class: 'form-control' %>
+            <%= f.text_field :cep, class: 'form-control cep-field' %>
           </div>
         </div>
 
@@ -68,11 +68,11 @@
         <div class="form-group row">
           <div class="col-md-6">
             <%= f.label :telefone %>
-            <%= f.text_field :telefone, class: 'form-control phone' %>
+            <%= f.text_field :telefone, class: 'form-control phone-field' %>
           </div>
           <div class="col-md-6">
             <%= f.label :celular %>
-            <%= f.text_field :celular, class: 'form-control phone' %>
+            <%= f.text_field :celular, class: 'form-control phone-field' %>
           </div>
         </div>
 

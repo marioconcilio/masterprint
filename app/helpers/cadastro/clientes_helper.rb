@@ -1,19 +1,19 @@
 module Cadastro::ClientesHelper
 
-  def total_aberto(cliente)
-    ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{cliente.id})").getvalue(0,0)
+  def total_aberto(id)
+    ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{id})").getvalue(0,0)
   end
 
-  def total_vencido(cliente)
-    ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{cliente.id})").getvalue(0,0)
+  def total_vencido(id)
+    ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{id})").getvalue(0,0)
   end
 
-  def total_cartorio(cliente)
-    ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{cliente.id})").getvalue(0,0)
+  def total_cartorio(id)
+    ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{id})").getvalue(0,0)
   end
 
-  def total_protestado(cliente)
-    ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{cliente.id})").getvalue(0,0)
+  def total_protestado(id)
+    ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{id})").getvalue(0,0)
   end
 
   def active_tabpane?(tab)
@@ -32,6 +32,21 @@ module Cadastro::ClientesHelper
     if params[:tab] == tab
       'active'
     end
+  end
+
+  def receber_chart
+    column_chart receber_chart_cadastro_cliente_path(@cliente), library: {
+      yAxis: {
+        labels: {
+          format: 'R$ {value:,.0f}'
+        }
+      },
+      tooltip: {
+        pointFormat: 'Total: <b>{point.y}</b>',
+        valueDecimals: 2,
+        valuePrefix: 'R$ '
+      }
+    }
   end
 
 end

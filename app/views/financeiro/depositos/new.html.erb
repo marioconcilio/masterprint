@@ -32,12 +32,12 @@
           <div class="form-group">
             <%= f.label :banco, class: 'control-label col-sm-2' %>
             <div class="col-sm-2">
-              <%= f.text_field :banco, class: 'form-control' %>
+              <%= f.text_field :banco, class: 'form-control number-field' %>
             </div>
 
             <%= f.label 'Agência', class: 'control-label col-sm-1' %>
             <div class="col-sm-2">
-              <%= f.text_field :agencia, class: 'form-control' %>
+              <%= f.text_field :agencia, class: 'form-control number-field' %>
             </div>
 
             <%= f.label :conta, class: 'control-label col-sm-1' %>
@@ -67,7 +67,7 @@
               <%= text_field_tag :ch_search,
                                  params[:ch_search],
                                  placeholder: 'Número do cheque',
-                                 class: 'form-control' %>
+                                 class: 'form-control number-field' %>
               <%= submit_tag 'Adicionar' , class: 'btn btn-default' %>
             <% end %>
           </div>

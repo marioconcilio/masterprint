@@ -6,13 +6,30 @@ class Cheque < ApplicationRecord
                         :numero,
                         :emitente,
                         :valor,
-                        :data_deposito
+                        :data_deposito,
+                        :status
 
   belongs_to :cliente, optional: true
   belongs_to :deposito, optional: true
 
   def self.search(number)
     where("numero = #{number} AND deposito_id IS NULL")
+  end
+
+  def aberto?
+    self.status == Financeiro::ChequesHelper::Aberto
+  end
+
+  def devolvido?
+    self.status == Financeiro::ChequesHelper::Devolvido
+  end
+
+  def depositado?
+    self.status == Financeiro::ChequesHelper::Depositado
+  end
+
+  def pago?
+    self.status == Financeiro::ChequesHelper::Pago
   end
 
   private

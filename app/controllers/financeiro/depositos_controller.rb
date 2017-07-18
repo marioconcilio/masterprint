@@ -18,7 +18,7 @@ module Financeiro
       if @deposito.save
         # update cheques.deposito_id
         all_updated = read_cache.map { |ch| Cheque.find(ch['id']) }
-          .map { |ch| ch.update_attribute(:deposito_id, @deposito.id) }
+          .map { |ch| ch.update(deposito_id: @deposito.id, status: Financeiro::ChequesHelper.Depositado) }
           .reduce(:&)
 
         if all_updated

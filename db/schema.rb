@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717193820) do
+ActiveRecord::Schema.define(version: 20170718155144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170717193820) do
     t.datetime "updated_at",                                  null: false
     t.integer  "cheque_deposito_id"
     t.integer  "deposito_id"
+    t.string   "status"
     t.index ["cheque_deposito_id"], name: "index_cheques_on_cheque_deposito_id", using: :btree
     t.index ["cliente_id"], name: "index_cheques_on_cliente_id", using: :btree
     t.index ["deposito_id"], name: "index_cheques_on_deposito_id", using: :btree
