@@ -33,14 +33,14 @@
         <!-- endereco -->
         <div class="form-group">
           <%= f.label 'Endereço' %>
-          <%= f.text_field :endereco, class: 'form-control' %>
+          <%= f.text_field :endereco, class: 'form-control title-case' %>
         </div>
 
         <!-- cidade / uf / cep -->
         <div class="form-group row">
           <div class="col-md-6">
             <%= f.label :cidade %>
-            <%= f.text_field :cidade, class: 'form-control' %>
+            <%= f.text_field :cidade, class: 'form-control title-case' %>
           </div>
           <div class="col-md-2">
             <%= f.label 'UF' %>
@@ -56,11 +56,11 @@
         <div class="form-group row">
           <div class="col-md-6">
             <%= f.label :nome %>
-            <%= f.text_field :nome, class: 'form-control' %>
+            <%= f.text_field :nome, class: 'form-control title-case' %>
           </div>
           <div class="col-md-6">
             <%= f.label :contato %>
-            <%= f.text_field :contato, class: 'form-control' %>
+            <%= f.text_field :contato, class: 'form-control title-case' %>
           </div>
         </div>
 

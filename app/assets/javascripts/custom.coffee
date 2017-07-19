@@ -29,19 +29,6 @@ $('.cnpj-field').mask '00.000.000/0000-00'
 $('.ie-field').mask '000.000.000.000'
 
 #
-# title field
-#
-toTitleCase = (str) ->
-  str.replace /\w\S*/g, (txt) ->
-    txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-
-titleOptions = onKeyPress: (val, e, field, options) ->
-  field.mask toTitleCase.apply({}, arguments), options
-  return
-
-$('.title-field').mask toTitleCase, titleOptions
-
-#
 # phone field
 #
 phoneMaskBehavior = (val) ->
