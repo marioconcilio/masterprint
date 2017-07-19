@@ -1,3 +1,5 @@
+<%= form_for [:financeiro, @recebimento], remote: true do |f| %>
+
 <div class="modal-header">
   <h3>Boleto nº <%= format_bill_number(@recebimento.id) %></h3>
 </div>
@@ -5,49 +7,45 @@
 
 <div class="modal-body">
   <div class="container-fluid">
-  <%= render 'shared/spinner' %>
     <div class="row">
       <div class="col-lg-12">
 
-        <div class="panel panel-<%= bill_status(@recebimento) %>">
-          <div class="panel-heading">
-            <% if @recebimento.vencido? %>
-              Vencido
-            <% else %>
-              <%= @recebimento.status %>
-            <% end %>
-          </div>
-          <!-- /.panel-heading -->
-
-          <div class="panel-body">
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <td><%= label_tag 'Número' %></td>
-                  <td><%= format_bill_number(@recebimento.id) %></td>
-                </tr>
-                <tr>
-                  <td><%= label_tag :cliente %></td>
-                  <td><%= @recebimento.cliente.nome %></td>
-                </tr>
-                <tr>
-                  <td><%= label_tag :vencimento %></td>
-                  <td><%= format_date(@recebimento.vencimento) %></td>
-                </tr>
-                <tr>
-                  <td><%= label_tag :valor %></td>
-                  <td><%= format_currency(@recebimento.valor) %></td>
-                </tr>
-                <tr>
-                  <td><%= label_tag 'Situação' %></td>
-                  <td><%= @recebimento.status %></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.panel-body -->
+        <!-- cliente -->
+        <div class="form-group">
+          <%= f.label :cliente %>
+          <%= content_tag :p, @recebimento.cliente.razao_social, class: 'form-control-static' %>
         </div>
-        <!-- /.panel -->
+
+        <!-- numero / venc / valor -->
+        <div class="form-group row">
+          <div class="col-md-4">
+            <%= f.label 'Número' %>
+            <%= content_tag :p, format_bill_number(@recebimento.id), class: 'form-control-static' %>
+          </div>
+
+          <div class="col-md-4">
+            <%= f.label :vencimento %>
+            <%= content_tag :p, format_date(@recebimento.vencimento), class: 'form-control-static' %>
+          </div>
+
+          <div class="col-md-4">
+            <%= f.label :valor %>
+            <%= content_tag :p, format_currency(@recebimento.valor), class: 'form-control-static' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Situação' %>
+          <%= f.select :status, ['Aguardando',
+                                 'Em aberto',
+                                 'Pago',
+                                 'Cartório',
+                                 'Protestado',
+                                 'Protesto em mãos'],
+                                 {},
+                                 { class: 'form-control' } %>
+        </div>
+
       </div>
       <!-- /.col-lg-12 -->
     </div>
@@ -58,36 +56,11 @@
 <!-- /.modal-body -->
 
 <div class="modal-footer">
-  <div class="btn-group dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      Atualizar
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><%= link_to 'Em aberto',
-                      financeiro_recebimento_path(@recebimento, status: 'Em aberto'),
-                      method: :patch,
-                      remote: true %></li>
-
-      <li><%= link_to 'Pago',
-                      financeiro_recebimento_path(@recebimento, status: 'Pago'),
-                      method: :patch,
-                      remote: true %></li>
-
-      <li><%= link_to 'Cartório',
-                      financeiro_recebimento_path(@recebimento, status: 'Cartório'),
-                      method: :patch,
-                      remote: true %></li>
-
-      <li><%= link_to 'Protestado',
-                      financeiro_recebimento_path(@recebimento, status: 'Protestado'),
-                      method: :patch,
-                      remote: true %></li>
-    </ul>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
   </div>
-  <!-- /.btn-group dropdown -->
-
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-
 </div>
 <!-- /.modal-footer -->
+
+<% end %>

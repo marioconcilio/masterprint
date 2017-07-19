@@ -7,6 +7,7 @@ class Cheque < ApplicationRecord
                         :emitente,
                         :valor,
                         :data_deposito,
+                        :cliente,
                         :status
 
   belongs_to :cliente, optional: true

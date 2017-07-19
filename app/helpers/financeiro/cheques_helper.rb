@@ -12,13 +12,13 @@ module Financeiro::ChequesHelper
     number.nil? ? '-' : '%06d' % number
   end
 
-  def cheque_status(ch)
+  def cheque_label(ch)
     if ch.devolvido?
-      'danger'
-    elsif ch.depositado?
-      'success'
-    elsif ch.pago?
-      'success'
+      'label label-danger'
+    elsif ch.depositado? || ch.pago?
+      'label label-success'
+    else
+      'label label-default'
     end
   end
 

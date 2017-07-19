@@ -9,6 +9,14 @@ class Recebimento < ApplicationRecord
 
   belongs_to :cliente
 
+  def aguardando?
+    self.status == FinanceiroHelper::Aguardando
+  end
+
+  def aberto?
+    self.status == FinanceiroHelper::Aberto
+  end
+
   def vencido?
     self.status == FinanceiroHelper::Aberto && DateTime.now > self.vencimento
   end

@@ -61,16 +61,16 @@
       </thead>
       <tbody>
         <% @bills.each do |b| %>
-          <tr class="<%= bill_status(b) %>">
+          <tr>
             <td> <%= format_bill_number(b.id) %> </td>
             <td> <%= b.cliente.razao_social %> </td>
             <td class="text-center"> <%= format_date(b.vencimento) %> </td>
             <td class="text-right"> <%= format_currency(b.valor) %> </td>
-            <td class="text-center"> <%= b.status %> </td>
+            <td class="text-center"><span class="<%= bill_label b %>"><%= b.status %></span></td>
             <td> <%= link_to '',
                              financeiro_recebimento_path(b),
                              remote: true,
-                             class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
+                             class: 'fa fa-search-plus btn btn-info' %> </td>
           </tr>
         <% end %>
       </tbody>

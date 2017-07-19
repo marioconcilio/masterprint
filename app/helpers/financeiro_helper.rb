@@ -1,8 +1,10 @@
 module FinanceiroHelper
-  Aberto   = 'Em aberto'
-  Pago     = 'Pago'
-  Cartorio = 'Cartório'
-  Protesto = 'Protestado'
+  Aguardando    = 'Aguardando'
+  Aberto        = 'Em aberto'
+  Pago          = 'Pago'
+  Cartorio      = 'Cartório'
+  Protesto      = 'Protestado'
+  ProtestoMaos  = 'Protesto em mãos'
 
   def format_bill_number(id)
     number = id / 1000
@@ -17,17 +19,19 @@ module FinanceiroHelper
     end
   end
 
-  def bill_status(bill)
-    if bill.pago?
-      'paid'
-    elsif bill.em_cartorio?
-      'court'
-    elsif bill.protestado?
-      'protested'
+  def bill_label(bill)
+    if bill.aguardando?
+      'label label-primary'
+    elsif bill.aberto?
+      'label label-default'
+    elsif bill.pago?
+      'label label-success'
+    elsif bill.em_cartorio? || bill.protestado?
+      'label label-danger'
     elsif bill.vencido?
-      'overdue'
+      'label label-warning'
     else
-      'open'
+      'label label-default'
     end
   end
 

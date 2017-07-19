@@ -36,14 +36,14 @@
       </thead>
       <tbody>
         <% @cheques.each do |c| %>
-          <tr class="<%= cheque_status(c) %>">
+          <tr>
             <td> <%= format_banco(c.banco) %> </td>
             <td> <%= format_numero(c.numero) %> </td>
             <td> <%= c.emitente %> </td>
             <td> <%= c.cliente %> </td>
             <td class="text-center"> <%= format_date(c.data_deposito) %> </td>
             <td class="text-right"> <%= format_currency(c.valor) %> </td>
-            <td class="text-center"> <%= c.status %> </td>
+            <td class="text-center"><span class="<%= cheque_label c %>"><%= c.status %></td>
             <td> <%= link_to '',
                              financeiro_cheque_path(c),
                              remote: true,

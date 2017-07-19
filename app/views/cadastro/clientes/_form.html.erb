@@ -21,12 +21,12 @@
         <div class="form-group row">
           <div class="col-md-6">
             <%= f.label 'CNPJ' %>
-            <%= f.text_field :id, class: 'form-control cnpj-field' %>
+            <%= f.text_field :id, value: format_cnpj(f.object.id), class: 'form-control cnpj-field' %>
           </div>
 
           <div class="col-md-6">
             <%= f.label 'Inscrição Estadual' %>
-            <%= f.text_field :ie, class: 'form-control ie-field' %>
+            <%= f.text_field :ie, value: format_ie(f.object.ie), class: 'form-control ie-field' %>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
           </div>
           <div class="col-md-4">
             <%= f.label 'CEP' %>
-            <%= f.text_field :cep, class: 'form-control cep-field' %>
+            <%= f.text_field :cep, value: format_cep(f.object.cep), class: 'form-control cep-field' %>
           </div>
         </div>
 
