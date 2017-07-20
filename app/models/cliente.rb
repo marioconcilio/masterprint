@@ -1,6 +1,6 @@
 class Cliente < ApplicationRecord
   paginates_per  30
-  default_scope -> { order(:nome) }
+  default_scope -> { order(:nome, :razao_social) }
 
   validates_presence_of :nome,
                         :contato

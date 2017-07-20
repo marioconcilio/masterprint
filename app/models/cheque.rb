@@ -1,4 +1,12 @@
 class Cheque < ApplicationRecord
+  enum status: {
+    aberto:     'Em aberto',
+    devolvido:  'Devolvido',
+    depositado: 'Depositado',
+    pago:       'Pago'
+  }
+
+  before_save :titleize_all
   paginates_per 30
   default_scope -> { order(:data_deposito, :banco, :numero, :valor) }
 
@@ -17,25 +25,13 @@ class Cheque < ApplicationRecord
     where("numero = #{number} AND deposito_id IS NULL")
   end
 
-  def aberto?
-    self.status == Financeiro::ChequesHelper::Aberto
-  end
-
-  def devolvido?
-    self.status == Financeiro::ChequesHelper::Devolvido
-  end
-
-  def depositado?
-    self.status == Financeiro::ChequesHelper::Depositado
-  end
-
-  def pago?
-    self.status == Financeiro::ChequesHelper::Pago
-  end
-
   private
     ransacker :numero_text do
       Arel.sql('numero::text')
+    end
+
+    def titleize_all
+      self.emitente = self.emitente.titlecase
     end
 
 end

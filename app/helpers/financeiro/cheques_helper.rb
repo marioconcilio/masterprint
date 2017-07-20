@@ -1,8 +1,4 @@
 module Financeiro::ChequesHelper
-  Aberto      = 'Em aberto'
-  Devolvido   = 'Devolvido'
-  Depositado  = 'Depositado'
-  Pago        = 'Pago'
 
   def format_banco(number)
     number.nil? ? '-' : '%03d' % number

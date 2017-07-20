@@ -18,7 +18,10 @@ module Financeiro
       if @deposito.save
         # update cheques.deposito_id
         all_updated = read_cache.map { |ch| Cheque.find(ch['id']) }
-          .map { |ch| ch.update(deposito_id: @deposito.id, status: Financeiro::ChequesHelper.Depositado) }
+          .map do |ch|
+            ch.depositado!
+            ch.update(deposito_id: @deposito.id, status: :depositado)
+          end
           .reduce(:&)
 
         if all_updated
@@ -26,9 +29,10 @@ module Financeiro
           clear_cache
           redirect_to financeiro_depositos_url and return
         else
-          @error_message = 'Não foi possível atualizar cheque'
+          flash[:danger] = 'Não foi possível atualizar cheque'
           clear_cache
           Deposito.delete(@deposito.id)
+          redirect_to new_financeiro_deposito_url and return
         end
       end
 

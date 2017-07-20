@@ -61,7 +61,7 @@
       </thead>
       <tbody>
         <% @bills.each do |b| %>
-          <tr  class="<%= bill_status(b) %>">
+          <tr>
             <td> <%= format_bill_number(b.id) %> </td>
             <td> <%= @cliente.razao_social %> </td>
             <td class="text-center"> <%= format_date(b.vencimento) %> </td>

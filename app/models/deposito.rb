@@ -1,4 +1,6 @@
 class Deposito < ApplicationRecord
+  before_save :titleize_all
+
   paginates_per 30
   default_scope -> { order(created_at: :desc) }
 
@@ -7,4 +9,10 @@ class Deposito < ApplicationRecord
                         :titular
 
   has_many :cheques, dependent: :destroy
+
+  private
+    def titleize_all
+      self.titular = self.titular.titlecase
+    end
+
 end
