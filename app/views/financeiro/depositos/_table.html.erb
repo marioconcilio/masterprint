@@ -40,10 +40,10 @@
             <td> <%= d.conta %> </td>
             <td class="text-center"> <%= format_date(d.created_at) %> </td>
             <td class="text-right"> <%= format_currency(d.total) %> </td>
-            <td> <%= link_to '',
-                             financeiro_deposito_path(d),
-                             remote: true,
-                             class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
+            <td class="text-right">
+              <%= link_to '', financeiro_deposito_path(d), remote: true,
+                          class: 'fa fa-search-plus btn btn-info' %>
+            </td>
           </tr>
         <% end %>
       </tbody>

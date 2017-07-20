@@ -26,7 +26,7 @@ module FinanceiroHelper
       'label label-default'
     elsif bill.pago?
       'label label-success'
-    elsif bill.em_cartorio? || bill.protestado?
+    elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
       'label label-danger'
     elsif bill.vencido?
       'label label-warning'

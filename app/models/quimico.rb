@@ -6,7 +6,7 @@ class Quimico < ApplicationRecord
                         :moeda,
                         :qtde
 
-  default_scope -> { order(:nome) }
+  default_scope -> { order(:nome, :marca, :un) }
 
   def preco_un
     if self.moeda == 'USD'
