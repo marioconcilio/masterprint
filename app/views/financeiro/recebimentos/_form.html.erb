@@ -1,7 +1,12 @@
 <%= form_for [:financeiro, @recebimento], remote: true do |f| %>
 
 <div class="modal-header">
-  <h3>Boleto nº <%= format_bill_number(@recebimento.id) %></h3>
+  <div class="container-fluid">
+    <div class="row">
+      <span class="col-md-10"><h3>Boleto nº <%= format_bill_number(@recebimento.id) %></h3></span>
+      <span class="pull-right <%= bill_label @recebimento %>"><%= @recebimento.status %></span>
+    </div>
+  </div>
 </div>
 <!-- /.modal-header -->
 

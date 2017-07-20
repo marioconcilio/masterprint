@@ -1,4 +1,13 @@
 class Deposito < ApplicationRecord
+  enum status: {
+    aguardando:   'Aguardando',
+    aberto:       'Aberto',
+    cartorio:     'Cartório',
+    protesto:     'Protestado'
+    titulo_maos:  'Título em mãos'
+    pago:         'Pago',
+  }
+
   before_save :titleize_all
 
   paginates_per 30
