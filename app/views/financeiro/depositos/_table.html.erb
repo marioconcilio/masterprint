@@ -41,8 +41,7 @@
             <td class="text-center"> <%= format_date(d.created_at) %> </td>
             <td class="text-right"> <%= format_currency(d.total) %> </td>
             <td class="text-right">
-              <%= link_to '', financeiro_deposito_path(d), remote: true,
-                          class: 'fa fa-search-plus btn btn-info' %>
+              <%= link_details_to '', financeiro_deposito_path(d), remote: true %>
             </td>
           </tr>
         <% end %>

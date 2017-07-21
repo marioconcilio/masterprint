@@ -41,14 +41,10 @@
 
         <div class="form-group">
           <%= f.label 'Situação' %>
-          <%= f.select :status, ['Aguardando',
-                                 'Em aberto',
-                                 'Pago',
-                                 'Cartório',
-                                 'Protestado',
-                                 'Protesto em mãos'],
-                                 {},
-                                 { class: 'form-control' } %>
+          <%= f.select :status,
+                       options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
+                       {},
+                       { class: 'form-control' } %>
         </div>
 
       </div>

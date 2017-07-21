@@ -1,1 +1,1 @@
-$('#receber-tableview').html '<%= j(render("receber")) %>'
+$('#receber-tableview').html '<%= j(render("financeiro/recebimentos/table")) %>'

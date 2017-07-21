@@ -35,9 +35,7 @@
             <td> <%= c.contato %> </td>
             <td class="text-right"> <%= c.telefone %> </td>
             <td class="text-right"> <%= c.celular %> </td>
-            <td> <%= link_to '',
-                             cadastro_cliente_path(c),
-                             class: 'fa fa-lg fa-plus-circle no-underline' %> </td>
+            <td class="text-right"> <%= link_details_to '', cadastro_cliente_path(c) %> </td>
           </tr>
         <% end %>
       </tbody>

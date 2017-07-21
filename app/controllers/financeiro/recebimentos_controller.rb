@@ -61,9 +61,9 @@ module Financeiro
     def update
       @recebimento = Recebimento.find(params[:id])
       if @recebimento.update_attributes(recebimento_params)
-        flash[:success] = "Boleto atualizado → #{params[:recebimento][:status]}"
+        flash[:success] = "Boleto atualizado → #{Recebimento.status[params[:recebimento][:status]]}"
       else
-        flash[:danger] = "Erro ao atualizar boleto → #{params[:recebimento][:status]}"
+        flash[:danger] = "Erro ao atualizar boleto → #{Recebimento.status[params[:recebimento][:status]]}"
       end
 
       redirect_to financeiro_recebimentos_path

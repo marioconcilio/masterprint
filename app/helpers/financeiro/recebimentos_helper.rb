@@ -22,7 +22,7 @@ module Financeiro::RecebimentosHelper
         vencimento: date,
         valor: value,
         cliente_id: cnpj,
-        status: FinanceiroHelper::Aberto)
+        status: :aguardando)
     end
 
 end

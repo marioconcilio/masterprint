@@ -56,7 +56,7 @@
         <div class="form-group">
           <%= f.label 'Situação' %>
           <%= f.select :status,
-                       Cheque.status.values,
+                       options_for_select(Cheque.status.map{|s| [ s[1], s[0] ]}, @cheque.status),
                        {},
                        { class: 'form-control' } %>
         </div>

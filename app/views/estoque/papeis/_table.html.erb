@@ -115,10 +115,9 @@
             <td class="text-center"> <%= p.qtde %> </td>
 
             <% if @logged_in %>
-              <td><%= link_to '',
-                              movimento_estoque_papel_path(p),
-                              remote: true,
-                              class: 'fa fa-exchange no-underline' %></td>
+              <td class="text-right">
+                <%= link_movimento_to '', movimento_estoque_papel_path(p), remote: true %>
+              </td>
             <% end %>
           </tr>
         <% end %>

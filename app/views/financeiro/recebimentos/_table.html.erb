@@ -67,11 +67,10 @@
             <td class="text-center"> <%= format_date(b.vencimento) %> </td>
             <td class="text-right"> <%= format_currency(b.valor) %> </td>
             <td class="text-center">
-              <span class="<%= bill_label b %>"><%= b.status %></span>
+              <span class="<%= bill_label b %>"><%= Recebimento.status[b.status] %></span>
             </td>
             <td class="text-right">
-              <%= link_to '', financeiro_recebimento_path(b), remote: true,
-                          class: 'fa fa-search-plus btn btn-info' %>
+              <%= link_details_to '', financeiro_recebimento_path(b), remote: true %>
             </td>
           </tr>
         <% end %>
