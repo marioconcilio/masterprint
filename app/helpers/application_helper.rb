@@ -19,6 +19,16 @@ module ApplicationHelper
     end
   end
 
+  def active_params(args)
+    if args.values.first == nil && params[args.keys.first] == nil
+      'active'
+    elsif args.values.first.to_s == params[args.keys.first]
+      'active'
+    else
+      ''
+    end
+  end
+
   def format_currency(value, currency='BRL')
     unit = currency == 'BRL'? 'R$' : 'US$'
 

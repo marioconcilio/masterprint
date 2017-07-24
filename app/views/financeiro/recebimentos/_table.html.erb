@@ -3,37 +3,6 @@
   <div class="col-lg-6">
     <%= paginate @bills, remote: true %>
   </div>
-
-  <div class="col-lg-6 text-right">
-    <div class="btn-group" style="margin: 20px 0;">
-      <%= link_to 'Todos',
-                  financeiro_recebimentos_path,
-                  remote: true,
-                  class: active_button(status: nil) %>
-
-      <%= link_to 'Em aberto',
-                  financeiro_recebimentos_path(status: FinanceiroHelper::Aberto.downcase),
-                  remote: true,
-                  class: active_button(status: FinanceiroHelper::Aberto.downcase) %>
-
-      <%= link_to 'Pagos',
-                  financeiro_recebimentos_path(status: FinanceiroHelper::Pago.downcase),
-                  remote: true,
-                  class: active_button(status: FinanceiroHelper::Pago.downcase) %>
-
-      <%= link_to 'Cartório',
-                  financeiro_recebimentos_path(status: FinanceiroHelper::Cartorio.downcase),
-                  remote: true,
-                  class: active_button(status: FinanceiroHelper::Cartorio.downcase) %>
-
-      <%= link_to 'Protestados',
-                  financeiro_recebimentos_path(status: FinanceiroHelper::Protesto.downcase),
-                  remote: true,
-                  class: active_button(status: FinanceiroHelper::Protesto.downcase) %>
-    </div>
-    <!-- /.btn-group -->
-  </div>
-  <!-- /.col-lg-6 text-right -->
 </div>
 <!-- /.row -->
 

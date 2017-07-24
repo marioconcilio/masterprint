@@ -1,42 +1,11 @@
-<div id="wrapper">
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <li>
-        <%= link_to '#', { title: 'Recados' } do %>
-          <%= image_tag('notes.png', size: '25x25') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to estoque_blanquetas_path, { title: 'Estoque' } do %>
-          <%= image_tag('trolley.png', size: '25x25') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to financeiro_recebimentos_path, { title: 'Financeiro' } do %>
-          <%= image_tag('money-bag.png', size: '25x25') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to '#', { title: 'Cartões' } do %>
-          <%= image_tag('credit-cards.png', size: '25x25') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to cadastro_clientes_path, { title: 'Cadastro' } do %>
-          <%= image_tag('agenda.png', size: '25x25') %>
-        <% end %>
-      </li>
-    </ul>
-    <!-- /.sidebar-nav -->
+<nav class="sidebar-nav open">
+  <ul class="nav">
+    <li class="divider"></li>
 
-  </div>
-  <!-- /.sidebar-wrapper -->
+    <li class="nav-item">
+      <%= link_to 'Dashboard', '#', class: 'nav-link' %>
+    </li>
 
-  <div id="page-content-wrapper">
-    <%= render 'layouts/flash' %>
-    <%= yield %>
-  </div>
-  <!-- /.page-content-wrapper -->
-
-</div>
-<!-- /.wrapper -->
+    <%= yield :sidebar %>
+  </ul>
+</nav>

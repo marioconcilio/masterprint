@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Masterprint <%= 'Dev' if Rails.env.development? %></title>
+    <title>Masterprint <%= ' Dev' if Rails.env.development? %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="<%= body_logged_in? %>">
-    <header>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    <header class="app-header navbar">
       <%= render 'layouts/navbar' %>
     </header>
 
-    <%= render 'shared/spinner' %>
-    <% if logged_in? %>
+    <div class="app-body">
+      <div class="sidebar">
       <%= render 'layouts/sidebar' %>
+      </div>
+
+      <main class="main">
+        <div class="container-fluid pt-4">
+          <div class="animated fadeIn">
+            <%= render 'layouts/flash' %>
+            <%= yield %>
+            <%= debug(params) if Rails.env.development? %>
+          </div>
+
+          <%= render 'shared/modal' %>
+        </div>
+      </main>
+    </div>
+
+    <!--
+    <% if logged_in? %>
+      <%# render 'layouts/sidebar' %>
     <% else %>
       <div class="container">
-        <%= render 'layouts/flash' %>
-        <%= yield %>
+        <%# render 'layouts/flash' %>
+        <%# yield %>
       </div>
     <% end %>
-    <%= render "shared/modal" %>
+    -->
 
-  <%= debug(params) if Rails.env.development? %>
+    <%# render 'layouts/sidebar' %>
+    <%# render 'shared/spinner' %>
+    <%# render 'shared/modal' %>
+
   </body>
 </html>

@@ -21,17 +21,17 @@ module FinanceiroHelper
 
   def bill_label(bill)
     if bill.aguardando?
-      'label label-primary'
+      'badge badge-primary'
     elsif bill.aberto?
-      'label label-default'
+      'badge badge-default'
     elsif bill.pago?
-      'label label-success'
+      'badge badge-success'
     elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
-      'label label-danger'
+      'badge badge-danger'
     elsif bill.vencido?
-      'label label-warning'
+      'badge badge-warning'
     else
-      'label label-default'
+      'badge badge-default'
     end
   end
 

@@ -1,0 +1,40 @@
+<li class="divider"></li>
+<li class="nav-title">Financeiro</li>
+<li class="nav-item nav-dropdown">
+  <%= link_to 'A Receber', '#', class: 'nav-link nav-dropdown-toggle' %>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_to 'Todos', financeiro_recebimentos_path,
+                  class: "nav-link #{active_params(status: nil)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Em Aberto', financeiro_recebimentos_path(status: :aberto),
+                  class: "nav-link #{active_params(status: :aberto)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Pagos', financeiro_recebimentos_path(status: :pago),
+                  class: "nav-link #{active_params(status: :pago)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Cartório', financeiro_recebimentos_path(status: :cartorio),
+                  class: "nav-link #{active_params(status: :cartorio)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Protestados', financeiro_recebimentos_path(status: :protestado),
+                  class: "nav-link #{active_params(status: :protestado)}" %>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'A Pagar', '#', class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Cheques', financeiro_cheques_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Depósitos', financeiro_depositos_path, class: 'nav-link' %>
+</li>

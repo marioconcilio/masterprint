@@ -13,11 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery.turbolinks
-//= require turbolinks
-//= require turbolinks-compatibility
+// require jquery.turbolinks
+// require turbolinks
+// require turbolinks-compatibility
 //= require bootstrap-sprockets
 //= require jquery.mask
 //= require highcharts
 //= require chartkick
+//= require pace/pace
+//= require tether
 //= require_tree .

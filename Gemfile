@@ -26,10 +26,10 @@ gem 'coffee-script-source', '1.8.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 
 # Turbolinks with jQuery events
-gem 'jquery-turbolinks'
+# gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -77,6 +77,12 @@ gem 'redis-rack-cache'
 
 # charts
 gem 'chartkick'
+
+# tether.io
+gem 'tether-rails'
+
+# http://github.hubspot.com/pace/docs/welcome/
+gem 'pace-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

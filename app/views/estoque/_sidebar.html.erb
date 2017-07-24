@@ -1,0 +1,79 @@
+<li class="divider"></li>
+<li class="nav-title">Estoque</li>
+<li class="nav-item">
+  <%= link_to 'Blanquetas', estoque_blanquetas_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Chapas', estoque_chapas_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Envelopes', estoque_envelopes_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <%= link_to 'Papéis', '#', class: 'nav-link nav-dropdown-toggle' %>
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_to 'Todos', estoque_papeis_path,
+                  class: "nav-link #{active_params(tipo: nil)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Offset', estoque_papeis_path(tipo: :offset),
+                  class: "nav-link #{active_params(tipo: :offset)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Couche', estoque_papeis_path(tipo: :couche),
+                  class: "nav-link #{active_params(tipo: :couche)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Copiativo', estoque_papeis_path(tipo: :copiativo),
+                  class: "nav-link #{active_params(tipo: :copiativo)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Duplex', estoque_papeis_path(tipo: :duplex),
+                  class: "nav-link #{active_params(tipo: :duplex)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Triplex', estoque_papeis_path(tipo: :triplex),
+                  class: "nav-link #{active_params(tipo: :triplex)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Superbond', estoque_papeis_path(tipo: :superbond),
+                  class: "nav-link #{active_params(tipo: :superbond)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Capa AG', estoque_papeis_path(tipo: :capa),
+                  class: "nav-link #{active_params(tipo: :capa)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Cartolina', estoque_papeis_path(tipo: :cartolina),
+                  class: "nav-link #{active_params(tipo: :cartolina)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Reciclato', estoque_papeis_path(tipo: :reciclato),
+                  class: "nav-link #{active_params(tipo: :reciclato)}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Kraft', estoque_papeis_path(tipo: :kraft),
+                  class: "nav-link #{active_params(tipo: :kraft)}" %>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Papéis Cortados', estoque_cortado_papeis_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Químicos', estoque_quimicos_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Tintas', estoque_tintas_path, class: 'nav-link' %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Variados', estoque_variados_path, class: 'nav-link' %>
+</li>
