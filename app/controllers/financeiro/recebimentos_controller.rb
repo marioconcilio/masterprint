@@ -7,7 +7,7 @@ module Financeiro
     def index
       @search = Recebimento.joins(:cliente).ransack(params[:q])
       if params[:status]
-        @bills = @search.result.includes(:cliente).status(params[:status]).page(params[:page])
+        @bills = @search.result.includes(:cliente).s(params[:status]).page(params[:page])
       else
         @bills = @search.result.includes(:cliente).page(params[:page])
       end

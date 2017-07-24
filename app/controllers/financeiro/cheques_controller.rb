@@ -38,7 +38,7 @@ class Financeiro::ChequesController < ApplicationController
   # PATCH /financeiro/cheques/:id
   def update
     @cheque = Cheque.find(params[:id])
-    if @cheque.update_attributes(cheque_params)
+    if @cheque.update_attribute(:status, params[:cheque][:status])
       flash[:success] = "Cheque atualizado → #{params[:cheque][:status]}"
     else
       flash[:danger] = "Erro ao atualizar cheque → #{params[:cheque][:status]}"

@@ -22,14 +22,18 @@
       <div class="form-inline">
         <div class="form-group">
           <%= search_form_for @search, remote: true, url: yield(:url), method: :get do |f| %>
-            <%= f.search_field :titular_cont, placeholder: 'Titular', class: 'form-control'%>
+            <div class="input-group">
+              <%= f.search_field :titular_cont, placeholder: 'Titular', class: 'form-control'%>
 
-            <div class="btn-group">
-              <%= f.submit 'Pesquisar', name: nil, class: 'btn btn-primary' %>
-              <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+              <div class="input-group-btn">
+                <%= f.button '', class: 'btn btn-primary' do %>
+                  <i class="fa fa-search"></i>
+                <% end %>
+                <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+              </div>
+              <!-- /.input-group-btn -->
             </div>
-            <!-- /.btn-group -->
-
+            <!-- /.input-group -->
           <% end %>
         </div>
         <!-- /.form-group -->

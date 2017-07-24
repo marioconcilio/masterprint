@@ -18,38 +18,32 @@
         <div class="form-group row">
           <div class="col-sm-2">
             <%= f.label :banco %>
-            <%= f.hidden_field :banco %>
             <%= content_tag :p, format_banco(@cheque.banco), class: 'form-control-static' %>
           </div>
 
           <div class="col-sm-3">
             <%= f.label 'Número' %>
-            <%= f.hidden_field :numero %>
             <%= content_tag :p, format_numero(@cheque.numero), class: 'form-control-static' %>
           </div>
 
           <div class="col-sm-3">
             <%= f.label 'Bom p/' %>
-            <%= f.hidden_field :data_deposito %>
             <%= content_tag :p, format_date(@cheque.data_deposito), class: 'form-control-static' %>
           </div>
 
           <div class="col-sm-4">
             <%= f.label :valor %>
-            <%= f.hidden_field :valor %>
             <%= content_tag :p, format_currency(@cheque.valor), class: 'form-control-static' %>
           </div>
         </div>
 
         <div class="form-group">
           <%= f.label :emitente %>
-          <%= f.hidden_field :emitente %>
           <%= content_tag :p, @cheque.emitente, class: 'form-control-static' %>
         </div>
 
         <div class="form-group">
           <%= f.label :cliente %>
-          <%= f.hidden_field :cliente_id %>
           <%= content_tag :p, @cheque.cliente, class: 'form-control-static' %>
         </div>
 
