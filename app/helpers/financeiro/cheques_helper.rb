@@ -10,11 +10,11 @@ module Financeiro::ChequesHelper
 
   def cheque_label(ch)
     if ch.devolvido?
-      'label label-danger'
+      'badge badge-danger'
     elsif ch.depositado? || ch.pago?
-      'label label-success'
+      'badge badge-success'
     else
-      'label label-default'
+      'badge badge-default'
     end
   end
 

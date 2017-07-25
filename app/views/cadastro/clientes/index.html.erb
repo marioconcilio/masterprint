@@ -3,33 +3,34 @@
 <% end %>
 
 <% provide(:url, cadastro_clientes_path) %>
-<% provide(:new_url, new_cadastro_cliente_path) %>
 <% provide(:search_field, :nome_or_razao_social_cont) %>
 <% provide(:placeholder, 'Nome ou Razão Social') %>
 
-<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        Cadastro<strong>Clientes</strong>
+      </div>
 
-  <!-- header -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1>Clientes</h1>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= render 'shared/search_form' %>
+          </div>
+          <div class="col-sm-8 text-right">
+            <%= link_to 'Novo Cliente',
+                        new_cadastro_cliente_path,
+                        remote: true,
+                        class: 'btn btn-success' %>
+          </div>
+        </div>
+
+        <div id="cli-tableview">
+          <%= render 'table' %>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- search form -->
-  <div class="row">
-    <div class="col-lg-12">
-      <%= render 'shared/search_form' %>
-    </div>
-  </div>
-
-  <!-- table view -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div id="cli-tableview"><%= render 'table' %></div>
-    </div>
-  </div>
-
 </div>
+

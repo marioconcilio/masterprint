@@ -63,8 +63,10 @@
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <%= button_tag 'Cancelar', type: :button, 'data-dismiss': :modal, class: 'btn btn-secondary' %>
-    <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    <div class="btn-group">
+      <%= button_tag 'Cancelar', type: :button, 'data-dismiss': :modal, class: 'btn btn-secondary' %>
+      <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    </div>
   </div>
   <!-- /.modal-footer -->
 
