@@ -10,6 +10,8 @@ class Envelope < ApplicationRecord
 
   default_scope -> { order(:nome, :tipo, :larg, :comp, :grs) }
 
+  scope :tipo, -> (tipo) { where('tipo ilike ?', "#{tipo}") }
+
   def preco_un
     (self.preco_milheiro * self.un / 1000).round(1)
   end

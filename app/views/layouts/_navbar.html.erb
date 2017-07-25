@@ -1,4 +1,4 @@
-<a class="navbar-brand" href="#">Masterprint</a>
+<a class="navbar-brand" href="#"></a>
 <ul class="nav navbar-nav d-md-down-none">
   <li class="nav-item">
     <%= link_to '☰', '#', class: 'nav-link navbar-toggler sidebar-toggler' %>
@@ -15,7 +15,7 @@
 </ul>
 
 <ul class="nav navbar-nav ml-auto">
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown px-3">
     <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
         'data-toggle' => 'dropdown', role: :button, 'aria-haspopup' => :true, 'aria-expanded' => :false %>
 
@@ -27,54 +27,3 @@
     </div>
   </li>
 </ul>
-
-<!--
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Masterprint</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
-        <% if content_for? :navbar %>
-          <%# yield :navbar %>
-        <% else %>
-          <%# render 'estoque/navbar' %>
-        <% end %>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <% if Rails.env.development? %>
-          <li class="disabled" style="background-color: crimson">
-            <%# link_to 'Development', '#' %>
-          </li>
-        <% end %>
-        <% if logged_in? %>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.nome %></a>
-            <ul class="dropdown-menu">
-              <li>
-                <%# link_to 'Sair', logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li>
-            <%# link_to '', login_path, remote: true, class: "fa fa-sign-in fa-lg" %>
-          </li>
-        <% end %>
-      </ul>
-
-    </div>
-
-  </div>
-
-</nav>
--->

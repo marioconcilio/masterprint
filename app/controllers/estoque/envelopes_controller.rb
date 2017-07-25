@@ -3,12 +3,13 @@ class Estoque::EnvelopesController < ApplicationController
   # GET /estoque/envelopes
   def index
     @search = Envelope.ransack(params[:q])
-    @products = @search.result
-
-    respond_to do |format|
-      format.html
-      format.js
+    if params[:tipo]
+      @products = @search.result.tipo(params[:tipo])
+    else
+      @products = @search.result
     end
+
+    respond_to :html, :js
   end
 
   # POST /estoque/envelopes

@@ -3,33 +3,33 @@
 <% end %>
 
 <% provide(:url, estoque_quimicos_path) %>
-<% provide(:new_url, new_estoque_quimico_path) %>
 <% provide(:search_field, :nome_or_marca_cont) %>
 <% provide(:placeholder, 'Nome ou marca') %>
 
-<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        Estoque<strong>Químicos</strong>
+      </div>
 
-  <!-- header -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1>Químicos</h1>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= render 'shared/search_form' %>
+          </div>
+          <div class="col-sm-8 text-right">
+            <%= link_to 'Novo Químico',
+                        new_estoque_quimico_path,
+                        remote: true,
+                        class: 'btn btn-success' %>
+          </div>
+        </div>
+
+        <div id="qui-tableview">
+          <%= render 'table' %>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- search form -->
-  <div class="row">
-    <div class="col-lg-12">
-      <%= render 'shared/search_form' %>
-    </div>
-  </div>
-
-  <!-- table view -->
-  <div class="row row-margin">
-    <div class="col-lg-12">
-      <div id="qui-tableview"><%= render 'table' %></div>
-    </div>
-  </div>
-
 </div>
