@@ -1,23 +1,21 @@
 <%= search_form_for @search, remote: true, url: yield(:url), method: :get, class: 'form-horizontal' do |f| %>
-
   <div class="form-group row">
+    <div class="col-md-12">
+      <div class="input-group">
+        <%= f.search_field yield(:search_field), placeholder: yield(:placeholder), class: 'form-control'%>
 
-  <div class="input-group">
-    <%= f.search_field yield(:search_field), placeholder: yield(:placeholder), class: 'form-control'%>
-
-    <div class="input-group-btn">
-      <%= f.button '', class: 'btn btn-primary' do %>
-        <i class="fa fa-search"></i>
-      <% end %>
-      <%= link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+        <div class="input-group-btn">
+          <%= f.button '', class: 'btn btn-primary' do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+          <%# link_to '', request.path, class: 'fa fa-times btn btn-danger' %>
+        </div>
+        <!-- /.input-group-btn -->
+      </div>
+      <!-- /.input-group -->
     </div>
-    <!-- /.input-group-btn -->
-  </div>
-  <!-- /.input-group -->
-
   </div>
 <% end %>
-
 
 <% if logged_in? && content_for?(:new_url) %>
 <div class="form-group pull-right">
