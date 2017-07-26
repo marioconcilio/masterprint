@@ -16,6 +16,3 @@ jQuery ->
   $('body').on 'change', '#blanqueta_blanqueta_lona_id', ->
     calculate()
     return
-
-$('#blanqueta_larg').mask '#'
-$('#blanqueta_comp').mask '#'

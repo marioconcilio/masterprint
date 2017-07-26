@@ -1,65 +1,52 @@
-<%= form_for [:estoque, @variado], remote: true, html: { class: 'form-horizontal' } do |f| %>
+<%= form_for [:estoque, @variado], remote: true do |f| %>
 
-<div class="modal-header">
-  <h3>Olar</h3>
-</div>
-<!-- /.modal-header -->
-
-<div class="modal-body">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <%= render 'shared/error_messages', object: f.object %>
-
-        <div class="form-group">
-          <%= f.label :nome, class: 'control-label col-sm-2' %>
-          <div class="col-sm-10">
-            <%= f.text_field :nome, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label 'Preço', class: 'control-label col-sm-2' %>
-          <div class="col-sm-3">
-            <%= f.collection_select :moeda,
-                                    moedas,
-                                    :value,
-                                    :text,
-                                    { include_blank: false },
-                                    { class: 'form-control' } %>
-          </div>
-          <div class="col-sm-3" %>
-            <%= f.text_field :preco, class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :qtde, class: 'control-label col-sm-2' %>
-          <div class="col-sm-3">
-            <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :unidade, class: 'control-label col-sm-2' %>
-          <div class="col-sm-3">
-            <%= f.text_field :un, class: 'form-control' %>
-          </div>
-        </div>
-
-      </div>
-      <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
+  <div class="modal-header">
+    <%= modal_form_header 'Novo', 'Produto' %>
   </div>
-  <!-- /.container-fluid -->
-</div>
-<!-- /.modal-body -->
+  <!-- /.modal-header -->
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-  <%= f.submit "Salvar", class: "btn btn-primary" %>
-</div>
-<!-- /.modal-footer -->
+  <div class="modal-body">
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :nome %>
+      <%= f.text_field :nome, class: 'form-control' %>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <%= f.label 'Preço' %>
+        <%= f.collection_select :moeda,
+                                moedas,
+                                :value,
+                                :text,
+                                { include_blank: false },
+                                { class: 'form-control' } %>
+      </div>
+
+      <div class="form-group col-sm-4">
+        <label><br></label>
+        <%= f.text_field :preco, class: 'form-control money-field' %>
+      </div>
+
+      <div class="form-group col-sm-5">
+        <%= f.label :unidade %>
+        <%= f.text_field :un, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <%= f.label :quantidade %>
+        <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
 
 <% end %>

@@ -16,6 +16,3 @@ jQuery ->
   $('body').on 'change', '#chapa_chapa_marca_id', ->
     calculate()
     return
-
-  $('#chapa_larg').mask '#'
-  $('#chapa_comp').mask '#'

@@ -20,9 +20,3 @@ jQuery ->
   $('body').on 'change', '#envelope_moeda', ->
     calculate()
     return
-
-  $('#envelope_larg').mask '#'
-  $('#envelope_comp').mask '#'
-  $('#envelope_grs').mask '#'
-  $('#envelope_un').mask '#'
-  $('#envelope_preco_milheiro').mask '#.##0,00', reverse: true, placeholder: '0,00'

@@ -21,5 +21,4 @@ jQuery ->
     calculate()
     return
 
-  $('#tinta_un').mask '#0,0', reverse: true, placeholder: '0,0 kg'
-  $('#tinta_preco_kg').mask '#.##0,00', reverse: true, placeholder: '0,00'
+$('#tinta_un').mask '#0,0', reverse: true, placeholder: '0,0 kg'
