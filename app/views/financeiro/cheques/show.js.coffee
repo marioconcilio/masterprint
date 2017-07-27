@@ -1,5 +1,2 @@
-modalContent = $('.modal .modal-content')
-modalContent.html '<%= j(render "show") %>'
-
-modal = $('.modal')
-modal.modal()
+$('.modal .modal-content').html '<%= j(render "show") %>'
+$('.modal').modal()
