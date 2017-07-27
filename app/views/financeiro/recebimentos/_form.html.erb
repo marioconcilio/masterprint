@@ -1,67 +1,49 @@
 <%= form_for [:financeiro, @recebimento], remote: true do |f| %>
 
-<div class="modal-header">
-  <div class="container-fluid">
-    <div class="row">
-      <span class="col-md-10"><h3>Boleto nº <%= format_bill_number(@recebimento.id) %></h3></span>
-      <span class="pull-right <%= bill_label @recebimento %>"><%= @recebimento.status %></span>
-    </div>
+  <div class="modal-header">
+    <%= modal_form_header 'Boleto', format_bill_number(@recebimento.id) %>
   </div>
-</div>
-<!-- /.modal-header -->
+  <!-- /.modal-header -->
 
-<div class="modal-body">
-  <div class="container-fluid">
+  <div class="modal-body">
+
+    <!-- cliente -->
+    <div class="form-group">
+      <%= f.label :cliente %>
+      <%= content_tag :p, @recebimento.cliente.razao_social, class: 'form-control-static' %>
+    </div>
+
+    <!-- numero / venc / valor -->
     <div class="row">
-      <div class="col-lg-12">
-
-        <!-- cliente -->
-        <div class="form-group">
-          <%= f.label :cliente %>
-          <%= content_tag :p, @recebimento.cliente.razao_social, class: 'form-control-static' %>
-        </div>
-
-        <!-- numero / venc / valor -->
-        <div class="form-group row">
-          <div class="col-md-4">
-            <%= f.label 'Número' %>
-            <%= content_tag :p, format_bill_number(@recebimento.id), class: 'form-control-static' %>
-          </div>
-
-          <div class="col-md-4">
-            <%= f.label :vencimento %>
-            <%= content_tag :p, format_date(@recebimento.vencimento), class: 'form-control-static' %>
-          </div>
-
-          <div class="col-md-4">
-            <%= f.label :valor %>
-            <%= content_tag :p, format_currency(@recebimento.valor), class: 'form-control-static' %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label 'Situação' %>
-          <%= f.select :status,
-                       options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
-                       {},
-                       { class: 'form-control' } %>
-        </div>
-
+      <div class="form-group col-md-4">
+        <%= f.label 'Número' %>
+        <%= content_tag :p, format_bill_number(@recebimento.id), class: 'form-control-static' %>
       </div>
-      <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container-fluid -->
-</div>
-<!-- /.modal-body -->
 
-<div class="modal-footer">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-    <%= f.submit "Salvar", class: "btn btn-primary" %>
+      <div class="form-group col-md-4">
+        <%= f.label :vencimento %>
+        <%= content_tag :p, format_date(@recebimento.vencimento), class: 'form-control-static' %>
+      </div>
+
+      <div class="form-group col-md-4">
+        <%= f.label :valor %>
+        <%= content_tag :p, format_currency(@recebimento.valor), class: 'form-control-static' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Situação' %>
+      <%= f.select :status,
+                   options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
+                   {},
+                   { class: 'form-control' } %>
+    </div>
   </div>
-</div>
-<!-- /.modal-footer -->
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
 
 <% end %>

@@ -18,4 +18,14 @@ module Financeiro::ChequesHelper
     end
   end
 
+  def cheque_modal(ch)
+    if ch.devolvido?
+      'modal-danger'
+    elsif ch.depositado? || ch.pago?
+      'modal-success'
+    else
+      ''
+    end
+  end
+
 end

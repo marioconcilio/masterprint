@@ -21,9 +21,7 @@ module FinanceiroHelper
 
   def bill_label(bill)
     if bill.aguardando?
-      'badge badge-primary'
-    elsif bill.aberto?
-      'badge badge-default'
+      'badge badge-info'
     elsif bill.pago?
       'badge badge-success'
     elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
@@ -32,6 +30,20 @@ module FinanceiroHelper
       'badge badge-warning'
     else
       'badge badge-default'
+    end
+  end
+
+  def bill_modal(bill)
+    if bill.aguardando?
+      'modal-info'
+    elsif bill.pago?
+      'modal-success'
+    elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
+      'modal-danger'
+    elsif bill.vencido?
+      'modal-warning'
+    else
+      ''
     end
   end
 

@@ -1,128 +1,114 @@
 <%= form_for [:financeiro, @cheque], remote: true do |f| %>
 
   <div class="modal-header">
-    <div class="container-fluid">
-      <div class="row">
-        <span class="col-md-10"><h3>Cheque nº <%= format_numero(@cheque.id) %></h3></span>
-        <span class="pull-right <%= cheque_label @cheque %>"><%= Cheque.status[@cheque.status] %></span>
-      </div>
-    </div>
+    <%= modal_form_header 'Cheque', format_numero(@cheque.id) %>
   </div>
   <!-- /.modal-header -->
 
   <div class="modal-body">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-
-          <div class="form-group row">
-            <div class="col-sm-2">
-              <%= f.label :banco %>
-              <%= content_tag :p, format_banco(@cheque.banco), class: 'form-control-static' %>
-            </div>
-
-            <div class="col-sm-3">
-              <%= f.label 'Número' %>
-              <%= content_tag :p, format_numero(@cheque.numero), class: 'form-control-static' %>
-            </div>
-
-            <div class="col-sm-3">
-              <%= f.label 'Bom p/' %>
-              <%= content_tag :p, format_date(@cheque.data_deposito), class: 'form-control-static' %>
-            </div>
-
-            <div class="col-sm-4">
-              <%= f.label :valor %>
-              <%= content_tag :p, format_currency(@cheque.valor), class: 'form-control-static' %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :emitente %>
-            <%= content_tag :p, @cheque.emitente, class: 'form-control-static' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :cliente %>
-            <%= content_tag :p, @cheque.cliente, class: 'form-control-static' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label 'Situação' %>
-            <%= f.select :status,
-                         options_for_select(Cheque.status.map{|s| [ s[1], s[0] ]}, @cheque.status),
-                         {},
-                         { class: 'form-control' } %>
-          </div>
-
-          <% if @deposito %>
-            <div class="panel panel-info">
-              <% if @deposito.banco %>
-                <!-- deposito -->
-                <div class="panel-heading">
-                  Depósito realizado em <%= format_date(@deposito.created_at) %>
-                </div>
-
-                <div class="panel-body">
-                  <div class="form-group">
-                    <%= label_tag :titular_da_conta %>
-                    <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="col-sm-2">
-                      <%= label_tag :banco %>
-                      <%= content_tag :p, format_banco(@deposito.banco), class: 'form-control-static' %>
-                    </div>
-
-                    <div class="col-sm-3">
-                      <%= label_tag 'Agência' %>
-                      <%= content_tag :p, @deposito.agencia, class: 'form-control-static' %>
-                    </div>
-
-                    <div class="col-sm-3">
-                      <%= label_tag :conta %>
-                      <%= content_tag :p, @deposito.conta, class: 'form-control-static' %>
-                    </div>
-
-                    <div class="col-sm-4">
-                      <%= label_tag :total %>
-                      <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.panel-body -->
-              <% else %>
-                <!-- repasse -->
-                <div class="panel-heading">
-                  Repasse realizado em <%= format_date(@deposito.created_at) %>
-                </div>
-
-                <div class="panel-body">
-                  <div class="form-group">
-                    <%= label_tag :para %>
-                    <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= label_tag :total %>
-                    <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
-                  </div>
-                </div>
-                <!-- /.panel-body -->
-              <% end %>
-
-            </div>
-            <!-- /.panel panel-default -->
-          <% end %>
-          <!-- if @deposito -->
-
-        </div>
-        <!-- /.col-lg-12 -->
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <%= f.label :banco %>
+        <%= content_tag :p, format_banco(@cheque.banco), class: 'form-control-static' %>
       </div>
-      <!-- /.row -->
+
+      <div class="col-sm-3">
+        <%= f.label 'Número' %>
+        <%= content_tag :p, format_numero(@cheque.numero), class: 'form-control-static' %>
+      </div>
+
+      <div class="col-sm-3">
+        <%= f.label 'Bom p/' %>
+        <%= content_tag :p, format_date(@cheque.data_deposito), class: 'form-control-static' %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= f.label :valor %>
+        <%= content_tag :p, format_currency(@cheque.valor), class: 'form-control-static' %>
+      </div>
     </div>
-    <!-- /.container-fluid -->
+
+    <div class="form-group">
+      <%= f.label :emitente %>
+      <%= content_tag :p, @cheque.emitente, class: 'form-control-static' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cliente %>
+      <%= content_tag :p, @cheque.cliente, class: 'form-control-static' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Situação' %>
+      <%= f.select :status,
+                   options_for_select(Cheque.status.map{|s| [ s[1], s[0] ]}, @cheque.status),
+                   {},
+                   { class: 'form-control' } %>
+    </div>
+
+    <% if @deposito %>
+      <div class="card card-inverse card-info">
+        <% if @deposito.banco %>
+          <!-- deposito -->
+          <div class="card-header">
+            <%= fa_tag 'fa fa-folder-open-o' %>
+            Depósito realizado em <%= format_date(@deposito.created_at) %>
+          </div>
+
+          <div class="card-block">
+            <div class="form-group">
+              <%= label_tag :titular_da_conta %>
+              <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-2">
+                <%= label_tag :banco %>
+                <%= content_tag :p, format_banco(@deposito.banco), class: 'form-control-static' %>
+              </div>
+
+              <div class="col-sm-3">
+                <%= label_tag 'Agência' %>
+                <%= content_tag :p, @deposito.agencia, class: 'form-control-static' %>
+              </div>
+
+              <div class="col-sm-3">
+                <%= label_tag :conta %>
+                <%= content_tag :p, @deposito.conta, class: 'form-control-static' %>
+              </div>
+
+              <div class="col-sm-4">
+                <%= label_tag :total %>
+                <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
+              </div>
+            </div>
+          </div>
+
+        <% else %>
+          <!-- repasse -->
+          <div class="card-header">
+            <%= fa_tag 'fa fa-folder-open-o' %>
+            Repasse realizado em <%= format_date(@deposito.created_at) %>
+          </div>
+
+          <div class="card-block">
+            <div class="form-group">
+              <%= label_tag :para %>
+              <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :total %>
+              <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
+            </div>
+          </div>
+
+        <% end %>
+
+      </div>
+      <!-- /.card -->
+    <% end %>
+    <!-- if @deposito -->
   </div>
   <!-- /.modal-body -->
 
