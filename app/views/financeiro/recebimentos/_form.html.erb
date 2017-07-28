@@ -9,30 +9,30 @@
 
     <!-- cliente -->
     <div class="form-group">
-      <%= f.label :cliente %>
+      <%= form_label :cliente %>
       <%= content_tag :p, @recebimento.cliente.razao_social, class: 'form-control-static' %>
     </div>
 
     <!-- numero / venc / valor -->
     <div class="row">
       <div class="form-group col-md-4">
-        <%= f.label 'Número' %>
+        <%= form_label 'Número' %>
         <%= content_tag :p, format_bill_number(@recebimento.id), class: 'form-control-static' %>
       </div>
 
       <div class="form-group col-md-4">
-        <%= f.label :vencimento %>
+        <%= form_label :vencimento %>
         <%= content_tag :p, format_date(@recebimento.vencimento), class: 'form-control-static' %>
       </div>
 
       <div class="form-group col-md-4">
-        <%= f.label :valor %>
+        <%= form_label :valor %>
         <%= content_tag :p, format_currency(@recebimento.valor), class: 'form-control-static' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label 'Situação' %>
+      <%= form_label 'Situação' %>
       <%= f.select :status,
                    options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
                    {},

@@ -8,38 +8,38 @@
   <div class="modal-body">
     <div class="form-group row">
       <div class="col-sm-2">
-        <%= f.label :banco %>
+        <%= form_label :banco %>
         <%= content_tag :p, format_banco(@cheque.banco), class: 'form-control-static' %>
       </div>
 
       <div class="col-sm-3">
-        <%= f.label 'Número' %>
+        <%= form_label 'Número' %>
         <%= content_tag :p, format_numero(@cheque.numero), class: 'form-control-static' %>
       </div>
 
       <div class="col-sm-3">
-        <%= f.label 'Bom p/' %>
+        <%= form_label 'Bom p/' %>
         <%= content_tag :p, format_date(@cheque.data_deposito), class: 'form-control-static' %>
       </div>
 
       <div class="col-sm-4">
-        <%= f.label :valor %>
+        <%= form_label :valor %>
         <%= content_tag :p, format_currency(@cheque.valor), class: 'form-control-static' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :emitente %>
+      <%= form_label :emitente %>
       <%= content_tag :p, @cheque.emitente, class: 'form-control-static' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :cliente %>
+      <%= form_label :cliente %>
       <%= content_tag :p, @cheque.cliente, class: 'form-control-static' %>
     </div>
 
     <div class="form-group">
-      <%= f.label 'Situação' %>
+      <%= form_label 'Situação' %>
       <%= f.select :status,
                    options_for_select(Cheque.status.map{|s| [ s[1], s[0] ]}, @cheque.status),
                    {},
@@ -57,28 +57,28 @@
 
           <div class="card-block">
             <div class="form-group">
-              <%= label_tag :titular_da_conta %>
+              <%= form_label :titular_da_conta %>
               <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
             </div>
 
             <div class="form-group row">
               <div class="col-sm-2">
-                <%= label_tag :banco %>
+                <%= form_label :banco %>
                 <%= content_tag :p, format_banco(@deposito.banco), class: 'form-control-static' %>
               </div>
 
               <div class="col-sm-3">
-                <%= label_tag 'Agência' %>
+                <%= form_label 'Agência' %>
                 <%= content_tag :p, @deposito.agencia, class: 'form-control-static' %>
               </div>
 
               <div class="col-sm-3">
-                <%= label_tag :conta %>
+                <%= form_label :conta %>
                 <%= content_tag :p, @deposito.conta, class: 'form-control-static' %>
               </div>
 
               <div class="col-sm-4">
-                <%= label_tag :total %>
+                <%= form_label :total %>
                 <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
               </div>
             </div>
@@ -93,12 +93,12 @@
 
           <div class="card-block">
             <div class="form-group">
-              <%= label_tag :para %>
+              <%= form_label :para %>
               <%= content_tag :p, @deposito.titular, class: 'form-control-static' %>
             </div>
 
             <div class="form-group">
-              <%= label_tag :total %>
+              <%= form_label :total %>
               <%= content_tag :p, format_currency(@deposito.total), class: 'form-control-static' %>
             </div>
           </div>

@@ -9,7 +9,7 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
-      <%= f.label :tipo %>
+      <%= form_label :tipo %>
       <%= f.select  :papel_tipo_id,
                     PapelTipo.all.map { |p|
                       [ p, p.id, { price: p.preco_kg } ]
@@ -19,62 +19,62 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :subtipo %>
+      <%= form_label :subtipo %>
       <%= f.text_field :subtipo, class: 'form-control' %>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label :grs %>
+        <%= form_label :grs %>
         <%= f.text_field :grs, class: 'form-control ppl-calculable' %>
       </div>
 
       <div class="form-group col-sm-2 left-content">
-        <%= f.label :formato %>
+        <%= form_label :formato %>
         <%= f.text_field :larg, class: 'form-control number-field ppl-calculable' %>
       </div>
 
       <div class="form-group col-sm-1 center-content">
-        <label><br></label>
+        <%= form_label %>
         <p>x</p>
       </div>
 
       <div class="form-group col-sm-2 right-content">
-        <label><br></label>
+        <%= form_label %>
         <%= f.text_field :comp, class: 'form-control number-field ppl-calculable' %>
       </div>
 
       <div class="form-group col-sm-4">
-        <%= f.label :folhas %>
+        <%= form_label :folhas %>
         <%= f.text_field :fls, class: 'form-control ppl-calculable' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :marca, class: 'control-label' %>
+      <%= form_label :marca %>
       <%= f.text_field :marca, class: 'form-control' %>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label :quantidade %>
+        <%= form_label :quantidade %>
         <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-4">
-        <%= f.label :peso %>
+        <%= form_label :peso %>
         <p class="form-control-static" id="papel_peso_static">0,000 kg</p>
       </div>
 
       <div class="form-group col-sm-4">
-        <%= f.label 'Preço Kg' %>
+        <%= form_label 'Preço Kg' %>
         <p class="form-control-static" id="papel_kg">R$ 0,00</p>
       </div>
 
       <div class="form-group col-sm-4">
-        <%= f.label :pacote %>
+        <%= form_label :pacote %>
         <p class="form-control-static" id="papel_total">R$ 0,00</p>
       </div>
     </div>

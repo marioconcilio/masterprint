@@ -10,39 +10,39 @@
 
     <div class="row">
       <div class="form-group col-sm-3 left-content">
-        <%= f.label :tamanho %>
+        <%= form_label :tamanho %>
         <%= f.text_field :larg, class: 'form-control number-field' %>
       </div>
 
       <div class="form-group col-sm-1 center-content">
-        <label><br></label>
+        <%= form_label %>
         <p>x</p>
       </div>
 
       <div class="form-group col-sm-3 right-content">
-        <label><br></label>
+        <%= form_label %>
         <%= f.text_field :comp, class: 'form-control number-field' %>
       </div>
 
       <div class="form-group col-sm-5">
-        <%= f.label :gramatura %>
+        <%= form_label :gramatura %>
         <%= f.text_field :grs, class: 'form-control number-field' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :nome %>
+      <%= form_label :nome %>
       <%= f.text_field :nome, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :tipo %>
+      <%= form_label :tipo %>
       <%= f.text_field :tipo, class: 'form-control' %>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label 'Preço' %>
+        <%= form_label 'Preço' %>
         <%= f.collection_select :moeda,
                                 moedas,
                                 :value,
@@ -52,25 +52,25 @@
       </div>
 
       <div class="form-group col-sm-4">
-        <label><br></label>
+        <%= form_label %>
         <%= f.text_field :preco_milheiro, class: 'form-control money-field env-calculable' %>
       </div>
 
       <div class="form-group col-sm-5">
-        <%= f.label 'Caixa c/' %>
+        <%= form_label 'Caixa c/' %>
         <%= f.text_field :un, class: 'form-control number-field env-calculable' %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label :quantidade %>
+        <%= form_label :quantidade %>
         <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-       <%= f.label 'Preço Caixa' %>
+       <%= form_label 'Preço Caixa' %>
        <p class="form-control-static" id="envelope_total">R$ 0,00</p>
     </div>
 

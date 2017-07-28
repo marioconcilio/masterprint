@@ -9,13 +9,13 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
-      <%= f.label :nome %>
+      <%= form_label :nome %>
       <%= f.text_field :nome, class: 'form-control' %>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label 'Preço' %>
+        <%= form_label 'Preço' %>
         <%= f.collection_select :moeda,
                                 moedas,
                                 :value,
@@ -25,14 +25,14 @@
       </div>
 
       <div class="form-group col-sm-4">
-        <label><br></label>
+        <%= form_label %>
         <%= f.text_field :preco, class: 'form-control money-field' %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label :quantidade %>
+        <%= form_label :quantidade %>
         <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
       </div>
     </div>

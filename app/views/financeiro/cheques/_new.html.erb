@@ -10,33 +10,37 @@
 
     <div class="row">
       <div class="form-group col-sm-2">
-        <%= f.label :banco %>
+        <%= form_label :banco %>
         <%= f.text_field :banco, class: 'form-control number-field' %>
       </div>
 
       <div class="form-group col-sm-3">
-        <%= f.label 'Número' %>
+        <%= form_label 'Número' %>
         <%= f.text_field :numero, class: 'form-control number-field' %>
       </div>
 
       <div class="form-group col-sm-3">
-        <%= f.label 'Bom p/' %>
+        <%= form_label 'Bom p/' %>
         <%= f.text_field :data_deposito, class: 'form-control date-field' %>
       </div>
 
       <div class="form-group col-sm-4">
-        <%= f.label :valor %>
-        <%= f.text_field :valor, class: 'form-control money-field' %>
+        <%= form_label :valor %>
+
+        <div class="input-prepend input-group">
+          <span class="input-group-addon">R$</span>
+          <%= f.text_field :valor, class: 'form-control money-field' %>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :emitente %>
+      <%= form_label :emitente %>
       <%= f.text_field :emitente, class: 'form-control title-case' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :cliente %>
+      <%= form_label :cliente %>
       <%= f.select :cliente_id,
                       Cliente.all.map { |c|
                         [ c.nome, c.id ]

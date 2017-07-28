@@ -1,19 +1,23 @@
 module Cadastro::ClientesHelper
 
   def total_aberto(id)
-    ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{id})").getvalue(0,0)
+    res = ActiveRecord::Base.connection.execute("select recebimentos_aberto(#{id})")
+    res.getvalue(0, 0).nil? ? 0 : res.getvalue(0, 0).to_f
   end
 
   def total_vencido(id)
-    ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{id})").getvalue(0,0)
+    res = ActiveRecord::Base.connection.execute("select recebimentos_vencido(#{id})")
+    res.getvalue(0, 0).nil? ? 0 : res.getvalue(0, 0).to_f
   end
 
   def total_cartorio(id)
-    ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{id})").getvalue(0,0)
+    res = ActiveRecord::Base.connection.execute("select recebimentos_cartorio(#{id})")
+    res.getvalue(0, 0).nil? ? 0 : res.getvalue(0, 0).to_f
   end
 
   def total_protestado(id)
-    ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{id})").getvalue(0,0)
+    res = ActiveRecord::Base.connection.execute("select recebimentos_protesto(#{id})")
+    res.getvalue(0, 0).nil? ? 0 : res.getvalue(0, 0).to_f
   end
 
   def active_tabpane?(tab)
@@ -35,18 +39,32 @@ module Cadastro::ClientesHelper
   end
 
   def receber_chart
-    column_chart receber_chart_cadastro_cliente_path(@cliente), library: {
-      yAxis: {
-        labels: {
-          format: 'R$ {value:,.0f}'
-        }
-      },
-      tooltip: {
-        pointFormat: 'Total: <b>{point.y}</b>',
-        valueDecimals: 2,
-        valuePrefix: 'R$ '
+    pie_chart receber_chart_cadastro_cliente_path(@cliente), donut: true,
+      library: {
+        colors: ['#36A2EB', '#FFCE56', '#FF6384', '#b00'],
+        chart: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        },
+        plotOptions: {
+          pie: {
+            borderColor: '#4dbd74',
+            borderWidth: 2,
+            connectNulls: true,
+            dataLabels: {
+              color: '#FFF',
+              connectorWidth: 2,
+              style: {
+                textOutline: 0,
+              },
+            },
+          },
+        },
+        tooltip: {
+          pointFormat: 'Total: <b>{point.y}</b>',
+          valueDecimals: 2,
+          valuePrefix: 'R$ ',
+        },
       }
-    }
   end
 
 end

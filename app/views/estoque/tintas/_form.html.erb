@@ -1,4 +1,4 @@
-<%= form_for [:estoque, @tinta], remote: true, html: { class: 'form-horizontal' } do |f| %>
+<%= form_for [:estoque, @tinta], remote: true do |f| %>
 
   <div class="modal-header">
     <%= modal_form_header 'Nova', 'Tinta' %>
@@ -9,18 +9,18 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
-      <%= f.label :nome %>
+      <%= form_label :nome %>
       <%= f.text_field :nome, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :marca %>
+      <%= form_label :marca %>
       <%= f.text_field :marca, class: 'form-control' %>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label 'Preço' %>
+        <%= form_label 'Preço' %>
         <%= f.collection_select :moeda,
                                 moedas,
                                 :value,
@@ -30,25 +30,25 @@
       </div>
 
       <div class="form-group col-sm-4">
-        <label><br></label>
+        <%= form_label %>
         <%= f.text_field :preco_kg, class: 'form-control money-field tin-calculable' %>
       </div>
 
       <div class="form-group col-sm-5">
-        <%= f.label 'Lata com' %>
+        <%= form_label 'Lata com' %>
         <%= f.text_field :un, class: 'form-control tin-calculable' %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-sm-3">
-        <%= f.label :quantidade %>
+        <%= form_label :quantidade %>
         <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label 'Preço Lata' %>
+      <%= form_label 'Preço Lata' %>
       <p class="form-control-static" id="tinta_total">R$ 0,00</p>
     </div>
 

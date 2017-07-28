@@ -1,7 +1,7 @@
 module Custom::HtmlHelper
 
-  def link_tooltip_to(name, tip_options, options=nil, html_options={}, &block)
-    html_options = {} if html_options.nil?
+  def link_tooltip_to(name, tip_options, options=nil, html_options=nil, &block)
+    html_options ||= {}
     html_options['data-toggle'] = 'tooltip'
     html_options['data-placement'] = tip_options[:placement] || 'bottom'
     html_options['data-original-title'] = tip_options[:title]

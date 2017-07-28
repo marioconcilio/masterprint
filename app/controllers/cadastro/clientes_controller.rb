@@ -37,14 +37,22 @@ class Cadastro::ClientesController < ApplicationController
   # GET /cadastro/clientes/:id
   def show
     @cliente = Cliente.find(params[:id])
-    @search = Recebimento.where(cliente: @cliente).ransack(params[:q])
+    @search = Recebimento.includes(:cliente)
+      .where("cliente_id = #{@cliente.id} AND status NOT ILIKE 'pago'")
+      .ransack(params[:q])
 
     if params[:status]
-      @bills = @search.result.status(params[:status]).page(params[:page]).per(20)
+      @bills = @search.result
+        .status(params[:status])
+        .page(params[:page])
+        .per(10)
     else
-      @bills = @search.result.page(params[:page]).per(20)
+      @bills = @search.result
+        .page(params[:page])
+        .per(10)
     end
 
+    @hide_name = true
     respond_to :html, :js
   end
 

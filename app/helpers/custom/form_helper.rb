@@ -24,7 +24,8 @@ module Custom::FormHelper
     end
   end
 
-  def form_label(text)
+  def form_label(text=nil)
+    text ||= tag(:br)
     content_tag :small, text, class: 'text-muted text-uppercase font-weight-bold'
   end
 
