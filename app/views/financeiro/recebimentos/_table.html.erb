@@ -14,11 +14,9 @@
           <th>
             <%= sort_link @search, :numero_order, 'Número', {}, { remote: true, method: :get } %>
           </th>
-          <% unless @hide_name %>
-            <th>
-              <%= sort_link @search, :cliente_razao_social, 'Cliente', {}, { remote: true, method: :get } %>
-            </th>
-          <% end %>
+          <th>
+            <%= sort_link @search, :cliente_razao_social, 'Cliente', {}, { remote: true, method: :get } %>
+          </th>
           <th class="text-center">
             <%= sort_link @search, :vencimento, 'Vencimento', {}, { remote: true, method: :get } %>
           </th>
@@ -28,15 +26,16 @@
           <th class="text-center">
             <%= sort_link @search, :status, 'Situação', {}, { remote: true, method: :get } %>
           </th>
+          <th class="text-right">
+            <%= link_to 'Mais', '#', remote: true %>
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @bills.each do |b| %>
           <tr>
             <td> <%= format_bill_number(b.id) %> </td>
-            <% unless @hide_name %>
-              <td> <%= b.cliente.razao_social %> </td>
-            <% end %>
+            <td> <%= b.cliente.razao_social %> </td>
             <td class="text-center"> <%= format_date(b.vencimento) %> </td>
             <td class="text-right"> <%= format_currency(b.valor) %> </td>
             <td class="text-center">

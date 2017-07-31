@@ -9,6 +9,7 @@ class Cheque < ApplicationRecord
   before_save :titleize_all
   paginates_per 30
   default_scope -> { order(:data_deposito, :banco, :numero, :valor) }
+  scope :s, -> (chq_status) { where('status ilike ?', Cheque.status[chq_status]) }
 
   validates_presence_of :banco,
                         :numero,

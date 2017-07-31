@@ -6,10 +6,15 @@ module Financeiro
     # GET /financeiro/recebimentos
     def index
       @search = Recebimento.joins(:cliente).ransack(params[:q])
-      if params[:status]
-        @bills = @search.result.includes(:cliente).s(params[:status]).page(params[:page])
+      if params[:rcb_status]
+        @bills = @search.result
+          .includes(:cliente)
+          .s(params[:rcb_status])
+          .page(params[:page])
       else
-        @bills = @search.result.includes(:cliente).page(params[:page])
+        @bills = @search.result
+          .includes(:cliente)
+          .page(params[:page])
       end
 
       respond_to :html, :js

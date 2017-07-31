@@ -12,24 +12,6 @@
       </div>
     </div>
     <!-- /.row -->
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <%= fa_tag 'fa fa-align-justify' %>
-            Financeiro<strong>A Receber</strong>
-          </div>
-
-          <div class="card-block">
-            <div id="receber-tableview">
-              <%= render 'financeiro/recebimentos/table' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.row -->
   </div>
   <!-- /.col-7 -->
 
@@ -56,13 +38,49 @@
             Cheques
           </div>
           <div class="card-block">
-            <%= receber_chart %>
+            <%= cheques_chart %>
           </div>
         </div>
       </div>
     </div>
+
   </div>
   <!-- /. col-md-5 -->
 </div>
 <!-- /.row -->
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <%= fa_tag 'fa fa-align-justify' %>
+        Financeiro<strong>A Receber</strong>
+      </div>
+
+      <div class="card-block">
+        <div id="receber-tableview">
+          <%= render 'table_recebimentos' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <%= fa_tag 'fa fa-align-justify' %>
+        Financeiro<strong>Cheques</strong>
+      </div>
+
+      <div class="card-block">
+        <div id="cheques-tableview">
+          <%= render 'table_cheques' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.row -->

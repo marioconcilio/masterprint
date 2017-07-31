@@ -36,23 +36,44 @@ class Cadastro::ClientesController < ApplicationController
 
   # GET /cadastro/clientes/:id
   def show
+    # cliente
     @cliente = Cliente.find(params[:id])
-    @search = Recebimento.includes(:cliente)
-      .where("cliente_id = #{@cliente.id} AND status NOT ILIKE 'pago'")
-      .ransack(params[:q])
 
-    if params[:status]
-      @bills = @search.result
-        .status(params[:status])
+    # recebimentos
+    @q = Recebimento.includes(:cliente)
+      .where("cliente_id = #{@cliente.id}
+        AND status NOT ILIKE 'pago'")
+      .ransack(params[:q], search_key: :q)
+
+    if params[:rcb_status]
+      @bills = @q.result
+        .s(params[:rcb_status])
         .page(params[:page])
         .per(10)
     else
-      @bills = @search.result
+      @bills = @q.result
         .page(params[:page])
         .per(10)
     end
 
-    @hide_name = true
+    # cheques
+    @s = Cheque.includes(:cliente)
+      .where("cliente_id = #{@cliente.id}
+        AND status NOT ILIKE 'pago'
+        AND status NOT ILIKE 'depositado'")
+      .ransack(params[:s], search_key: :s)
+
+    if params[:chq_status]
+      @cheques = @s.result
+        .s(params[:chq_status])
+        .page(params[:page])
+        .per(10)
+    else
+      @cheques = @s.result
+        .page(params[:page])
+        .per(10)
+    end
+
     respond_to :html, :js
   end
 
@@ -83,6 +104,14 @@ class Cadastro::ClientesController < ApplicationController
       'Vencido'     => helpers.total_vencido(params[:id]),
       'Em Cartório' => helpers.total_cartorio(params[:id]),
       'Protestado'  => helpers.total_protestado(params[:id])
+    }
+  end
+
+  # GET /cadastro/clientes/cheques_chart
+  def cheques_chart
+    render json: {
+      'Em Aberto' => helpers.cheques_aberto(params[:id]),
+      'Devolvido' => helpers.cheques_devolvido(params[:id]),
     }
   end
 

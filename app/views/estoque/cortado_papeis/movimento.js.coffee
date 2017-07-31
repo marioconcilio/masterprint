@@ -1,6 +1,4 @@
-modalContent = $('.modal .modal-content')
-modalContent.html '<%= j(render "mov_form") %>'
-
-modal = $('.modal')
-modal.modal()
+$('.modal-dialog').attr 'class', 'modal-dialog modal-sm'
+$('.modal .modal-content').html '<%= j(render "mov_form") %>'
+$('.modal').modal()
 

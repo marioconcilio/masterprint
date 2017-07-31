@@ -11,11 +11,11 @@ module ApplicationHelper
 
   def active_button(args)
     if args.values.first == nil && params[args.keys.first] == nil
-      'btn btn-default active'
+      'active'
     elsif args.values.first.to_s == params[args.keys.first]
-      'btn btn-default active'
+      'active'
     else
-      'btn btn-default'
+      ''
     end
   end
 

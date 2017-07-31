@@ -10,7 +10,7 @@ class Recebimento < ApplicationRecord
 
   paginates_per 50
   default_scope -> { order(vencimento: :desc, id: :desc) }
-  scope :s, -> (status) { where('status ilike ?', Recebimento.status[status]) }
+  scope :s, -> (rcb_status) { where('status ilike ?', Recebimento.status[rcb_status]) }
 
   validates_presence_of :vencimento,
                         :valor,

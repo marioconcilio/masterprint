@@ -3,34 +3,50 @@
   <div class="col-lg-6">
     <%= paginate @cheques, remote: true %>
   </div>
+
+  <div class="col-md-6 text-right">
+    <div class="btn-group">
+      <%= link_to 'Todos',
+          cadastro_cliente_path,
+          remote: true,
+          class: "btn btn-outline-info btn-sm #{active_button(chq_status: nil)}" %>
+
+      <%= link_to 'Em aberto',
+          cadastro_cliente_path(chq_status: :aberto),
+          remote: true,
+          class: "btn btn-outline-info btn-sm #{active_button(chq_status: :aberto)}" %>
+
+      <%= link_to 'Devolvidos',
+          cadastro_cliente_path(chq_status: :devolvido),
+          remote: true,
+          class: "btn btn-outline-info btn-sm #{active_button(chq_status: :devolvido)}" %>
+    </div>
+  </div>
 </div>
 <!-- /.row -->
 
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-12 pt-4">
     <table class="table table-hover">
       <thead>
         <tr>
           <th>
-            <%= sort_link @search, :banco, 'Banco', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :banco, 'Banco', {}, { remote: true, method: :get } %>
           </th>
           <th>
-            <%= sort_link @search, :numero, 'Número', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :numero, 'Número', {}, { remote: true, method: :get } %>
           </th>
           <th>
-            <%= sort_link @search, :emitente, 'Emitente', {}, { remote: true, method: :get } %>
-          </th>
-          <th>
-            <%= sort_link @search, :nome, 'Cliente', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :emitente, 'Emitente', {}, { remote: true, method: :get } %>
           </th>
           <th class="text-center">
-            <%= sort_link @search, :data_deposito, 'Bom Para', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :data_deposito, 'Bom Para', {}, { remote: true, method: :get } %>
           </th>
           <th class="text-right">
-            <%= sort_link @search, :valor, 'Valor', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :valor, 'Valor', {}, { remote: true, method: :get } %>
           </th>
           <th class="text-center">
-            <%= sort_link @search, :status, 'Situação', {}, { remote: true, method: :get } %>
+            <%= sort_link @s, :status, 'Situação', {}, { remote: true, method: :get } %>
           </th>
           <th class="text-right">
             <%= link_to 'Mais', '#', remote: true %>
@@ -43,9 +59,6 @@
             <td> <%= format_banco(c.banco) %> </td>
             <td> <%= format_numero(c.numero) %> </td>
             <td> <%= c.emitente %> </td>
-            <% unless @hide_name %>
-              <td> <%= c.cliente %> </td>
-            <% end %>
             <td class="text-center"> <%= format_date(c.data_deposito) %> </td>
             <td class="text-right"> <%= format_currency(c.valor) %> </td>
             <td class="text-center">

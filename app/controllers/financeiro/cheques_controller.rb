@@ -4,7 +4,16 @@ class Financeiro::ChequesController < ApplicationController
   # GET /financeiro/cheques
   def index
     @search = Cheque.left_joins(:cliente).ransack(params[:q])
-    @cheques = @search.result.includes(:cliente).page(params[:page])
+    if params[:chq_status]
+      @cheques = @search.result
+        .includes(:cliente)
+        .s(params[:chq_status])
+        .page(params[:page])
+    else
+      @cheques = @search.result
+        .includes(:cliente)
+        .page(params[:page])
+    end
 
     respond_to :html, :js
   end

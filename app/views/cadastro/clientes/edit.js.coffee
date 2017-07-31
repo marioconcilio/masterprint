@@ -1,8 +1,3 @@
-modalContent = $('.modal .modal-content')
-modalContent.html '<%= j(render "form") %>'
-
-modalHeader = $('.modal .modal-header')
-modalHeader.html '<h3>Editando Cliente</h3>'
-
-modal = $('.modal')
-modal.modal()
+$('.modal .modal-content').html '<%= j(render "form") %>'
+$('.modal .modal-header').html '<%= modal_form_header "Editando", "Cliente" %>'
+$('.modal').modal()

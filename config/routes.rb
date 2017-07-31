@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :clientes do
       member do
         get :receber_chart
+        get :cheques_chart
       end
     end
   end

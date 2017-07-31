@@ -78,5 +78,23 @@
         <% end %>
       </div>
     </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <div class="btn-group">
+          <%= link_to 'Editar',
+                      edit_cadastro_cliente_path(@cliente),
+                      method: :get,
+                      remote: true,
+                      class: 'btn btn-success' %>
+          <%= link_to 'Remover',
+                      cadastro_cliente_path(@cliente),
+                      method: :delete,
+                      data: { confirm: 'Deseja remover o cliente?' },
+                      class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -13,6 +13,9 @@
       <th class="text-center">
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
+      <th class="text-right">
+        <%= link_to 'Mais', '#', remote: true %>
+      </th>
     </tr>
   </thead>
   <tbody>
