@@ -1,44 +1,51 @@
 <%= form_for [:estoque, @papel], remote: true do |f| %>
 
   <div class="modal-header">
-    <h4 class="modal-title">Movimento</h4>
-    <%= button_tag type: :button, 'data-dismiss': :modal, 'aria-label': :close, class: 'close' do %>
-      <span aria-hidden="true">×</span>
-    <% end %>
+    <%= modal_form_header 'Movimento', '' %>
   </div>
   <!-- /.modal-header -->
 
   <div class="modal-body">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form_label :tipo %>
+        <p class="form-control-static">Entrada</p>
 
-          <div class="form-group">
-            <strong><%= f.label :tipo %></strong>
-            <div class="col-sm-9">
-              <label class="radio-inline">
-                <%= radio_button_tag :mov, :entrada, checked: false %>Entrada
-              </label>
-              <label class="radio-inline">
-                <%= radio_button_tag :mov, :saida, checked: true %>Saída
-              </label>
-            </div>
-          </div>
+        <label class="switch switch-3d switch-success">
+          <input type="checkbox" id="mov_entrada" name="mov" value="entrada" class="switch-input">
+          <span class="switch-label"></span>
+          <span class="switch-handle"></span>
+        </label>
+      </div>
 
-          <div class="form-group">
-            <strong><%= f.label :papel %></strong>
-            <p class="form-control-static"><%= @papel %></p>
-          </div>
+      <div class="form-group col-md-6">
+        <%= form_label %>
+        <p class="form-control-static">Saída</p>
 
-          <div class="form-group">
-            <strong><%= f.label :quantidade %></strong>
-            <%= f.number_field :amount, value: 0, min: 0, class: 'form-control' %>
-          </div>
+        <label class="switch switch-3d switch-success">
+          <input type="checkbox" id="mov_saida" name="mov" value="saida" class="switch-input" checked="true">
+          <span class="switch-label"></span>
+          <span class="switch-handle"></span>
+        </label>
+      </div>
+    </div>
 
-          <%= f.hidden_field :qtde, value: @papel.qtde %>
+    <div class="form-group">
+      <%= form_label :papel %>
+      <p class="form-control-static"><%= @papel %></p>
+    </div>
+
+    <div class="form-group">
+      <%= form_label :quantidade %>
+      <%= f.number_field :amount, value: 0, min: 0, class: 'form-control' %>
+    </div>
+
+    <%= f.hidden_field :qtde, value: @papel.qtde %>
   </div>
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <%= button_tag 'Cancelar', type: :button, 'data-dismiss': :modal, class: 'btn btn-secondary' %>
-    <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    <%= modal_form_save f %>
   </div>
   <!-- /.modal-footer -->
 

@@ -1,4 +1,4 @@
-<%= form_for :session, url: login_path, remote: true do |f| %>
+<%= form_for :session, url: login_path do |f| %>
 
   <div class="modal-header">
     <%= modal_form_header 'Fazer', 'Login' %>
@@ -6,34 +6,33 @@
   <!-- /.modal-header -->
 
   <div class="modal-body">
-          <% if @error %>
-            <div id="error_explanation">
-              <div class="alert alert-danger">
-                <p><%= @error %></p>
-              </div>
-            </div>
-          <% end %>
+    <% if @error %>
+      <div id="error_explanation">
+        <div class="alert alert-danger">
+          <p><%= @error %></p>
+        </div>
+      </div>
+    <% end %>
 
-          <div class="form-group">
-            <%= form_label 'Usuário' %>
-            <%= f.text_field :user, class: 'form-control' %>
-          </div>
+    <div class="form-group">
+      <%= form_label 'Usuário' %>
+      <%= f.text_field :user, class: 'form-control' %>
+    </div>
 
-          <div class="form-group">
-            <%= form_label :senha %>
-            <%= f.password_field :password, class: 'form-control' %>
-          </div>
+    <div class="form-group">
+      <%= form_label :senha %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
 
-          <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-              <div class="checkbox">
-                <%= f.label :remember_me do %>
-                  <%= f.check_box :remember_me %>
-                  <span>Lembre-me neste computador</span>
-                <% end %>
-              </div>
-            </div>
-          </div>
+    <div class="form-group">
+      <%= f.label :remember_me, class: 'switch switch-3d switch-success' do %>
+        <%= f.check_box :remember_me, class: 'switch-input' %>
+        <span class="switch-label"></span>
+        <span class="switch-handle"></span>
+      <% end %>
+
+      Lembre-me neste computador
+    </div>
   </div>
   <!-- /.modal-body -->
 

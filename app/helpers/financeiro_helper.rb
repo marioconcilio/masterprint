@@ -1,10 +1,4 @@
 module FinanceiroHelper
-  Aguardando    = 'Aguardando'
-  Aberto        = 'Em aberto'
-  Pago          = 'Pago'
-  Cartorio      = 'Cartório'
-  Protesto      = 'Protestado'
-  ProtestoMaos  = 'Protesto em mãos'
 
   def format_bill_number(id)
     number = id / 1000

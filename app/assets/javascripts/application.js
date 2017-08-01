@@ -18,7 +18,6 @@
 // require turbolinks-compatibility
 //= require bootstrap-sprockets
 //= require jquery.mask
-// require Chart.bundle
 //= require highcharts
 //= require chartkick
 //= require pace/pace

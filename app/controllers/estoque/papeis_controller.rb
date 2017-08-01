@@ -69,7 +69,16 @@
   private
     def papel_params
       params[:papel][:peso].gsub!(',', '.') if params[:papel][:peso]
-      params.require(:papel).permit!
+      params.require(:papel).permit(:id,
+                                    :papel_tipo_id,
+                                    :subtipo,
+                                    :grs,
+                                    :larg,
+                                    :comp,
+                                    :fls,
+                                    :peso,
+                                    :marca,
+                                    :qtde)
     end
 
 end

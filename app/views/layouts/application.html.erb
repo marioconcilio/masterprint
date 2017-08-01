@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden <%= controller_name %> <%= action_name %>">
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <header class="app-header navbar">
       <%= render 'layouts/navbar' %>
     </header>
@@ -21,8 +21,16 @@
       <main class="main">
         <div class="container-fluid pt-4">
           <div class="animated fadeIn">
-            <%= render 'layouts/flash' %>
-            <%= yield %>
+            <%# render 'layouts/flash' %>
+            <script type="text/javascript">
+              <% flash.each do |f| %>
+                <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+                toastr['<%= type %>']('<%= f[1] %>', 'Sucesso', {"closeButton": true, "progressBar": true});
+              <% end %>
+            </script>
+            <div id="content">
+              <%= yield %>
+            </div>
             <%= debug(params) if Rails.env.development? %>
           </div>
 

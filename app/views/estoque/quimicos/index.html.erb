@@ -19,12 +19,15 @@
           <div class="col-sm-4">
             <%= render 'shared/search_form' %>
           </div>
-          <div class="col-sm-8 text-right">
-            <%= link_to 'Novo Químico',
-                        new_estoque_quimico_path,
-                        remote: true,
-                        class: 'btn btn-success' %>
-          </div>
+
+          <% if logged_in? %>
+            <div class="col-sm-8 text-right">
+              <%= link_to 'Novo Químico',
+                          new_estoque_quimico_path,
+                          remote: true,
+                          class: 'btn btn-success' %>
+            </div>
+          <% end %>
         </div>
 
         <div id="qui-tableview">

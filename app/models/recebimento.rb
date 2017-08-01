@@ -8,10 +8,14 @@ class Recebimento < ApplicationRecord
     pago:         'Pago'
   }
 
-  paginates_per 50
-  default_scope -> { order(vencimento: :desc, id: :desc) }
+  default_scope -> do
+    order(Arel::Nodes::NamedFunction.new('recebimentos_order', [Recebimento.arel_table[:id]])
+      .desc)
+  end
+
   scope :s, -> (rcb_status) { where('status ilike ?', Recebimento.status[rcb_status]) }
 
+  paginates_per 50
   validates_presence_of :vencimento,
                         :valor,
                         :status

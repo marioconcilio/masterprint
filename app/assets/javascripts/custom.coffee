@@ -3,3 +3,7 @@ jQuery ->
   $('body').on 'click', 'tr[data-href]', ->
     window.location = $(this).data('href')
     return
+
+  $('.modal').on 'click', 'input[type="submit"]', ->
+    $('.modal').modal('hide')
+    return
