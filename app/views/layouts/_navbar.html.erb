@@ -6,24 +6,33 @@
   <li class="nav-item px-3">
     <%= link_to 'Estoque', estoque_blanquetas_path, class: 'nav-link' %>
   </li>
-  <li class="nav-item px-3">
-    <%= link_to 'Financeiro', financeiro_recebimentos_path, class: 'nav-link' %>
-  </li>
-  <li class="nav-item px-3">
-    <%= link_to 'Cadastro', cadastro_clientes_path, class: 'nav-link' %>
-  </li>
+  <% if logged_in? %>
+    <li class="nav-item px-3">
+      <%= link_to 'Financeiro', financeiro_recebimentos_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item px-3">
+      <%= link_to 'Cadastro', cadastro_clientes_path, class: 'nav-link' %>
+    </li>
+  <% end %>
 </ul>
 
 <ul class="nav navbar-nav ml-auto">
   <li class="nav-item dropdown px-3">
-    <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
-        'data-toggle' => 'dropdown', role: :button, 'aria-haspopup' => :true, 'aria-expanded' => :false %>
+    <% if logged_in? %>
+      <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
+          'data-toggle' => 'dropdown', role: :button, 'aria-haspopup' => :true, 'aria-expanded' => :false %>
 
-    <div class="dropdown-menu dropdown-menu-right">
-      <%= link_to logout_path, method: :delete, class: 'dropdown-item' do %>
-        <i class="fa fa-lock"></i>
-        Sair
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to logout_path, method: :delete, class: 'dropdown-item' do %>
+          <i class="fa fa-lock"></i>
+          Sair
+        <% end %>
+      </div>
+    <% else %>
+      <%= link_to login_path, remote: true, class: 'nav-link' do %>
+        <%= fa_tag 'fa fa-sign-in px-1' %>
+        Entrar
       <% end %>
-    </div>
+    <% end %>
   </li>
 </ul>

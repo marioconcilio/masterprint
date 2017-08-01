@@ -17,10 +17,10 @@ module Custom::FormHelper
     modal_form_close_button
   end
 
-  def modal_form_save(f)
+  def modal_form_save(form, submit_text='Salvar')
     content_tag :div, class: 'btn-group' do
       button_tag('Cancelar', type: :button, 'data-dismiss': :modal, class: 'btn btn-secondary') +
-      f.submit('Salvar', class: 'btn btn-success')
+      form.submit(submit_text, class: 'btn btn-success')
     end
   end
 

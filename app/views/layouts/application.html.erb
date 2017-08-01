@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden <%= controller_name %> <%= action_name %>">
     <header class="app-header navbar">
       <%= render 'layouts/navbar' %>
     </header>

@@ -20,6 +20,11 @@ module Custom::HtmlHelper
                     options, html_options, &block)
   end
 
+  def link_delete_to(name=nil, options=nil, html_options=nil, &block)
+    link_tooltip_to(name, { title: 'Excluir', class: 'fa fa-trash-o btn btn-danger' },
+                    options, html_options, &block)
+  end
+
   def fa_tag(klass)
     content_tag :i, nil, class: klass
   end

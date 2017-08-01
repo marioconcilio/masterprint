@@ -5,6 +5,7 @@
       <th>Número</th>
       <th>Emitente</th>
       <th class="text-right">Valor</th>
+      <th><br></th>
     </tr>
   </thead>
   <tbody>
@@ -14,11 +15,10 @@
         <td><%= format_numero(c['numero']) %></td>
         <td><%= c['emitente'] %></td>
         <td class="text-right"><%= format_currency(c['valor']) %></td>
-        <td><%= link_to '',
+        <td class="text-right"><%= link_delete_to '',
                         ch_remove_financeiro_depositos_path(c['id']),
                         method: :delete,
-                        remote: true,
-                        class: 'fa fa-trash no-underline' %></td>
+                        remote: true %></td>
       </tr>
     <% end %>
   </tbody>
