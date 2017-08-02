@@ -32,11 +32,12 @@
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
       <th><br></th>
+      <th><br></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |p| %>
-      <tr class="<%= qty_class(p) %>">
+      <tr>
         <td> <%= p.papel_tipo.tipo %> </td>
         <td> <%= p.subtipo %> </td>
         <td class="text-center"> <%= p.grs %>g </td>
@@ -47,6 +48,12 @@
         <td class="text-right"> <%= format_currency(p.papel_tipo.preco_kg) %> </td>
         <td class="text-right"> <%= format_currency(p.preco_un) %> </td>
         <td class="text-center"> <%= p.qtde %> </td>
+
+        <% if p.qtde <= 0 %>
+          <td><span class="badge badge-danger">!</span></td>
+        <% else %>
+          <td><br></td>
+        <% end %>
 
         <% if @logged_in %>
           <td class="text-right">

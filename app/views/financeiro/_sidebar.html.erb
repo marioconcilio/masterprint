@@ -1,62 +1,62 @@
 <li class="divider"></li>
 <li class="nav-title">Financeiro</li>
 <li class="nav-item nav-dropdown">
-  <%= link_to 'A Receber', '#', class: 'nav-link nav-dropdown-toggle' %>
+  <%= link_financeiro_to 'A Receber', '#', class: 'nav-link nav-dropdown-toggle' %>
 
   <ul class="nav-dropdown-items">
     <li class="nav-item">
-      <%= link_to 'Todos', financeiro_recebimentos_path,
+      <%= link_financeiro_to 'Todos', financeiro_recebimentos_path,
                   class: "nav-link #{active_params(rcb_status: nil)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Em Aberto', financeiro_recebimentos_path(rcb_status: :aberto),
+      <%= link_financeiro_to 'Em Aberto', financeiro_recebimentos_path(rcb_status: :aberto),
                   class: "nav-link #{active_params(rcb_status: :aberto)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Cartório', financeiro_recebimentos_path(rcb_status: :cartorio),
+      <%= link_financeiro_to 'Cartório', financeiro_recebimentos_path(rcb_status: :cartorio),
                   class: "nav-link #{active_params(rcb_status: :cartorio)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Protestados', financeiro_recebimentos_path(rcb_status: :protestado),
+      <%= link_financeiro_to 'Protestados', financeiro_recebimentos_path(rcb_status: :protestado),
                   class: "nav-link #{active_params(rcb_status: :protestado)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Pagos', financeiro_recebimentos_path(rcb_status: :pago),
+      <%= link_financeiro_to 'Pagos', financeiro_recebimentos_path(rcb_status: :pago),
                   class: "nav-link #{active_params(rcb_status: :pago)}" %>
     </li>
   </ul>
 </li>
 
 <li class="nav-item">
-  <%= link_to 'A Pagar', '#', class: 'nav-link' %>
+  <%= link_financeiro_to 'A Pagar', '#', class: 'nav-link' %>
 </li>
 
 <li class="nav-item nav-dropdown">
-  <%= link_to 'Cheques', '#', class: 'nav-link nav-dropdown-toggle' %>
+  <%= link_financeiro_to 'Cheques', '#', class: 'nav-link nav-dropdown-toggle' %>
 
   <ul class="nav-dropdown-items">
     <li class="nav-item">
-      <%= link_to 'Todos',
+      <%= link_financeiro_to 'Todos',
                   financeiro_cheques_path,
                   class: "nav-link #{active_params(chq_status: nil)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Em Aberto',
+      <%= link_financeiro_to 'Em Aberto',
                   financeiro_cheques_path(chq_status: :aberto),
                   class: "nav-link #{active_params(chq_status: :aberto)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Devolvidos',
+      <%= link_financeiro_to 'Devolvidos',
                   financeiro_cheques_path(chq_status: :devolvido),
                   class: "nav-link #{active_params(chq_status: :devolvido)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Depositados',
+      <%= link_financeiro_to 'Depositados',
                   financeiro_cheques_path(chq_status: :depositado),
                   class: "nav-link #{active_params(chq_status: :depositado)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Pagos',
+      <%= link_financeiro_to 'Pagos',
                   financeiro_cheques_path(chq_status: :pago),
                   class: "nav-link #{active_params(chq_status: :pago)}" %>
     </li>
@@ -64,5 +64,5 @@
 </li>
 
 <li class="nav-item">
-  <%= link_to 'Depósitos', financeiro_depositos_path, class: 'nav-link' %>
+  <%= link_financeiro_to 'Depósitos', financeiro_depositos_path, class: 'nav-link' %>
 </li>

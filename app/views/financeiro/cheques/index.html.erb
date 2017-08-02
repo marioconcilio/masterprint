@@ -1,7 +1,3 @@
-<% content_for :sidebar do %>
-  <%= render 'financeiro/sidebar' %>
-<% end %>
-
 <% provide(:url, financeiro_cheques_path) %>
 <% provide(:search_field, :numero_text_or_emitente_cont) %>
 <% provide(:placeholder, 'Número ou emitente') %>

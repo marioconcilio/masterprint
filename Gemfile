@@ -52,6 +52,9 @@ gem 'config'
 # Font Awesome
 gem 'font-awesome-rails'
 
+# http://simplelineicons.com/
+gem 'simple-line-icons-rails'
+
 # Table search and sort
 gem 'ransack', github: 'activerecord-hackery/ransack'
 

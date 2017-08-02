@@ -3,9 +3,14 @@
     <li class="divider"></li>
 
     <li class="nav-item">
-      <%= link_to 'Dashboard', '#', class: 'nav-link' %>
+      <%= link_to '#', class: 'nav-link' do %>
+        <i class="icon-speedometer"></i>
+        Dashboard
+      <% end %>
     </li>
 
-    <%= yield :sidebar %>
+    <%= render 'estoque/sidebar' %>
+    <%= render 'cadastro/sidebar' %>
+    <%= render 'financeiro/sidebar' %>
   </ul>
 </nav>

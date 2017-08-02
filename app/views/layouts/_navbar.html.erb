@@ -3,35 +3,137 @@
   <li class="nav-item">
     <%= link_to '☰', '#', class: 'nav-link navbar-toggler sidebar-toggler' %>
   </li>
-  <li class="nav-item px-3">
-    <%= link_to 'Estoque', estoque_blanquetas_path, class: 'nav-link' %>
-  </li>
+
   <% if logged_in? %>
-    <li class="nav-item px-3">
-      <%= link_to 'Financeiro', financeiro_recebimentos_path, class: 'nav-link' %>
+    <li class="nav-item dropdown hidden-md-down pr-1">
+      <%= link_to 'Estoque', '#',
+            class: 'nav-link dropdown-toggle',
+            'data-toggle' => 'dropdown',
+            role: :button %>
+
+      <div class="dropdown-menu dropdown-menu-left">
+        <div class="dropdown-header text-center">
+          <strong>Adicionar</strong>
+        </div>
+
+        <%= link_to new_estoque_blanqueta_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Blanqueta
+        <% end %>
+
+        <%= link_to new_estoque_chapa_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Chapa
+        <% end %>
+
+        <%= link_to new_estoque_envelope_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Envelope
+        <% end %>
+
+        <%= link_to new_estoque_papel_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Papel
+        <% end %>
+
+        <%= link_to new_estoque_cortado_papel_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Papel Cortado
+        <% end %>
+
+        <%= link_to new_estoque_quimico_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Químico
+        <% end %>
+
+        <%= link_to new_estoque_tinta_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Tinta
+        <% end %>
+
+        <%= link_to new_estoque_variado_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-plus text-info"></i>Variado
+        <% end %>
+      </div>
     </li>
-    <li class="nav-item px-3">
-      <%= link_to 'Cadastro', cadastro_clientes_path, class: 'nav-link' %>
+    <!-- estoque -->
+
+    <li class="nav-item dropdown hidden-md-down pr-1">
+      <%= link_to 'Financeiro', '#',
+            class: 'nav-link dropdown-toggle',
+            'data-toggle' => 'dropdown',
+            role: :button %>
+
+      <div class="dropdown-menu dropdown-menu-left">
+        <div class="dropdown-header text-center">
+          <strong>A Receber</strong>
+        </div>
+
+        <%= link_to remessa_financeiro_recebimentos_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-cloud-upload text-info"></i>Importar Remessa
+        <% end %>
+
+        <%= link_to retorno_financeiro_recebimentos_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-cloud-upload text-info"></i>Importar Retorno
+        <% end %>
+
+        <div class="dropdown-header text-center">
+          <strong>Adicionar</strong>
+        </div>
+
+        <%= link_to new_financeiro_cheque_path, remote: true,
+                    class: 'dropdown-item' do %>
+          <i class="icon-note text-info"></i>Cadastrar Cheque
+        <% end %>
+
+        <%= link_to new_financeiro_deposito_path, class: 'dropdown-item' do %>
+          <i class="icon-wallet text-info"></i>Novo Depósito
+        <% end %>
+      </div>
     </li>
+    <!-- financeiro -->
+
+    <li class="nav-item dropdown hidden-md-down pr-1">
+      <%= link_to 'Cadastro', '#',
+            class: 'nav-link dropdown-toggle',
+            'data-toggle' => 'dropdown',
+            role: :button %>
+
+      <div class="dropdown-menu dropdown-menu-left">
+        <div class="dropdown-header text-center">
+          <strong>Adicionar</strong>
+        </div>
+
+        <%= link_to new_cadastro_cliente_path, remote: true, class: 'dropdown-item' do %>
+          <i class="icon-user-follow text-info"></i>Cliente
+        <% end %>
+
+        <%= link_to '#', remote: true, class: 'dropdown-item' do %>
+          <i class="icon-user-follow text-info"></i>Fornecedor
+        <% end %>
+      </div>
+    </li>
+    <!-- cadastro -->
   <% end %>
 </ul>
 
 <ul class="nav navbar-nav ml-auto">
-  <li class="nav-item dropdown px-3">
+  <li class="nav-item dropdown pr-1">
     <% if logged_in? %>
       <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
-          'data-toggle' => 'dropdown', role: :button, 'aria-haspopup' => :true, 'aria-expanded' => :false %>
+          'data-toggle' => 'dropdown', role: :button %>
 
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to logout_path, method: :delete, class: 'dropdown-item' do %>
-          <i class="fa fa-lock"></i>
-          Sair
+          <%= fa_tag 'icon-power text-danger' %>Sair
         <% end %>
       </div>
     <% else %>
       <%= link_to login_path, remote: true, class: 'nav-link' do %>
-        <%= fa_tag 'fa fa-sign-in px-1' %>
-        Entrar
+        <%= fa_tag 'icon-login pr-1' %>Entrar
       <% end %>
     <% end %>
   </li>

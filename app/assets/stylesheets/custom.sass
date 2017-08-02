@@ -1,6 +1,3 @@
-.row-margin
-  margin-top: 20px
-
 .no-underline
   text-decoration: none !important
 
@@ -34,3 +31,20 @@
     >
       p
         padding-top: 8px !important
+
+.table > tbody > tr
+  >
+    td.danger, th.danger
+      background-color: #FDD8D8
+
+  &.danger >
+    td, th
+      background-color: #FDD8D8
+
+.table-hover > tbody > tr
+  >
+    td.danger:hover, th.danger:hover
+      background-color: #FCC5C5
+
+  &.danger:hover > td, &:hover > .danger, &.danger:hover > th
+    background-color: #FCC5C5

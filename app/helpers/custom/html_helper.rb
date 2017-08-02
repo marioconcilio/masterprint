@@ -25,6 +25,24 @@ module Custom::HtmlHelper
                     options, html_options, &block)
   end
 
+  def link_estoque_to(name=nil, options=nil, html_options=nil, &block)
+    link_to options, html_options do
+      content_tag(:i, nil, class: 'icon-tag') + name
+    end
+  end
+
+  def link_cadastro_to(name=nil, options=nil, html_options=nil, &block)
+    link_to options, html_options do
+      content_tag(:i, nil, class: 'icon-user' ) + name
+    end
+  end
+
+  def link_financeiro_to(name=nil, options=nil, html_options=nil, &block)
+    link_to options, html_options do
+      content_tag(:i, nil, class: 'icon-wallet') + name
+    end
+  end
+
   def fa_tag(klass)
     content_tag :i, nil, class: klass
   end
