@@ -1,57 +1,45 @@
 <div class="modal-header">
-  <h3>Olar</h3>
+  <%= modal_form_header 'Cheque', format_numero(@result.first.numero) %>
 </div>
 <!-- /.modal-header -->
 
 <div class="modal-body">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <p>Existem <%= @result.size %> cheques com o número <%= format_numero(@result.first.numero) %>.</p>
-        <p>Por favor, escolha um:</p>
-      </div>
-    </div>
+  <div>Existem <%= @result.size %> cheques com o número <%= format_numero(@result.first.numero) %>.</div>
+  <div>Por favor, escolha um:</div>
+  <br>
 
-    <div class="row row-margin">
-      <div class="col-lg-12">
-        <table class="table table-hover table-striped">
-          <thead>
-            <tr>
-              <th>Banco</th>
-              <th>Número</th>
-              <th>Emitente</th>
-              <th class="text-right">Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @result.each do |c| %>
-              <tr>
-                <td><%= format_banco(c.banco) %></td>
-                <td><%= format_numero(c.numero) %></td>
-                <td><%= c.emitente %></td>
-                <td class="text-right"><%= format_currency(c.valor) %></td>
-                <td>
-                  <%= form_for c, url: ch_financeiro_depositos_path, method: :post, remote: true, html: { class: 'form-cheque' } do |f| %>
-                    <%= f.hidden_field :id %>
-                    <%= f.hidden_field :banco %>
-                    <%= f.hidden_field :numero %>
-                    <%= f.hidden_field :emitente %>
-                    <%= f.hidden_field :valor %>
-                    <%= f.button class: 'btn-link' do %>
-                      <i class="fa fa-lg fa-check"></i>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Banco</th>
+        <th>Emitente</th>
+        <th class="text-right">Valor</th>
+        <th><br></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @result.each do |c| %>
+        <tr>
+          <td><%= format_banco(c.banco) %></td>
+          <td><%= c.emitente %></td>
+          <td class="text-right"><%= format_currency(c.valor) %></td>
+          <td class="text-right">
+            <%= form_for c, url: ch_financeiro_depositos_path, method: :post, remote: true, html: { class: 'form-cheque' } do |f| %>
+              <%= f.hidden_field :id %>
+              <%= f.hidden_field :banco %>
+              <%= f.hidden_field :numero %>
+              <%= f.hidden_field :emitente %>
+              <%= f.hidden_field :valor %>
+              <%= f.button class: 'btn btn-success' do %>
+                <i class="fa fa-check"></i>
+              <% end %>
             <% end %>
-          </tbody>
-        </table>
-      </div>
-      <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container-fluid -->
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
 <!-- /.modal-body -->
 

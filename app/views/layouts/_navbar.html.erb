@@ -18,42 +18,42 @@
 
         <%= link_to new_estoque_blanqueta_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Blanqueta
+          <i class="icon-plus"></i>Blanqueta
         <% end %>
 
         <%= link_to new_estoque_chapa_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Chapa
+          <i class="icon-plus"></i>Chapa
         <% end %>
 
         <%= link_to new_estoque_envelope_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Envelope
+          <i class="icon-plus"></i>Envelope
         <% end %>
 
         <%= link_to new_estoque_papel_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Papel
+          <i class="icon-plus"></i>Papel
         <% end %>
 
         <%= link_to new_estoque_cortado_papel_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Papel Cortado
+          <i class="icon-plus"></i>Papel Cortado
         <% end %>
 
         <%= link_to new_estoque_quimico_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Químico
+          <i class="icon-plus"></i>Químico
         <% end %>
 
         <%= link_to new_estoque_tinta_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Tinta
+          <i class="icon-plus"></i>Tinta
         <% end %>
 
         <%= link_to new_estoque_variado_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-plus text-info"></i>Variado
+          <i class="icon-plus"></i>Variado
         <% end %>
       </div>
     </li>
@@ -72,12 +72,12 @@
 
         <%= link_to remessa_financeiro_recebimentos_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-cloud-upload text-info"></i>Importar Remessa
+          <i class="icon-cloud-upload"></i>Importar Remessa
         <% end %>
 
         <%= link_to retorno_financeiro_recebimentos_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-cloud-upload text-info"></i>Importar Retorno
+          <i class="icon-cloud-upload"></i>Importar Retorno
         <% end %>
 
         <div class="dropdown-header text-center">
@@ -86,11 +86,11 @@
 
         <%= link_to new_financeiro_cheque_path, remote: true,
                     class: 'dropdown-item' do %>
-          <i class="icon-note text-info"></i>Cadastrar Cheque
+          <i class="icon-note"></i>Cadastrar Cheque
         <% end %>
 
         <%= link_to new_financeiro_deposito_path, class: 'dropdown-item' do %>
-          <i class="icon-wallet text-info"></i>Novo Depósito
+          <i class="icon-wallet"></i>Novo Depósito
         <% end %>
       </div>
     </li>
@@ -108,11 +108,11 @@
         </div>
 
         <%= link_to new_cadastro_cliente_path, remote: true, class: 'dropdown-item' do %>
-          <i class="icon-user-follow text-info"></i>Cliente
+          <i class="icon-user-follow"></i>Cliente
         <% end %>
 
         <%= link_to '#', remote: true, class: 'dropdown-item' do %>
-          <i class="icon-user-follow text-info"></i>Fornecedor
+          <i class="icon-user-follow"></i>Fornecedor
         <% end %>
       </div>
     </li>
@@ -128,7 +128,7 @@
 
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to logout_path, method: :delete, class: 'dropdown-item' do %>
-          <%= fa_tag 'icon-power text-danger' %>Sair
+          <%= fa_tag 'icon-power' %>Sair
         <% end %>
       </div>
     <% else %>

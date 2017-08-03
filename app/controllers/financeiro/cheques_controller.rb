@@ -1,5 +1,6 @@
 class Financeiro::ChequesController < ApplicationController
   before_action :auth_user!
+  before_action :auth_admin!, only: [:index, :update]
 
   # GET /financeiro/cheques
   def index

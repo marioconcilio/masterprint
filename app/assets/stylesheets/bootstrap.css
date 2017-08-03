@@ -6078,10 +6078,10 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   color: #fff !important; }
 
 .text-muted {
-  color: #d1d4d7 !important; }
+  color: #d1d4d7; }
 
 a.text-muted:focus, a.text-muted:hover {
-  color: #b6bbbf !important; }
+  color: #b6bbbf; }
 
 .text-primary {
   color: #20a8d8 !important; }

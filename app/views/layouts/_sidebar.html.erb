@@ -4,13 +4,15 @@
 
     <li class="nav-item">
       <%= link_to '#', class: 'nav-link' do %>
-        <i class="icon-speedometer"></i>
-        Dashboard
+        <i class="icon-speedometer"></i>Dashboard
       <% end %>
     </li>
 
     <%= render 'estoque/sidebar' %>
-    <%= render 'cadastro/sidebar' %>
-    <%= render 'financeiro/sidebar' %>
+
+    <% if logged_in? %>
+      <%= render 'cadastro/sidebar' %>
+      <%= render 'financeiro/sidebar' %>
+    <% end %>
   </ul>
 </nav>

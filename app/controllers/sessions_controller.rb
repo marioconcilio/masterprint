@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:return_to] ||= request.referer
     log_out if logged_in?
-    redirect_to last_visited
+    redirect_to root_url
   end
 
 end

@@ -48,12 +48,7 @@
         <td class="text-right"> <%= format_currency(p.papel_tipo.preco_kg) %> </td>
         <td class="text-right"> <%= format_currency(p.preco_un) %> </td>
         <td class="text-center"> <%= p.qtde %> </td>
-
-        <% if p.qtde <= 0 %>
-          <td><span class="badge badge-danger">!</span></td>
-        <% else %>
-          <td><br></td>
-        <% end %>
+        <td class="text-right"> <%= qtde_badge(p) %> </td>
 
         <% if @logged_in %>
           <td class="text-right">

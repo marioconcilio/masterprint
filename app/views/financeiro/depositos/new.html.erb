@@ -1,9 +1,61 @@
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-8 mx-auto">
     <div class="card">
       <div class="card-header">
-        <%= fa_tag 'fa fa-money' %>
-        Cheques
+        <%= fa_tag 'fa fa-university' %>Dados Bancários
+      </div>
+      <div class="card-block">
+        <%= form_for [:financeiro, @deposito] do |f| %>
+
+          <div class="form-group">
+            <%= form_label :titular %>
+            <%= f.text_field :titular, class: 'form-control text-capitalize' %>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-3">
+              <%= form_label :banco %>
+              <%= f.text_field :banco, class: 'form-control number-field' %>
+            </div>
+
+            <div class="form-group col-md-4">
+              <%= form_label 'Agência' %>
+              <%= f.text_field :agencia, class: 'form-control number-field' %>
+            </div>
+
+            <div class="form-group col-md-4">
+              <%= form_label :conta %>
+              <%= f.text_field :conta, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form_label :total %>
+            <%= content_tag :p, format_currency(get_total),
+                            id: 'deposito_total_static',
+                            class: 'form-control-static font-weight-bold' %>
+            <%= f.hidden_field :total, value: get_total %>
+          </div>
+
+          <div class="form-group">
+            <div class="pull-right">
+              <%= f.submit 'Salvar', class: 'btn btn-success' %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col-5 -->
+</div>
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        <%= fa_tag 'fa fa-money' %>Cheques
       </div>
       <div class="card-block">
 
@@ -38,56 +90,4 @@
   </div>
   <!-- /.col-7 -->
 
-  <div class="col-md-5">
-    <div class="card">
-      <div class="card-header">
-        <%= fa_tag 'fa fa-university' %>
-        Dados Bancários
-      </div>
-      <div class="card-block">
-        <%= form_for [:financeiro, @deposito] do |f| %>
-
-          <div class="form-group">
-            <%= form_label :titular %>
-            <%= f.text_field :titular, class: 'form-control title-case' %>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-3">
-              <%= form_label :banco %>
-              <%= f.text_field :banco, class: 'form-control number-field' %>
-            </div>
-
-            <div class="form-group col-md-3">
-              <%= form_label 'Agência' %>
-              <%= f.text_field :agencia, class: 'form-control number-field' %>
-            </div>
-
-            <div class="form-group col-md-6">
-              <%= form_label :conta %>
-              <%= f.text_field :conta, class: 'form-control' %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <%= form_label :total %>
-            <%= content_tag :p, format_currency(get_total),
-                            class: 'form-control-static', id: 'deposito_total_static' %>
-            <%= f.hidden_field :total, value: get_total %>
-          </div>
-
-          <div class="form-group">
-            <div class="pull-right">
-              <%= f.submit 'Salvar', class: 'btn btn-success' %>
-            </div>
-          </div>
-
-        <% end %>
-      </div>
-    </div>
-    <!-- /.card -->
-  </div>
-  <!-- /.col-5 -->
-
 </div>
-

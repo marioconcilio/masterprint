@@ -14,6 +14,7 @@
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
       <th><br></th>
+      <th><br></th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
         <td class="text-center"> <%= p.un %> </td>
         <td class="text-right"> <%= format_currency(p.preco_un) %> </td>
         <td class="text-center"> <%= p.qtde %> </td>
+        <td class="text-right"> <%= qtde_badge(p) %> </td>
 
         <% if @logged_in %>
           <td class="text-right">

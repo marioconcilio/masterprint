@@ -31,13 +31,15 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <%= form_label 'Situação' %>
-      <%= f.select :status,
-                   options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
-                   {},
-                   { class: 'form-control' } %>
-    </div>
+    <% if admin? %>
+      <div class="form-group">
+        <%= form_label 'Situação' %>
+        <%= f.select :status,
+                     options_for_select(Recebimento.status.map{|s| [ s[1], s[0] ]}, @recebimento.status),
+                     {},
+                     { class: 'form-control' } %>
+      </div>
+    <% end %>
   </div>
   <!-- /.modal-body -->
 

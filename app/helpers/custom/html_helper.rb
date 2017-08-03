@@ -47,4 +47,14 @@ module Custom::HtmlHelper
     content_tag :i, nil, class: klass
   end
 
+  def qtde_badge(product)
+    if product.qtde <= 0
+      content_tag :span, nil, class: 'badge badge-danger' do
+        fa_tag 'fa fa-exclamation'
+      end
+    else
+      tag(:br)
+    end
+  end
+
 end

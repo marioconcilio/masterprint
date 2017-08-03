@@ -31,37 +31,39 @@
   <%= link_financeiro_to 'A Pagar', '#', class: 'nav-link' %>
 </li>
 
-<li class="nav-item nav-dropdown">
-  <%= link_financeiro_to 'Cheques', '#', class: 'nav-link nav-dropdown-toggle' %>
+<% if admin? %>
+  <li class="nav-item nav-dropdown">
+    <%= link_financeiro_to 'Cheques', '#', class: 'nav-link nav-dropdown-toggle' %>
 
-  <ul class="nav-dropdown-items">
-    <li class="nav-item">
-      <%= link_financeiro_to 'Todos',
-                  financeiro_cheques_path,
-                  class: "nav-link #{active_params(chq_status: nil)}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_financeiro_to 'Em Aberto',
-                  financeiro_cheques_path(chq_status: :aberto),
-                  class: "nav-link #{active_params(chq_status: :aberto)}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_financeiro_to 'Devolvidos',
-                  financeiro_cheques_path(chq_status: :devolvido),
-                  class: "nav-link #{active_params(chq_status: :devolvido)}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_financeiro_to 'Depositados',
-                  financeiro_cheques_path(chq_status: :depositado),
-                  class: "nav-link #{active_params(chq_status: :depositado)}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_financeiro_to 'Pagos',
-                  financeiro_cheques_path(chq_status: :pago),
-                  class: "nav-link #{active_params(chq_status: :pago)}" %>
-    </li>
-  </ul>
-</li>
+    <ul class="nav-dropdown-items">
+      <li class="nav-item">
+        <%= link_financeiro_to 'Todos',
+                    financeiro_cheques_path,
+                    class: "nav-link #{active_params(chq_status: nil)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_financeiro_to 'Em Aberto',
+                    financeiro_cheques_path(chq_status: :aberto),
+                    class: "nav-link #{active_params(chq_status: :aberto)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_financeiro_to 'Devolvidos',
+                    financeiro_cheques_path(chq_status: :devolvido),
+                    class: "nav-link #{active_params(chq_status: :devolvido)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_financeiro_to 'Depositados',
+                    financeiro_cheques_path(chq_status: :depositado),
+                    class: "nav-link #{active_params(chq_status: :depositado)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_financeiro_to 'Pagos',
+                    financeiro_cheques_path(chq_status: :pago),
+                    class: "nav-link #{active_params(chq_status: :pago)}" %>
+      </li>
+    </ul>
+  </li>
+<% end %>
 
 <li class="nav-item">
   <%= link_financeiro_to 'Depósitos', financeiro_depositos_path, class: 'nav-link' %>

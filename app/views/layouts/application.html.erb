@@ -4,7 +4,8 @@
     <title>Masterprint <%= ' Dev' if Rails.env.development? %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans' %>
     <%= javascript_include_tag 'application' %>
   </head>
 

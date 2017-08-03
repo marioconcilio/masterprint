@@ -33,6 +33,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def admin?
+    current_user.try(:admin)
+  end
+
   def body_logged_in?
     'logged-in' if logged_in?
   end
@@ -55,7 +59,13 @@ module SessionsHelper
 
   def auth_user!
     unless logged_in?
-      redirect_to forbidden_url
+      redirect_to not_found_url
+    end
+  end
+
+  def auth_admin!
+    unless admin?
+      redirect_to not_found_url
     end
   end
 
