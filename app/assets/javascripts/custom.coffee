@@ -7,3 +7,7 @@ jQuery ->
   $('.modal').on 'click', 'input[type="submit"]', ->
     $('.modal').modal('hide')
     return
+
+  $('#clear-searchfield').on 'click', ->
+    $('input.form-control').val ''
+    return

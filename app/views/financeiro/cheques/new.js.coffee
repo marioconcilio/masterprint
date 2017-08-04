@@ -1,3 +1,4 @@
-$('#modal-window').attr 'class', 'modal fade'
-$('.modal .modal-content').html '<%= j(render "new") %>'
-$('.modal').modal()
+modal = $('#modal-window')
+modal.attr 'class', 'modal fade'
+modal.find('.modal-content').html '<%= j(render "new") %>'
+modal.modal()
