@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 20170803142657) do
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
   end
 
-  create_table "chapa_dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
     t.decimal  "preco",      precision: 8
@@ -110,12 +104,6 @@ ActiveRecord::Schema.define(version: 20170803142657) do
     t.datetime "updated_at",                          null: false
   end
 
-  create_table "dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
   create_table "envelopes", force: :cascade do |t|
     t.string   "nome"
     t.decimal  "preco_milheiro",           precision: 8, scale: 2
@@ -163,16 +151,6 @@ ActiveRecord::Schema.define(version: 20170803142657) do
     t.integer  "qtde"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-  end
-
-  create_table "receber_boletos", id: :bigserial, force: :cascade do |t|
-    t.date     "vencimento"
-    t.string   "status"
-    t.decimal  "valor",      precision: 12, scale: 2
-    t.bigint   "cliente_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["cliente_id"], name: "index_receber_boletos_on_cliente_id", using: :btree
   end
 
   create_table "recebimentos", id: :bigserial, force: :cascade do |t|
@@ -223,6 +201,5 @@ ActiveRecord::Schema.define(version: 20170803142657) do
   add_foreign_key "cheques", "clientes"
   add_foreign_key "cheques", "depositos"
   add_foreign_key "papeis", "papel_tipos"
-  add_foreign_key "receber_boletos", "clientes"
   add_foreign_key "recebimentos", "clientes"
 end

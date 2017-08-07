@@ -13,13 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//
+// Turbolinks
 // require jquery.turbolinks
 // require turbolinks
 // require turbolinks-compatibility
+//
 //= require bootstrap-sprockets
 //= require jquery.mask
 //= require highcharts
 //= require chartkick
 //= require pace/pace
 //= require tether
+//
+// RailsAjax
+//= require jquery.history
+//= require jquery.rails-ajax
+//= require RailsAjax-Config
+//
 //= require_tree .
