@@ -121,7 +121,13 @@
 </ul>
 
 <ul class="nav navbar-nav ml-auto">
-  <li class="nav-item dropdown pr-1">
+  <% if Rails.env.development? %>
+    <li class="nav-item px-1 text-white" style="background-color: crimson">
+      <%= fa_tag 'icon-fire' %>
+      Development
+    </li>
+  <% end %>
+  <li class="nav-item dropdown px-1">
     <% if logged_in? %>
       <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
           'data-toggle' => 'dropdown', role: :button %>

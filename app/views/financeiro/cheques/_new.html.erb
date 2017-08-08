@@ -29,18 +29,18 @@
         <%= f.text_field :banco, class: 'form-control number-field' %>
       </div>
 
-      <div class="form-group col-sm-5">
+      <div class="form-group col-sm-4">
         <%= form_label 'Número' %>
         <%= f.text_field :numero, class: 'form-control number-field' %>
+      </div>
+
+      <div class="form-group col-sm-4">
+        <%= form_label 'Bom p/' %>
+        <%= f.text_field :data_deposito, class: 'form-control date-field' %>
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-sm-3">
-        <%= form_label 'Bom p/' %>
-        <%= f.text_field :data_deposito, class: 'form-control date-field' %>
-      </div>
-
       <div class="form-group col-sm-5">
         <%= form_label :valor %>
 

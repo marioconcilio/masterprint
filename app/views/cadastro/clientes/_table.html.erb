@@ -16,9 +16,6 @@
           <th>
             <%= sort_link @search, :razao_social, 'Razão Social', {}, { remote: true, method: :get } %>
           </th>
-          <th>
-            <%= sort_link @search, :contato, 'Contato', {}, { remote: true, method: :get } %>
-          </th>
           <th class="text-right">
             <%= sort_link @search, :telefone, 'Telefone', {}, { remote: true, method: :get } %>
           </th>
@@ -33,7 +30,6 @@
           <tr>
             <td> <%= c.nome %> </td>
             <td> <%= c.razao_social %> </td>
-            <td> <%= c.contato %> </td>
             <td class="text-right"> <%= c.telefone %> </td>
             <td class="text-right"> <%= c.celular %> </td>
             <td class="text-right"> <%= link_details_to '', cadastro_cliente_path(c) %> </td>

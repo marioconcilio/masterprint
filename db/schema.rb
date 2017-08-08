@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20170808023239) do
 
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
-    t.decimal  "preco",      precision: 8
+    t.decimal  "preco",      precision: 8, scale: 2
     t.string   "esp"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "chapas", force: :cascade do |t|
