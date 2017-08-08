@@ -1,0 +1,91 @@
+<%= form_for [:cadastro, @fornecedor], remote: true do |f| %>
+
+  <div class="modal-header">
+    <%= modal_form_header 'Novo', 'Fornecedor' %>
+  </div>
+  <!-- /.modal-header -->
+
+  <div class="modal-body">
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <!-- razao social -->
+    <div class="form-group">
+      <%= form_label 'Razão Social' %>
+      <%= f.text_field :razao_social, class: 'form-control title-case' %>
+    </div>
+
+    <!-- cnpj / inscricao estadual -->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form_label 'CNPJ' %>
+        <%= f.text_field :id, value: format_cnpj(f.object.id), class: 'form-control cnpj-field' %>
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= form_label 'Inscrição Estadual' %>
+        <%= f.text_field :ie, value: format_ie(f.object.ie), class: 'form-control ie-field' %>
+      </div>
+    </div>
+
+    <!-- endereco -->
+    <div class="form-group">
+      <%= form_label 'Endereço' %>
+      <%= f.text_field :endereco, class: 'form-control title-case' %>
+    </div>
+
+    <!-- cidade / uf / cep -->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form_label :cidade %>
+        <%= f.text_field :cidade, class: 'form-control title-case' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form_label 'UF' %>
+        <%= f.text_field :uf, class: 'form-control uf-field' %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form_label 'CEP' %>
+        <%= f.text_field :cep, value: format_cep(f.object.cep), class: 'form-control cep-field' %>
+      </div>
+    </div>
+
+    <!-- nome / contato -->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form_label :nome %>
+        <%= f.text_field :nome, class: 'form-control title-case' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form_label :contato %>
+        <%= f.text_field :contato, class: 'form-control title-case' %>
+      </div>
+    </div>
+
+    <!-- telefone / celular -->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form_label :telefone %>
+        <%= f.text_field :telefone, class: 'form-control phone-field' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form_label :celular %>
+        <%= f.text_field :celular, class: 'form-control phone-field' %>
+      </div>
+    </div>
+
+    <!-- email -->
+    <div class="form-group">
+      <%= form_label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
+
+<% end %>
+
+

@@ -1,0 +1,2 @@
+module Cadastro::FornecedoresHelper
+end

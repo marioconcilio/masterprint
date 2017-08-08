@@ -30,6 +30,12 @@ Rails.application.routes.draw do
         get :cheques_chart
       end
     end
+
+    resources :fornecedores do
+      member do
+        get :pagar_chart
+      end
+    end
   end
 
   namespace :financeiro do
