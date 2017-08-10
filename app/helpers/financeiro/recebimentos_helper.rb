@@ -9,6 +9,13 @@ module Financeiro::RecebimentosHelper
     recebimentos = lines.each_slice(2).map { |line| recover_recebimento(line) }
   end
 
+  def process_retorno(file)
+    lines = File.readlines(file)[9..-6]
+    l = lines[0].strip
+    num = l[21..27].to_i
+    sit = l[83..85]
+  end
+
   private
     def recover_recebimento(line)
       splitted = line[0].split(/\s+/)
