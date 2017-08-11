@@ -11,9 +11,15 @@ module Financeiro::RecebimentosHelper
 
   def process_retorno(file)
     lines = File.readlines(file)[9..-6]
-    l = lines[0].strip
-    num = l[21..27].to_i
-    sit = l[83..85]
+
+    dict = {}
+    lines.each do |l|
+      num = l[21..27].to_i
+      next if dict[num] =~ /LQ|LC|BX/
+      dict[num] = l[83..85]
+    end
+
+    return dict
   end
 
   private

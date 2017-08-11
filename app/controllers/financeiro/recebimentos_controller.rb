@@ -33,9 +33,9 @@ module Financeiro
       list = process_remessa(params[:recebimento][:import_file].tempfile)
 
       begin
-        Recebimento.transaction { list.each(&:save!) }
-        flash[:success] = 'Remessa importada'
-        redirect_to financeiro_recebimentos_url
+        # Recebimento.transaction { list.each(&:save!) }
+        flash[:success] = "#{list.count} #{'boleto'.pluralize(list.count)} #{'importado'.pluralize(list.count)}"
+        redirect_to :back
 
       rescue ActiveRecord::RecordNotUnique
         @error = 'Remessa já processada'
@@ -54,6 +54,8 @@ module Financeiro
     # POST /financeiro/recebimentos/retorno
     def import_retorno
       @recebimento = Recebimento.new
+      list = process_retorno(params[:recebimento][:import_file].tempfile)
+
       puts 'retorno processado'
     end
 
