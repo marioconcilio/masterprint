@@ -2,6 +2,7 @@ class Recebimento < ApplicationRecord
   enum status: {
     aguardando:   'Aguardando',
     aberto:       'Em aberto',
+    baixado:      'Baixado',
     cartorio:     'Cartório',
     protestado:   'Protestado',
     titulo_maos:  'Título em mãos',

@@ -18,7 +18,7 @@ module FinanceiroHelper
       'badge badge-info'
     elsif bill.pago?
       'badge badge-success'
-    elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
+    elsif bill.cartorio? || bill.baixado? || bill.protestado? || bill.titulo_maos?
       'badge badge-danger'
     elsif bill.vencido?
       'badge badge-warning'
@@ -32,7 +32,7 @@ module FinanceiroHelper
       'modal-info'
     elsif bill.pago?
       'modal-success'
-    elsif bill.cartorio? || bill.protestado? || bill.titulo_maos?
+    elsif bill.cartorio? || bill.baixado? ||  bill.protestado? || bill.titulo_maos?
       'modal-danger'
     elsif bill.vencido?
       'modal-warning'

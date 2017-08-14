@@ -15,11 +15,39 @@ module Financeiro::RecebimentosHelper
     dict = {}
     lines.each do |l|
       num = l[21..27].to_i
-      next if dict[num] =~ /LQ|LC|BX/
+      next if dict[num] =~ /LC|LP|LQ|BX/
       dict[num] = l[83..85]
     end
 
     return dict
+  end
+
+  def status_from_sit(sit)
+    if sit == 'BXP'
+      :protestado
+    elsif sit =~ /BX/
+      :baixado
+    elsif sit =~ /LC|LP|LQ/
+      :pago
+    elsif sit == 'TEC'
+      :cartorio
+    elsif sit =~ /RG/
+      :aberto
+    else
+      nil
+    end
+  end
+
+  def write_to_cache(ret)
+    $redis[cache_name] = ret.to_json
+  end
+
+  def read_cache
+    JSON.load($redis[cache_name])
+  end
+
+  def clear_cache
+    $redis.del(cache_name)
   end
 
   private
@@ -36,6 +64,10 @@ module Financeiro::RecebimentosHelper
         valor: value,
         cliente_id: cnpj,
         status: :aguardando)
+    end
+
+    def cache_name
+      "#{session[:user_id]}_retorno"
     end
 
 end

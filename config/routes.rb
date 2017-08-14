@@ -54,6 +54,7 @@ Rails.application.routes.draw do
         post  :remessa, to: 'recebimentos#import_remessa'
         get   :retorno
         post  :retorno, to: 'recebimentos#import_retorno'
+        get   :summary
       end
     end
   end
