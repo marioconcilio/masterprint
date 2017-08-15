@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20170808023239) do
 
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
-    t.decimal  "preco",      precision: 8, scale: 2
+    t.decimal  "preco",      precision: 8
     t.string   "esp"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "chapas", force: :cascade do |t|
@@ -176,7 +176,6 @@ ActiveRecord::Schema.define(version: 20170808023239) do
     t.bigint   "cliente_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index "recebimentos_order(id)", name: "idx_recebimentos_order", using: :btree
     t.index ["cliente_id"], name: "index_recebimentos_on_cliente_id", using: :btree
   end
 
