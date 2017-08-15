@@ -32,7 +32,7 @@ module Financeiro
       list = process_remessa(params[:recebimento][:import_file].tempfile)
 
       begin
-        # Recebimento.transaction { list.each(&:save!) }
+        Recebimento.transaction { list.each(&:save!) }
         flash[:success] = "#{list.count} #{'boleto'.pluralize(list.count)} #{'importado'.pluralize(list.count)}"
         redirect_back fallback_location: financeiro_recebimentos_path
 
@@ -53,23 +53,41 @@ module Financeiro
     # POST /financeiro/recebimentos/retorno
     def import_retorno
       list = process_retorno(params[:recebimento][:import_file].tempfile)
-      list.each do |num, sit|
-        rec = Recebimento.find(num)
-        next if rec.baixado? || rec.protestado? || rec.titulo_maos? || rec.pago?
 
-        status = status_from_sit(sit)
-        rec.update(status: status) if status
+      begin
+        list.each do |num, sit|
+          rec = Recebimento.find(num)
+          next if rec.baixado? || rec.protestado? || rec.titulo_maos? || rec.pago?
+
+          status = status_from_sit(sit)
+          rec.update(status: status) if status
+        end
+
+        # write hash to cache for summary action
+        write_to_cache(list)
+        flash[:success] = 'Retorno importado!'
+        redirect_to summary_financeiro_recebimentos_path
+
+      rescue ActiveRecord::RecordNotFound
+        @error = 'Boleto não encontrado'
+        respond_to do |format|
+          format.js { render :remessa }
+        end
       end
-
-      # write hash to cache for summary action
-      write_to_cache(list)
-      redirect_to summary_financeiro_recebimentos_path
     end
 
     # GET /financeiro/recebimentos/summary
     def summary
       @list = read_cache
-      respond_to :html
+
+      # if cache is not empty
+      unless @list.nil?
+        @bills = @list.map { |num, sit| Recebimento.find(num) }
+        clear_cache
+      else
+        @message = 'Você deve importar um arquivo de retorno primeiro.'
+        render 'shared/custom_message'
+      end
     end
 
     # GET /financeiro/recebimentos/:id

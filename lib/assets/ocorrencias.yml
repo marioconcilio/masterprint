@@ -1,0 +1,183 @@
+-
+  codigo: AB
+  descricao: Abatimento autorizado
+-
+  codigo: ABC
+  descricao: Abatimento cancelado
+-
+  codigo: BX
+  descricao: Baixado conforme instruções
+-
+  codigo: BXA
+  descricao: Baixado-liquidado anteriormente (motivo 31)
+-
+  codigo: BXC
+  descricao: Baixado-alteração de cedente
+-
+  codigo: BXF
+  descricao: Baixado-autorizada a entrega franco de pagamento
+-
+  codigo: BXH
+  descricao: Baixado-habilitado em processo (motivo 32)
+-
+  codigo: BXI
+  descricao: Baixado-incobrável por nosso intermédio (motivo 33-Instrução)
+-
+  codigo: BXL
+  descricao: Baixado-em transferência para créditos em liquidação(motivo 34)
+-
+  codigo: BXM
+  descricao: Baixado-mudança em carteira
+-
+  codigo: BXP
+  descricao: Baixado-protestado (motivo 15)
+-
+  codigo: BXR
+  descricao: Baixado-remanejamento de cliente
+-
+  codigo: BXS
+  descricao: Baixado-automaticamente pelo Sistema (venc. s/solução–motivo 90)
+-
+  codigo: BXT
+  descricao: Baixado-registrado indevidamente (motivo 51)
+-
+  codigo: BXV
+  descricao: Baixado-alteração de variação
+-
+  codigo: CB
+  descricao: Alteração de agência cobradora
+-
+  codigo: CGC
+  descricao: Alteração de CNPJ/CPF do sacado
+-
+  codigo: DB
+  descricao: Debitado em sua conta por falta de pagamento
+-
+  codigo: DBT
+  descricao: Debitado em sua conta conforme instruções
+-
+  codigo: DCA
+  descricao: Débito de custas cartorárias antecipadas
+-
+  codigo: DDP
+  descricao: Despesa de protesto
+-
+  codigo: DDS
+  descricao: Despesa de sustação de protesto
+-
+  codigo: DSP
+  descricao: Disponibilidade de empréstimos transferida
+-
+  codigo: EMS
+  descricao: Alteração da data de emissão do título
+-
+  codigo: END
+  descricao: Alteração do endereço do sacado
+-
+  codigo: INS
+  descricao: Acolhimento de instrução sobre cobrança
+-
+  codigo: IOF
+  descricao: Alteração do valor do IOF de seguro
+-
+  codigo: LCA
+  descricao: Liquidado com cheque pendente de compensação
+-
+  codigo: LCC
+  descricao: Liquidado em cartório com cheque
+-
+  codigo: LCD
+  descricao: Liquidado em cartório com dinheiro
+-
+  codigo: LCE
+  descricao: Liquidação não efetuada – Cheque devolvido
+-
+  codigo: LCH
+  descricao: Liquidado com cheque a compensar
+-
+  codigo: LPB
+  descricao: Liquidação compartilhada na compensação
+-
+  codigo: LPH
+  descricao: Liquidação compartilhada com cheque a compensar
+-
+  codigo: LPD
+  descricao: Liquidação compartilhada em dinheiro
+-
+  codigo: LQ
+  descricao: Liquidado
+-
+  codigo: LQA
+  descricao: Liquidado-baixado anteriormente
+-
+  codigo: LQB
+  descricao: Liquidado em outro banco (Compe)
+-
+  codigo: LQC
+  descricao: Liquidado em cartório
+-
+  codigo: LQF
+  descricao: Liquidado após feriado não previsto ou local
+-
+  codigo: LQN
+  descricao: Liquidado na apresentação
+-
+  codigo: LQP
+  descricao: Liquidado parcialmente
+-
+  codigo: LQR
+  descricao: Liquidado sem registro
+-
+  codigo: LQS
+  descricao: Liquidado pelo saldo
+-
+  codigo: MTV
+  descricao: Manutenção mensal de título vencido
+-
+  codigo: NCP
+  descricao: Alteração do controle do participante
+-
+  codigo: REL
+  descricao: Levantamento de títulos
+-
+  codigo: RG
+  descricao: Registrado para cobrança
+-
+  codigo: RGC
+  descricao: Registrado para cobrança - transferido de outro cedente
+-
+  codigo: RGM
+  descricao: Registrado para cobrança - alteração de carteira
+-
+  codigo: RGP
+  descricao: Registrado para cobrança com instrução de protesto
+-
+  codigo: RGR
+  descricao: Registrado para cobrança - remanejamento de cliente
+-
+  codigo: RGV
+  descricao: Registrado para cobrança - transferido de outra variação
+-
+  codigo: RV
+  descricao: Revertido à conta 1 - pendência regularizada
+-
+  codigo: RVP
+  descricao: Revertido à conta 1 - prazo regularizado
+-
+  codigo: SAC
+  descricao: Alteração do nome do sacado
+-
+  codigo: SN
+  descricao: Alteração do seu número
+-
+  codigo: SUS
+  descricao: Instrução para sustar protesto
+-
+  codigo: TEC
+  descricao: Título encaminhado a cartório
+-
+  codigo: TR
+  descricao: Transferido para a conta 2
+-
+  codigo: VC
+  descricao: Alteração do vencimento

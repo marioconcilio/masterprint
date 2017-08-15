@@ -90,6 +90,9 @@ gem 'pace-rails'
 # http://rails-ajax.x-aeon.com/
 gem 'rails-ajax'
 
+# https://github.com/zilkey/active_hash
+gem 'active_hash'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

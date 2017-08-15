@@ -1,0 +1,12 @@
+<% @code ||= 500 %>
+<% @title ||= 'Oops! Você está perdido.' %>
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="clearfix">
+      <h1 class="float-left display-3 mr-2"><%= @code %></h1>
+      <h4 class="pt-1"><%= @title %></h4>
+      <p><%= @message if @message %></p>
+    </div>
+  </div>
+</div>
