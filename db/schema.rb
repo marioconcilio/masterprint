@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808023239) do
+ActiveRecord::Schema.define(version: 20170815210140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20170808023239) do
 
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
-    t.decimal  "preco",      precision: 8
+    t.decimal  "preco",      precision: 8, scale: 2
     t.string   "esp"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "chapas", force: :cascade do |t|
@@ -134,6 +134,17 @@ ActiveRecord::Schema.define(version: 20170808023239) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "mensagens", force: :cascade do |t|
+    t.string   "titulo"
+    t.text     "texto"
+    t.integer  "remetente_id"
+    t.integer  "destinatario_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["destinatario_id"], name: "index_mensagens_on_destinatario_id", using: :btree
+    t.index ["remetente_id"], name: "index_mensagens_on_remetente_id", using: :btree
+  end
+
   create_table "papeis", force: :cascade do |t|
     t.integer  "grs"
     t.integer  "larg"
@@ -176,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170808023239) do
     t.bigint   "cliente_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index "recebimentos_order(id)", name: "idx_recebimentos_order", using: :btree
     t.index ["cliente_id"], name: "index_recebimentos_on_cliente_id", using: :btree
   end
 

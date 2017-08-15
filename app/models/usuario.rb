@@ -11,6 +11,7 @@ class Usuario < ApplicationRecord
   validates_length_of :password, minimum: 6
 
   validates_uniqueness_of :usuario
+  has_many :mensagens
 
   def remember
     self.remember_token = Usuario.new_token
