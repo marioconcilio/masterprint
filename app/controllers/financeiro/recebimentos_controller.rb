@@ -79,11 +79,11 @@ module Financeiro
     # GET /financeiro/recebimentos/summary
     def summary
       @list = read_cache
+      clear_cache
 
       # if cache is not empty
       unless @list.nil?
         @bills = @list.map { |num, sit| Recebimento.find(num) }
-        clear_cache
       else
         @message = 'Você deve importar um arquivo de retorno primeiro.'
         render 'shared/custom_message'

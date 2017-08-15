@@ -51,7 +51,7 @@ module Financeiro::RecebimentosHelper
   end
 
   def get_ocorrencia(id)
-    Ocorrencia.find_by_codigo(@list[id.to_s]).descricao
+    Ocorrencia.find_by_codigo(@list[id.to_s]).try(:descricao)
   end
 
   private
