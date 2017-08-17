@@ -1,6 +1,7 @@
 module Financeiro
   class RecebimentosController < ApplicationController
     include RecebimentosHelper
+
     before_action :auth_user!
     before_action :auth_admin!, except: [:index, :show]
 

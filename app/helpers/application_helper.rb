@@ -53,4 +53,8 @@ module ApplicationHelper
     date.strftime('%d/%m/%y')
   end
 
+  def format_datetime(date)
+    date.strftime('%d/%m/%y às %H:%M')
+  end
+
 end

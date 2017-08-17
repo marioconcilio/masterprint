@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'csv'
+require 'faker'
 
 PATH = "#{Rails.root}/lib/seeds"
 
@@ -93,5 +94,15 @@ Papel.transaction do
   papeis = CSV.read("#{PATH}/papeis.csv")
   column = [:papel_tipo_id, :subtipo, :grs, :larg, :comp, :fls, :marca, :peso, :qtde]
   Papel.import(column, papeis, validate: :true)
+end
+
+# Random Recados
+20.times do
+  Recado.create!(
+    titulo: Faker::Company.name,
+    texto: Faker::Lorem.paragraph,
+    remetente_id: 2,
+    destinatario_id: 2
+  )
 end
 =end

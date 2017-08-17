@@ -1,0 +1,32 @@
+<%= form_for [:painel, @recado], remote: true do |f| %>
+
+  <div class="modal-header">
+    <%= modal_form_header 'Novo', 'Recado' %>
+  </div>
+  <!-- /.modal-header -->
+
+  <div class="modal-body">
+    <%= render 'shared/error_messages', object: f.object %>
+
+
+
+    <!-- título -->
+    <div class="form-group">
+      <%= form_label 'Título' %>
+      <%= f.text_field :titulo, class: 'form-control' %>
+    </div>
+
+    <!-- texto -->
+    <div class="form-group">
+      <%= f.text_area :texto, size: '10x10', class: 'form-control' %>
+    </div>
+
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
+
+<% end %>

@@ -5,6 +5,11 @@
   </li>
 
   <% if logged_in? %>
+    <li class="nav-item pr-1"">
+      <%= link_to 'Novo Recado', new_painel_recado_path, remote: true,
+                  class: 'nav-link' %>
+    </li>
+
     <li class="nav-item dropdown hidden-md-down pr-1">
       <%= link_to 'Estoque', '#',
             class: 'nav-link dropdown-toggle',

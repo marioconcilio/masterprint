@@ -38,18 +38,6 @@ module Financeiro::RecebimentosHelper
     end
   end
 
-  def write_to_cache(ret)
-    $redis[cache_name] = ret.to_json
-  end
-
-  def read_cache
-    JSON.load($redis[cache_name])
-  end
-
-  def clear_cache
-    $redis.del(cache_name)
-  end
-
   def get_ocorrencia(id)
     Ocorrencia.find_by_codigo(@list[id.to_s]).try(:descricao)
   end
@@ -70,7 +58,19 @@ module Financeiro::RecebimentosHelper
         status: :aguardando)
     end
 
-    def cache_name
+    def write_to_cache(ret)
+      $redis[retorno_cache_name] = ret.to_json
+    end
+
+    def read_cache
+      JSON.load($redis[retorno_cache_name])
+    end
+
+    def clear_cache
+      $redis.del(retorno_cache_name)
+    end
+
+    def retorno_cache_name
       "#{session[:user_id]}_retorno"
     end
 

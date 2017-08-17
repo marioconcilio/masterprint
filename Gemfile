@@ -88,7 +88,7 @@ gem 'tether-rails'
 gem 'pace-rails'
 
 # http://rails-ajax.x-aeon.com/
-gem 'rails-ajax'
+# gem 'rails-ajax'
 
 # https://github.com/zilkey/active_hash
 gem 'active_hash'

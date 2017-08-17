@@ -17,7 +17,7 @@ module Financeiro
 
       if @deposito.save
         # update cheques.deposito_id
-        all_updated = read_cache.map { |ch| Cheque.find(ch['id']) }
+        all_updated = dpo_read_cache.map { |ch| Cheque.find(ch['id']) }
           .map do |ch|
             ch.depositado!
             ch.update(deposito_id: @deposito.id, status: :depositado)
@@ -26,25 +26,24 @@ module Financeiro
 
         if all_updated
           flash[:success] = 'Depósito adicionado'
-          clear_cache
+          dpo_flush_cache
           redirect_to financeiro_depositos_url and return
         else
-          flash[:danger] = 'Não foi possível atualizar cheque'
-          clear_cache
+          flash[:danger] = 'Não foi possível criar depósito'
+          dpo_flush_cache
           Deposito.delete(@deposito.id)
           redirect_to new_financeiro_deposito_url and return
         end
       end
 
-      @cheques = read_cache
-      render :new
-      # redirect_to new_financeiro_deposito_url
+      @cheques = dpo_read_cache
+      redirect_to new_financeiro_deposito_url
     end
 
     # GET /financeiro/depositos/new
     def new
       @deposito = Deposito.new
-      @cheques = read_cache
+      @cheques = dpo_get_total
     end
 
     # GET /financeiro/depositos/ch
@@ -55,28 +54,28 @@ module Financeiro
         case @result.size
         when 0
         when 1
-          write_to_cache(@result.first)
+          dpo_add_entry(@result.first)
         else
           render :choose and return
         end
       end
 
-      @cheques = read_cache
+      @cheques = dpo_read_cache
       render :cheques
     end
 
     # POST /financeiro/depositos/ch
     def add
       ch = Cheque.new(cheque_params.to_h)
-      write_to_cache(ch)
-      @cheques = read_cache
+      dpo_add_entry(ch)
+      @cheques = dpo_read_cache
       render :cheques
     end
 
     # DELETE /financeiro/depositos/ch/:id
     def remove
-      remove_from_cache(params[:id])
-      @cheques = read_cache
+      dpo_remove_entry(params[:id])
+      @cheques = dpo_read_cache
       render :cheques
     end
 
