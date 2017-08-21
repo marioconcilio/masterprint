@@ -1,17 +1,3 @@
-<div class="row">
-  <% @recados.each do |rec| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
-        <div class="card-header">
-          <%= rec.titulo %>
-        </div>
-        <div class="card-block">
-          <p><%= rec.texto %></p>
-          <small class="text-muted font-weight-bold pull-right">
-            <%= rec.remetente.nome %> em <%= format_datetime(rec.updated_at) %>
-          </small>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div id="rec-cardsview">
+  <%= render 'cards' %>
 </div>

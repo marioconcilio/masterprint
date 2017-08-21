@@ -1,0 +1,20 @@
+<div class="card-columns">
+  <% @recados.each do |rec| %>
+    <div class="card">
+      <div class="card-header">
+        <strong><%= rec.titulo %></strong>
+        <div class="card-actions">
+          <%= link_to edit_painel_recado_path(rec), method: :get, remote: true do %>
+            <%= fa_tag 'icon-note' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-block">
+        <%= simple_format rec.texto %>
+        <small class="text-muted font-weight-bold pull-right">
+          <%= rec.remetente.nome %> em <%= format_datetime(rec.updated_at) %>
+        </small>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -3,8 +3,8 @@ class Recado < ApplicationRecord
                         :texto,
                         :remetente
 
-  belongs_to :remetente, class_name: 'Usuario'
-  belongs_to :destinatario, class_name: 'Usuario'
+  belongs_to :remetente,    class_name: 'Usuario'
+  belongs_to :destinatario, class_name: 'Usuario', optional: true
 
   default_scope { order(updated_at: :desc) }
 end

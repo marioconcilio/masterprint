@@ -37,10 +37,6 @@ module SessionsHelper
     current_user.try(:admin)
   end
 
-  def body_logged_in?
-    'logged-in' if logged_in?
-  end
-
   def log_out
     forget current_user
     session.delete(:user_id)
