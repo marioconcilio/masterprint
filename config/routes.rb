@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   delete  '/logout',  to: 'sessions#destroy'
 
   namespace :painel do
-    resources :recados
+    resources :recados do
+      member do
+        post :toggle
+      end
+    end
   end
 
   namespace :estoque do

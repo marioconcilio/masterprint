@@ -12,9 +12,7 @@
     <div class="form-group">
       <%= form_label :para %>
       <%= f.select :destinatario_id,
-                    Usuario.all.map { |c|
-                      [ c.nome, c.id ]
-                    },
+                    Usuario.all.map { |c| [ c.nome, c.id ] },
                     { include_blank: true },
                     { class: 'form-control' } %>
     </div>

@@ -3,7 +3,8 @@ class Painel::RecadosController < ApplicationController
 
   # GET /painel/recados
   def index
-    @recados = Recado.includes(:remetente).all
+    @search = Recado.includes(:remetente).ransack(params[:q])
+    @recados = @search.result
     respond_to :html, :js
   end
 
@@ -43,6 +44,19 @@ class Painel::RecadosController < ApplicationController
         format.js { render 'edit' }
       end
     end
+  end
+
+  # POST /painel/recados/:id/toggle
+  def toggle
+    puts 'olar'
+    redirect_to painel_recados_url
+  end
+
+  # DELETE /painel/recados/:id
+  def destroy
+    Recado.find(params[:id]).destroy
+    flash[:success] = 'Recado removido'
+    redirect_to painel_recados_url
   end
 
   private

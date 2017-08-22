@@ -1,16 +1,27 @@
 <div class="card-columns">
   <% @recados.each do |rec| %>
-    <div class="card">
+    <div class="card <%= 'card-inverse card-success' unless rec.done? %>">
       <div class="card-header">
-        <strong><%= rec.titulo %></strong>
+        <strong class="<%= 'text-muted' if rec.done? %>"><%= rec.titulo %></strong>
+        <%# switch_success_sm_tag name: 'done',
+                                  value: rec.id,
+                                  class: 'mb-0',
+                                  data: {
+                                    remote: true,
+                                    method: :post,
+                                    url: url_for(action: :toggle, id: rec.id) } %>
+
         <div class="card-actions">
           <%= link_to edit_painel_recado_path(rec), method: :get, remote: true do %>
             <%= fa_tag 'icon-note' %>
           <% end %>
         </div>
       </div>
+
       <div class="card-block">
-        <%= simple_format rec.texto %>
+        <div class="<%= 'text-muted' if rec.done? %>">
+          <%= simple_format rec.texto %>
+        </div>
         <small class="text-muted font-weight-bold pull-right">
           <%= rec.remetente.nome %> em <%= format_datetime(rec.updated_at) %>
         </small>

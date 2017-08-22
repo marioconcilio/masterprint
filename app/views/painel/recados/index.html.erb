@@ -1,3 +1,21 @@
+<% provide(:url, painel_recados_path) %>
+<% provide(:search_field, :titulo_cont) %>
+<% provide(:placeholder, 'Título') %>
+
+<div class="card">
+  <div class="card-block pb-0">
+    <div class="row">
+      <div class="col-md-8">
+        <h3 class="card-title clearfix">Recados</h3>
+      </div>
+
+      <div class="col-md-4">
+        <%= render 'shared/search_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="rec-cardsview">
   <%= render 'cards' %>
 </div>

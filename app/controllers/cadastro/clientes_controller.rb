@@ -5,7 +5,6 @@ class Cadastro::ClientesController < ApplicationController
   def index
     @search = Cliente.ransack(params[:q])
     @clientes = @search.result.page(params[:page])
-
     respond_to :html, :js
   end
 
