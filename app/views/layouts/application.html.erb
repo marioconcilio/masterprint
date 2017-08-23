@@ -22,13 +22,6 @@
       <main class="main">
         <div class="container-fluid pt-4">
           <div class="animated fadeIn">
-            <%# render 'layouts/flash' %>
-            <script type="text/javascript">
-              <% flash.each do |f| %>
-                <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
-                toastr['<%= type %>']('<%= f[1] %>', 'Sucesso', {"closeButton": true, "progressBar": true});
-              <% end %>
-            </script>
             <div id="content">
               <%= yield %>
             </div>
