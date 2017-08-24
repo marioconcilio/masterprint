@@ -5,7 +5,7 @@ module Custom::SwitchHelper
     content_tag :label, class: "switch switch-icon #{opt[:class]}" do
       content_tag(:input, nil,
                   type: 'checkbox',
-                  id: "#{opt[:name]}_#{opt[:value]}",
+                  id: opt[:id] || "#{opt[:name]}_#{opt[:value]}",
                   name: opt[:name],
                   value: opt[:value],
                   class: 'switch-input',
@@ -20,6 +20,7 @@ module Custom::SwitchHelper
     opt.symbolize_keys!
     switch_tag name: opt[:name],
                value: opt[:value],
+               id: opt[:id],
                class: "switch-success #{opt[:class]}",
                data: opt[:data],
                checked: checked
@@ -29,6 +30,7 @@ module Custom::SwitchHelper
     opt.symbolize_keys!
     switch_tag name: opt[:name],
                value: opt[:value],
+               id: opt[:id],
                class: "switch-success switch-sm #{opt[:class]}",
                data: opt[:data],
                checked: checked

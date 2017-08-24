@@ -9,7 +9,7 @@
         <% unless rec.done? %>
           <div class="card-actions">
             <%= link_to edit_painel_recado_path(rec), method: :get, remote: true do %>
-              <%= fa_tag 'icon-note' %>
+              <%= fa_tag "icon-note #{recado_card_icon(rec)}" %>
             <% end %>
           </div>
         <% end %>

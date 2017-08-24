@@ -3,7 +3,10 @@ class Painel::RecadosController < ApplicationController
 
   # GET /painel/recados
   def index
-    @search = Recado.includes(:remetente).ransack(params[:q])
+    @search = Recado.where(destinatario_id: current_user.id)
+                    .or(Recado.where(destinatario_id: nil))
+                    .includes(:remetente)
+                    .ransack(params[:q])
     @recados = @search.result
     respond_to :html, :js
   end

@@ -25,7 +25,15 @@
 
     <!-- texto -->
     <div class="form-group">
-      <%= f.text_area :texto, size: '10x10', class: 'form-control' %>
+      <%= f.text_area :texto, size: '10x10', class: 'form-control not-resizable' %>
+    </div>
+
+    <!-- done -->
+    <div class="form-group text-right">
+      Marcar como concluído &nbsp;
+      <%= switch_success_tag name: 'recado[done]',
+                             value: 'true',
+                             id: 'recado_done' %>
     </div>
 
   </div>

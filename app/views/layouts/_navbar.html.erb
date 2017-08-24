@@ -5,12 +5,12 @@
   </li>
 
   <% if logged_in? %>
-    <li class="nav-item pr-1"">
+    <li class="nav-item px-2">
       <%= link_to 'Novo Recado', new_painel_recado_path, remote: true,
                   class: 'nav-link' %>
     </li>
 
-    <li class="nav-item dropdown hidden-md-down pr-1">
+    <li class="nav-item dropdown hidden-md-down px-2">
       <%= link_to 'Estoque', '#',
             class: 'nav-link dropdown-toggle',
             'data-toggle' => 'dropdown',
@@ -64,7 +64,7 @@
     </li>
     <!-- estoque -->
 
-    <li class="nav-item dropdown hidden-md-down pr-1">
+    <li class="nav-item dropdown hidden-md-down px-2">
       <%= link_to 'Financeiro', '#',
             class: 'nav-link dropdown-toggle',
             'data-toggle' => 'dropdown',
@@ -101,7 +101,7 @@
     </li>
     <!-- financeiro -->
 
-    <li class="nav-item dropdown hidden-md-down pr-1">
+    <li class="nav-item dropdown hidden-md-down px-2">
       <%= link_to 'Cadastro', '#',
             class: 'nav-link dropdown-toggle',
             'data-toggle' => 'dropdown',
@@ -127,12 +127,12 @@
 
 <ul class="nav navbar-nav ml-auto">
   <% if Rails.env.development? %>
-    <li class="nav-item px-1 text-white" style="background-color: crimson">
+    <li class="nav-item px-4 text-white" style="background-color: crimson">
       <%= fa_tag 'icon-fire' %>
       Development
     </li>
   <% end %>
-  <li class="nav-item dropdown px-1">
+  <li class="nav-item dropdown px-4">
     <% if logged_in? %>
       <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
           'data-toggle' => 'dropdown', role: :button %>
@@ -144,7 +144,7 @@
       </div>
     <% else %>
       <%= link_to login_path, remote: true, class: 'nav-link' do %>
-        <%= fa_tag 'icon-login pr-1' %>Entrar
+        <%= fa_tag 'icon-login px-2' %>Entrar
       <% end %>
     <% end %>
   </li>

@@ -12,10 +12,8 @@ module Painel::RecadosHelper
     'text-muted' if rec.done?
   end
 
-  def texto_done_recado(rec)
-    if rec.done?
-      'strikethrough'
-    end
+  def recado_card_icon(rec)
+    'text-white' if rec.updated_at < 1.week.ago
   end
 
 end
