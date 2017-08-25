@@ -2,17 +2,26 @@
   <ul class="nav">
     <li class="divider"></li>
 
-    <li class="nav-item">
-      <%= link_to '#', class: 'nav-link' do %>
-        <i class="icon-speedometer"></i>Dashboard
-      <% end %>
-    </li>
-
-    <%= render 'estoque/sidebar' %>
-
     <% if logged_in? %>
+      <% if admin? %>
+        <li class="nav-item">
+          <%= link_to '#', class: 'nav-link' do %>
+            <i class="icon-speedometer"></i>Dashboard
+          <% end %>
+        </li>
+      <% end %>
+
+      <li class="nav-item">
+        <%= link_to painel_recados_path, class: 'nav-link' do %>
+          <i class="icon-note"></i>Recados
+        <% end %>
+      </li>
+
+      <%= render 'estoque/sidebar' %>
       <%= render 'cadastro/sidebar' %>
       <%= render 'financeiro/sidebar' %>
+    <% else %>
+      <%= render 'estoque/sidebar' %>
     <% end %>
   </ul>
 </nav>
