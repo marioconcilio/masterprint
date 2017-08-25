@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 20170822194249) do
     t.index ["blanqueta_lona_id"], name: "index_blanquetas_on_blanqueta_lona_id", using: :btree
   end
 
-  create_table "chapa_dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
   create_table "chapa_marcas", force: :cascade do |t|
     t.string   "marca"
     t.decimal  "preco",      precision: 8
@@ -59,29 +53,17 @@ ActiveRecord::Schema.define(version: 20170822194249) do
     t.index ["chapa_marca_id"], name: "index_chapas_on_chapa_marca_id", using: :btree
   end
 
-  create_table "cheque_depositos", force: :cascade do |t|
-    t.decimal  "total",      precision: 10, scale: 2
-    t.integer  "banco"
-    t.integer  "agencia"
-    t.bigint   "conta"
-    t.string   "titular"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
   create_table "cheques", force: :cascade do |t|
     t.integer  "banco"
     t.integer  "numero"
     t.string   "emitente"
-    t.decimal  "valor",              precision: 10, scale: 2
+    t.decimal  "valor",         precision: 10, scale: 2
     t.date     "data_deposito"
     t.bigint   "cliente_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "cheque_deposito_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "deposito_id"
     t.string   "status"
-    t.index ["cheque_deposito_id"], name: "index_cheques_on_cheque_deposito_id", using: :btree
     t.index ["cliente_id"], name: "index_cheques_on_cliente_id", using: :btree
     t.index ["deposito_id"], name: "index_cheques_on_deposito_id", using: :btree
   end
@@ -120,12 +102,6 @@ ActiveRecord::Schema.define(version: 20170822194249) do
     t.string   "titular"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-  end
-
-  create_table "dolares", force: :cascade do |t|
-    t.decimal  "value",      precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
   end
 
   create_table "envelopes", force: :cascade do |t|
@@ -249,7 +225,6 @@ ActiveRecord::Schema.define(version: 20170822194249) do
 
   add_foreign_key "blanquetas", "blanqueta_lonas"
   add_foreign_key "chapas", "chapa_marcas"
-  add_foreign_key "cheques", "cheque_depositos"
   add_foreign_key "cheques", "clientes"
   add_foreign_key "cheques", "depositos"
   add_foreign_key "papeis", "papel_tipos"
