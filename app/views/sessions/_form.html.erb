@@ -24,14 +24,13 @@
       <%= f.password_field :password, class: 'form-control' %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :remember_me, class: 'switch switch-3d switch-success' do %>
+    <div class="form-group text-right">
+      Lembre-me neste computador &nbsp;
+      <%= f.label :remember_me, class: 'switch switch-icon switch-success' do %>
         <%= f.check_box :remember_me, class: 'switch-input' %>
         <span class="switch-label"></span>
         <span class="switch-handle"></span>
       <% end %>
-
-      Lembre-me neste computador
     </div>
   </div>
   <!-- /.modal-body -->
