@@ -7,11 +7,7 @@ Rails.application.routes.draw do
   delete  '/logout',  to: 'sessions#destroy'
 
   namespace :painel do
-    resources :recados do
-      member do
-        post :toggle
-      end
-    end
+    resources :recados
   end
 
   namespace :estoque do
@@ -29,6 +25,16 @@ Rails.application.routes.draw do
           end
         end
     end
+  end
+
+  namespace :grafiara do
+    resources :calendarios
+    resources :convites
+  end
+
+  namespace :tiktak do
+    resources :calendarios
+    resources :convites
   end
 
   namespace :cadastro do

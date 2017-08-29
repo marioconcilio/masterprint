@@ -106,3 +106,9 @@ end
   )
 end
 =end
+# Grafiara Calendarios
+Grafiara::Calendario.transaction do
+  f = CSV.read("#{PATH}/grafiara_calendarios.csv", col_sep: ';')
+  column = [:pagina, :referencia, :descricao, :preco, :un]
+  Grafiara::Calendario.import(column, f, validate: true)
+end

@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @search, :pagina, 'Página', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :referencia, 'Referência', {}, { remote: true, method: :get } %>
+      </th>
+      <th>
+        <%= sort_link @search, :descricao, 'Descrição', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-right">
+        <%= sort_link @search, :preco, 'Preço', {}, { remote: true, method: :get } %>
+      </th>
+      <th class="text-center">
+        <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @calendarios.each do |c| %>
+      <tr>
+        <td> <%= c.pagina %> </td>
+        <td> <%= simple_format c.referencia %> </td>
+        <td> <%= simple_format c.descricao %> </td>
+        <td class="text-right"> <%= format_currency c.preco %> </td>
+        <td class="text-center"> <%= c.un %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

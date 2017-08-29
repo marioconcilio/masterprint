@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829152305) do
+ActiveRecord::Schema.define(version: 20170829205157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,16 @@ ActiveRecord::Schema.define(version: 20170829152305) do
     t.string   "contato"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "grafiara_calendarios", force: :cascade do |t|
+    t.string   "pagina"
+    t.text     "referencia"
+    t.text     "descricao"
+    t.string   "un"
+    t.decimal  "preco",      precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "grafiara_folhinhas", force: :cascade do |t|
