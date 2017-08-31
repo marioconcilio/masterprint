@@ -25,7 +25,10 @@
 
     <!-- texto -->
     <div class="form-group">
-      <%= f.text_area :texto, size: '10x10', class: 'form-control not-resizable' %>
+      <%= f.cktext_area :texto,
+                        rows: 10,
+                        class: 'form-control not-resizable',
+                        ckeditor: { toolbar: 'default' } %>
     </div>
 
     <!-- done -->

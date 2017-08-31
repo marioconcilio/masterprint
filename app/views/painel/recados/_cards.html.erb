@@ -17,7 +17,7 @@
 
       <div class="card-block">
         <div class="<%= recado_card_text rec %>">
-          <%= simple_format rec.texto %>
+          <%= raw rec.texto %>
         </div>
         <small class="text-muted font-weight-bold pull-right">
           <%= rec.remetente.nome %> em <%= format_datetime(rec.updated_at) %>

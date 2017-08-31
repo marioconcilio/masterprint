@@ -1,0 +1,54 @@
+<%= form_for @calendario, remote: true do |f| %>
+
+  <div class="modal-header">
+    <%= modal_form_header 'Editando', 'Calendário' %>
+  </div>
+  <!-- /.modal-header -->
+
+  <div class="modal-body">
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <!-- pagina -->
+    <div class="form-group">
+      <%= form_label 'Página' %>
+      <%= f.text_field :pagina, class: 'form-control' %>
+    </div>
+
+    <!-- referencia -->
+    <div class="form-group">
+      <%= form_label 'Referência' %>
+      <%= f.text_area :referencia, rows: 3, class: 'form-control not-resizable' %>
+    </div>
+
+    <!-- descricao -->
+    <div class="form-group">
+      <%= form_label 'Descrição' %>
+      <%= f.cktext_area :descricao,
+                        rows: 5,
+                        class: 'form-control not-resizable',
+                        ckeditor: { toolbar: 'mini' } %>
+    </div>
+
+    <!-- preco e un -->
+    <div class="row">
+      <div class="form-group col-sm-5">
+        <%= form_label :preco %>
+
+        <div class="input-prepend input-group">
+          <span class="input-group-addon">R$</span>
+          <%= f.text_field :preco,
+                           value: number_with_precision(f.object.preco, precision: 2),
+                           class: 'form-control money-field' %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
+
+<% end %>

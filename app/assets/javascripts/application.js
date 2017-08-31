@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// jQueey
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
@@ -20,6 +21,7 @@
 // require turbolinks
 // require turbolinks-compatibility
 //
+// Bootstrap
 //= require bootstrap-sprockets
 //
 // Charts
@@ -29,5 +31,6 @@
 // Extra
 //= require pace/pace
 //= require tether
+//= require ckeditor/init
 //
 //= require_tree .
