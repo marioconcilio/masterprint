@@ -43,6 +43,12 @@ module Custom::HtmlHelper
     end
   end
 
+  def link_grafiara_to(name=nil, options=nil, html_options=nil, &block)
+    link_to options, html_options do
+      content_tag(:i, nil, class: 'icon-layers') + name
+    end
+  end
+
   def fa_tag(klass)
     content_tag :i, nil, class: klass
   end

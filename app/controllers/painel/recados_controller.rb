@@ -3,8 +3,12 @@ class Painel::RecadosController < ApplicationController
 
   # GET /painel/recados
   def index
-    @search = Recado.where(destinatario_id: current_user.id)
-                    .or(Recado.where(destinatario_id: nil))
+    @search = Recado.where(['(destinatario_id = :id OR destinatario_id = NULL)
+                              AND (
+                                (done = false)
+                                OR
+                                (done = true AND updated_at > :date))',
+                              { id: current_user.id, date: 1.week.ago }])
                     .includes(:remetente)
                     .ransack(params[:q])
     @recados = @search.result
@@ -27,13 +31,11 @@ class Painel::RecadosController < ApplicationController
   # GET /painel/recados/new
   def new
     @recado = Recado.new
-    respond_to :js
   end
 
   # GET /painel/recados/:id/edit
   def edit
     @recado = Recado.find(params[:id])
-    respond_to :js
   end
 
   # PUT /painel/recados/:id
@@ -49,13 +51,7 @@ class Painel::RecadosController < ApplicationController
     end
   end
 
-  # POST /painel/recados/:id/toggle
-  def toggle
-    puts 'olar'
-    redirect_to painel_recados_url
-  end
-
-  # DELETE /painel/recados/:id
+  # DELETE /painel/recado/:id
   def destroy
     Recado.find(params[:id]).destroy
     flash[:success] = 'Recado removido'

@@ -1,50 +1,48 @@
-<%= form_for [:painel, @recado], remote: true do |f| %>
+<%= form_for [:painel, @recado] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="modal-header">
-    <%= modal_form_header 'Novo', 'Recado' %>
+  <!-- para -->
+  <div class="form-group">
+    <%= form_label :para %>
+    <%= f.select :destinatario_id,
+                  Usuario.all.map { |c| [ c.nome, c.id ] },
+                  { include_blank: true },
+                  { class: 'form-control' } %>
   </div>
-  <!-- /.modal-header -->
 
-  <div class="modal-body">
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <!-- para -->
-    <div class="form-group">
-      <%= form_label :para %>
-      <%= f.select :destinatario_id,
-                    Usuario.all.map { |c| [ c.nome, c.id ] },
-                    { include_blank: true },
-                    { class: 'form-control' } %>
-    </div>
-
-    <!-- título -->
-    <div class="form-group">
-      <%= form_label 'Título' %>
-      <%= f.text_field :titulo, class: 'form-control' %>
-    </div>
-
-    <!-- texto -->
-    <div class="form-group">
-      <%= f.cktext_area :texto,
-                        rows: 10,
-                        class: 'form-control not-resizable',
-                        ckeditor: { toolbar: 'default' } %>
-    </div>
-
-    <!-- done -->
-    <div class="form-group text-right">
-      Marcar como concluído &nbsp;
-      <%= switch_success_tag name: 'recado[done]',
-                             value: 'true',
-                             id: 'recado_done' %>
-    </div>
-
+  <!-- título -->
+  <div class="form-group">
+    <%= form_label 'Título' %>
+    <%= f.text_field :titulo, class: 'form-control' %>
   </div>
-  <!-- /.modal-body -->
 
-  <div class="modal-footer">
-    <%= modal_form_save f %>
+  <!-- texto -->
+  <div class="form-group">
+    <%= f.cktext_area :texto,
+                      class: 'form-control not-resizable',
+                      ckeditor: { toolbar: 'default' } %>
   </div>
-  <!-- /.modal-footer -->
+
+  <!-- done -->
+  <div class="form-group text-right">
+    Marcar como concluído &nbsp;
+    <%= switch_success_tag name: 'recado[done]',
+                           value: 'true',
+                           id: 'recado_done' %>
+  </div>
+
+  <div class="card-footer">
+    <div class="btn-group pull-right">
+      <%= link_to 'Voltar', painel_recados_path, class: 'btn btn-secondary' %>
+      <% if @recado.id %>
+        <%= link_to 'Excluir',
+              painel_recado_path(@recado),
+              method: :delete,
+              data: { confirm: 'Deseja excluir o recado?' },
+              class: 'btn btn-danger' %>
+      <% end %>
+      <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    </div>
+  </div>
 
 <% end %>

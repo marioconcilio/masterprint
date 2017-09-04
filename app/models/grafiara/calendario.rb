@@ -4,5 +4,5 @@ class Grafiara::Calendario < ApplicationRecord
                         :preco,
                         :un
 
-  default_scope { order(pagina: :asc) }
+  default_scope { order(pagina: :asc, referencia: :asc) }
 end

@@ -1,30 +1,28 @@
 'use strict';
 
 $(document).ready(function($) {
-  var showFlashMessages, title;
-
-  title = {
+  var title = {
     success: 'Sucesso',
     info: 'Info',
     warning: 'Atenção',
     error: 'Erro'
   };
 
-  showFlashMessages = function(jqXHR) {
-    var flash;
+  var showFlashMessages = function(jqXHR) {
     if (!jqXHR || !jqXHR.getResponseHeader) {
       return;
     }
 
-    flash = jqXHR.getResponseHeader('X-Flash');
+    var flash = jqXHR.getResponseHeader('X-Flash');
+    flash = decodeURIComponent(escape(flash))
     flash = JSON.parse(flash);
 
-    return _.each(flash, function(message, key) {
-      return toastr[key](message, title[key], {
-        'closeButton': true,
-        'progressBar': true
-      });
-    });
+    var key;
+    for (key in flash) {
+      if (flash.hasOwnProperty(key)) {
+        toastr[key](flash[key], title[key], { 'closeButton': true, 'progressBar': true });
+      }
+    }
   };
 
   $(document).ajaxComplete(function(event, xhr, settings) {

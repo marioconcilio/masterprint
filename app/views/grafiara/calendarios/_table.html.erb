@@ -23,12 +23,12 @@
     <% @calendarios.each do |c| %>
       <tr>
         <td> <%= c.pagina %> </td>
-        <td> <%= simple_format c.referencia %> </td>
-        <td> <%= simple_format c.descricao %> </td>
+        <td> <%= raw c.referencia %> </td>
+        <td> <%= raw c.descricao %> </td>
         <td class="text-right"> <%= format_currency c.preco %> </td>
         <td class="text-center"> <%= c.un %> </td>
         <td class="text-right">
-          <%= link_details_to '', edit_grafiara_calendario_path(c), remote: true %>
+          <%= link_details_to '', edit_grafiara_calendario_path(c) %>
         </td>
       </tr>
     <% end %>
