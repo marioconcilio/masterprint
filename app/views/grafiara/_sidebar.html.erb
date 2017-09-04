@@ -4,3 +4,14 @@
 <li class="nav-item">
   <%= link_grafiara_to 'Calendários', grafiara_calendarios_path, class: 'nav-link' %>
 </li>
+
+<li class="nav-item nav-dropdown">
+  <%= link_grafiara_to 'Convites', '#', class: 'nav-link nav-dropdown-toggle' %>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_grafiara_to 'Casamento', grafiara_casamentos_path,
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+</li>

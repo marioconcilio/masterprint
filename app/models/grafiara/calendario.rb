@@ -5,4 +5,5 @@ class Grafiara::Calendario < ApplicationRecord
                         :un
 
   default_scope { order(pagina: :asc, referencia: :asc) }
+  paginates_per 20
 end

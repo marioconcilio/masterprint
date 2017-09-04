@@ -1,7 +1,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @casamentos, remote: true %>
   </div>
 </div>
 <!-- /.row -->
@@ -15,7 +15,7 @@
             <%= sort_link @search, :pagina, 'Página', {}, { remote: true, method: :get } %>
           </th>
           <th style="width: 20%">
-            <%= sort_link @search, :referencia, 'Referência', {}, { remote: true, method: :get } %>
+            <%= sort_link @search, :codigo, 'Código', {}, { remote: true, method: :get } %>
           </th>
           <th style="width: 40%">
             <%= sort_link @search, :descricao, 'Descrição', {}, { remote: true, method: :get } %>
@@ -30,15 +30,15 @@
         </tr>
       </thead>
       <tbody>
-        <% @calendarios.each do |c| %>
+        <% @casamentos.each do |c| %>
           <tr>
             <td> <%= c.pagina %> </td>
-            <td> <%= raw c.referencia %> </td>
+            <td> <%= c.codigo %> </td>
             <td> <%= raw c.descricao %> </td>
             <td class="text-right"> <%= format_currency c.preco %> </td>
             <td class="text-center"> <%= c.un %> </td>
             <td class="text-right">
-              <%= link_details_to '', edit_grafiara_calendario_path(c) %>
+              <%= link_details_to '', edit_grafiara_casamento_path(c) %>
             </td>
           </tr>
         <% end %>
@@ -50,7 +50,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @casamentos, remote: true %>
   </div>
 </div>
 <!-- /.row -->

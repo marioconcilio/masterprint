@@ -4,7 +4,7 @@ module Grafiara
     # GET /grafiara/calendarios
     def index
       @search = Calendario.ransack(params[:q])
-      @calendarios = @search.result
+      @calendarios = @search.result.page(params[:page])
       respond_to :html, :js
     end
 

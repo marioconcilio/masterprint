@@ -111,5 +111,11 @@ Grafiara::Calendario.transaction do
   f = CSV.read("#{PATH}/grafiara_calendarios.csv", col_sep: ';')
   column = [:pagina, :referencia, :descricao, :preco, :un]
   Grafiara::Calendario.import(column, f, validate: true)
+
+# Grafiara Casamentos
+Grafiara::Casamento.transaction do
+  f = CSV.read("#{PATH}/grafiara_casamentos.csv", col_sep: ';')
+  column = [:pagina, :codigo, :descricao, :preco, :un]
+  Grafiara::Casamento.import(column, f, validate: true)
 end
 =end

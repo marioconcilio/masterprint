@@ -1,0 +1,58 @@
+<%= form_for @casamento do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row">
+    <!-- pagina -->
+    <div class="form-group col-sm-3">
+      <%= form_label 'Página' %>
+      <%= f.text_field :pagina, class: 'form-control' %>
+    </div>
+
+    <!-- codigo -->
+    <div class="form-group col-sm-3">
+      <%= form_label 'Código' %>
+      <%= f.text_field :codigo, class: 'form-control' %>
+    </div>
+
+    <!-- preco e un -->
+    <div class="form-group col-sm-3">
+      <%= form_label 'Preço' %>
+
+      <div class="input-prepend input-group">
+        <span class="input-group-addon">R$</span>
+        <%= f.text_field :preco,
+                         value: number_with_precision(f.object.preco, precision: 2),
+                         class: 'form-control money-field' %>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-3">
+      <%= form_label :unidade %>
+      <%= f.text_field :un, class: 'form-control' %>
+    </div>
+  </div>
+
+  <!-- descricao -->
+  <div class="form-group">
+    <%= form_label 'Descrição' %>
+    <%= f.cktext_area :descricao,
+                      rows: 5,
+                      class: 'form-control not-resizable',
+                      ckeditor: { toolbar: 'mini' } %>
+  </div>
+
+  <div class="card-footer">
+    <div class="btn-group pull-right">
+      <%= link_to 'Voltar', grafiara_casamentos_path, class: 'btn btn-secondary' %>
+      <% if @casamento.id %>
+        <%= link_to 'Excluir',
+              grafiara_casamento_path(@casamento),
+              method: :delete,
+              data: { confirm: 'Deseja excluir o convite?' },
+              class: 'btn btn-danger' %>
+      <% end %>
+      <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    </div>
+  </div>
+
+<% end %>
