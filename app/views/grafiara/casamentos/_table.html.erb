@@ -11,19 +11,19 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th style="width: 10%">
+          <th class="w-10">
             <%= sort_link @search, :pagina, 'Página', {}, { remote: true, method: :get } %>
           </th>
-          <th style="width: 20%">
+          <th class="w-20">
             <%= sort_link @search, :codigo, 'Código', {}, { remote: true, method: :get } %>
           </th>
-          <th style="width: 40%">
+          <th class="w-40">
             <%= sort_link @search, :descricao, 'Descrição', {}, { remote: true, method: :get } %>
           </th>
-          <th class="text-right" style="width: 15%">
+          <th class="w-20 text-right">
             <%= sort_link @search, :preco, 'Preço', {}, { remote: true, method: :get } %>
           </th>
-          <th class="text-center" style="width: 10%">
+          <th class="w-10 text-center">
             <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
           </th>
           <th><br></th>

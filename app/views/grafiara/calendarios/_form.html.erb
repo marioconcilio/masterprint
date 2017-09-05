@@ -11,13 +11,7 @@
     <!-- preco e un -->
     <div class="form-group col-sm-4">
       <%= form_label 'Preço' %>
-
-      <div class="input-prepend input-group">
-        <span class="input-group-addon">R$</span>
-        <%= f.text_field :preco,
-                         value: number_with_precision(f.object.preco, precision: 2),
-                         class: 'form-control money-field' %>
-      </div>
+      <%= f.money_field :preco, class: 'form-control' %>
     </div>
 
     <div class="form-group col-sm-4">

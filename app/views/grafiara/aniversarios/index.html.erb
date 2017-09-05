@@ -1,0 +1,35 @@
+<% provide(:url, grafiara_aniversarios_path) %>
+<% provide(:search_field, :codigo_cont) %>
+<% provide(:placeholder, 'Código') %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <%= fa_tag 'fa fa-align-justify' %>
+        Grafiara<strong>Convites Aniversário</strong>
+      </div>
+
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= render 'shared/search_form' %>
+          </div>
+
+          <% if logged_in? %>
+            <div class="col-sm-8 text-right">
+              <%= link_to 'Novo Convite',
+                          new_grafiara_aniversario_path,
+                          remote: true,
+                          class: 'btn btn-success' %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="grafiara-aniversarios-tableview">
+          <%= render 'table' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   after_action :flash_to_headers
+  default_form_builder Custom::FormBuilder
 
   private
     def flash_to_headers

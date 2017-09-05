@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :grafiara do
     resources :calendarios
     resources :casamentos
+    resources :aniversarios
   end
 
   namespace :tiktak do

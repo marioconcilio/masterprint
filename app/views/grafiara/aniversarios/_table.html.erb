@@ -1,7 +1,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @aniversarios, remote: true %>
   </div>
 </div>
 <!-- /.row -->
@@ -11,14 +11,11 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th class="w-10">
+          <th class="w-20">
             <%= sort_link @search, :pagina, 'Página', {}, { remote: true, method: :get } %>
           </th>
-          <th class="w-20">
-            <%= sort_link @search, :referencia, 'Referência', {}, { remote: true, method: :get } %>
-          </th>
           <th class="w-40">
-            <%= sort_link @search, :descricao, 'Descrição', {}, { remote: true, method: :get } %>
+            <%= sort_link @search, :codigo, 'Código', {}, { remote: true, method: :get } %>
           </th>
           <th class="w-20 text-right">
             <%= sort_link @search, :preco, 'Preço', {}, { remote: true, method: :get } %>
@@ -30,15 +27,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @calendarios.each do |c| %>
+        <% @aniversarios.each do |a| %>
           <tr>
-            <td> <%= c.pagina %> </td>
-            <td> <%= raw c.referencia %> </td>
-            <td> <%= raw c.descricao %> </td>
-            <td class="text-right"> <%= format_currency c.preco %> </td>
-            <td class="text-center"> <%= c.un %> </td>
+            <td> <%= a.pagina %> </td>
+            <td> <%= a.codigo %> </td>
+            <td class="text-right"> <%= format_currency a.preco %> </td>
+            <td class="text-center"> <%= a.un %> </td>
             <td class="text-right">
-              <%= link_details_to '', edit_grafiara_calendario_path(c) %>
+              <%= link_details_to '', edit_grafiara_aniversario_path(a), remote: true %>
             </td>
           </tr>
         <% end %>
@@ -50,7 +46,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @aniversarios, remote: true %>
   </div>
 </div>
 <!-- /.row -->
