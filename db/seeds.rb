@@ -104,13 +104,15 @@ end
     remetente_id: 2,
     destinatario_id: 2
   )
-end
+ end
+=end
 
 # Grafiara Calendarios
 Grafiara::Calendario.transaction do
   f = CSV.read("#{PATH}/grafiara_calendarios.csv", col_sep: ';')
   column = [:pagina, :referencia, :descricao, :preco, :un]
   Grafiara::Calendario.import(column, f, validate: true)
+end
 
 # Grafiara Casamentos
 Grafiara::Casamento.transaction do
@@ -118,4 +120,4 @@ Grafiara::Casamento.transaction do
   column = [:pagina, :codigo, :descricao, :preco, :un]
   Grafiara::Casamento.import(column, f, validate: true)
 end
-=end
+

@@ -3,7 +3,7 @@ class Painel::RecadosController < ApplicationController
 
   # GET /painel/recados
   def index
-    @search = Recado.where(['(destinatario_id = :id OR destinatario_id = NULL)
+    @search = Recado.where(['(destinatario_id = :id OR destinatario_id IS NULL)
                               AND (
                                 (done = false)
                                 OR
