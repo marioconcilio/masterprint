@@ -4,13 +4,25 @@
 
 <div class="card">
   <div class="card-block pb-0">
+
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <h3 class="card-title clearfix">Recados</h3>
       </div>
+    </div>
 
+    <hr class="m-0">
+
+    <div class="row mt-4">
       <div class="col-md-4">
         <%= render 'shared/search_form' %>
+
+      </div>
+
+      <div class="col-sm-8 text-right">
+        <%= link_to 'Novo Recado',
+                    new_painel_recado_path,
+                    class: 'btn btn-success' %>
       </div>
     </div>
   </div>

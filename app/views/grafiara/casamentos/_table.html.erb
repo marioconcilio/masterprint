@@ -26,7 +26,9 @@
           <th class="w-10 text-center">
             <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
           </th>
-          <th><br></th>
+          <% if @logged_in %>
+            <th><br></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -37,9 +39,11 @@
             <td> <%= raw c.descricao %> </td>
             <td class="text-right"> <%= format_currency c.preco %> </td>
             <td class="text-center"> <%= c.un %> </td>
-            <td class="text-right">
-              <%= link_details_to '', edit_grafiara_casamento_path(c) %>
-            </td>
+            <% if @logged_in %>
+              <td class="text-right">
+                <%= link_details_to '', edit_grafiara_casamento_path(c) %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

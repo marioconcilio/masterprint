@@ -32,7 +32,9 @@
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
       <th><br></th>
-      <th><br></th>
+      <% if @logged_in %>
+        <th><br></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
