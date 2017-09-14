@@ -7,4 +7,10 @@ class Recado < ApplicationRecord
   belongs_to :destinatario, class_name: 'Usuario', optional: true
 
   default_scope { order(done: :asc, updated_at: :desc) }
+
+  private
+    ransacker :titulo, type: :string do
+      Arel.sql 'unaccent("titulo")'
+    end
+
 end
