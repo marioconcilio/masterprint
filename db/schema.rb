@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905154218) do
+ActiveRecord::Schema.define(version: 20170913205329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "blanqueta_lonas", force: :cascade do |t|
     t.integer  "lonas"
@@ -159,6 +160,27 @@ ActiveRecord::Schema.define(version: 20170905154218) do
     t.text     "descricao"
     t.decimal  "preco",      precision: 8, scale: 2
     t.string   "un"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "grafiara_folhinhas", force: :cascade do |t|
+    t.string   "pagina"
+    t.text     "referencia"
+    t.text     "descricao"
+    t.string   "un"
+    t.decimal  "preco",      precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "grafiara_lutos", force: :cascade do |t|
+    t.string   "pagina"
+    t.string   "referencia"
+    t.string   "descricao"
+    t.decimal  "preco",      precision: 8, scale: 2
+    t.string   "un"
+    t.integer  "qtde"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

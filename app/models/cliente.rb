@@ -22,4 +22,8 @@ class Cliente < ApplicationRecord
       self.contato = self.contato.titlecase
     end
 
+    ransacker :nome, type: :string do
+      Arel.sql 'unaccent("nome")'
+    end
+
 end

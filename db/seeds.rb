@@ -119,7 +119,6 @@ Grafiara::Casamento.transaction do
   column = [:pagina, :codigo, :descricao, :preco, :un]
   Grafiara::Casamento.import(column, f, validate: true)
 end
-=end
 
 # Grafiara Aniversarios
 Grafiara::Aniversario.transaction do
@@ -127,3 +126,11 @@ Grafiara::Aniversario.transaction do
   column = [:pagina, :codigo, :preco, :un]
   Grafiara::Aniversario.import(column, f, validate: true)
 end
+
+# Grafiara Lutos
+Grafiara::Luto.transaction do
+  f = CSV.read("#{PATH}/grafiara_lutos.csv", col_sep: ';')
+  column = [:pagina, :referencia, :descricao, :preco, :un, :qtde]
+  Grafiara::Luto.import(column, f, validate: true)
+end
+=end

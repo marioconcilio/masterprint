@@ -14,7 +14,7 @@
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
       <th><br></th>
-      <% if @logged_in %>
+      <% if logged_in? %>
         <th><br></th>
       <% end %>
     </tr>
@@ -28,7 +28,7 @@
         <td class="text-center"> <%= p.qtde %> </td>
         <td class="text-right"> <%= qtde_badge(p) %> </td>
 
-        <% if @logged_in %>
+        <% if logged_in? %>
           <td class="text-right">
             <%= link_movimento_to '', movimento_estoque_cortado_papel_path(p), remote: true %>
           </td>

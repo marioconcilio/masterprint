@@ -1,7 +1,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @lutos, remote: true %>
   </div>
 </div>
 <!-- /.row -->
@@ -14,34 +14,41 @@
           <th class="w-10">
             <%= sort_link @search, :pagina, 'Página', {}, { remote: true, method: :get } %>
           </th>
-          <th class="w-20">
+          <th class="w-10">
             <%= sort_link @search, :referencia, 'Referência', {}, { remote: true, method: :get } %>
           </th>
-          <th class="w-40">
+          <th class="w-30">
             <%= sort_link @search, :descricao, 'Descrição', {}, { remote: true, method: :get } %>
           </th>
-          <th class="w-20 text-right">
+          <th class="w-10 text-right">
             <%= sort_link @search, :preco, 'Preço', {}, { remote: true, method: :get } %>
           </th>
           <th class="w-10 text-center">
             <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
           </th>
+          <th class="w-10 text-center">
+            <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+          </th>
+          <th><br></th>
           <% if logged_in? %>
             <th><br></th>
           <% end %>
         </tr>
       </thead>
       <tbody>
-        <% @calendarios.each do |c| %>
+        <% @lutos.each do |l| %>
           <tr>
-            <td> <%= c.pagina %> </td>
-            <td> <%= raw c.referencia %> </td>
-            <td> <%= raw c.descricao %> </td>
-            <td class="text-right"> <%= format_currency c.preco %> </td>
-            <td class="text-center"> <%= c.un %> </td>
+            <td> <%= l.pagina %> </td>
+            <td> <%= l.referencia %> </td>
+            <td> <%= raw l.descricao %> </td>
+            <td class="text-right"> <%= format_currency l.preco %> </td>
+            <td class="text-center"> <%= l.un %> </td>
+            <td class="text-center"> <%= l.qtde %> </td>
+            <td class="text-right"> <%= qtde_badge(l) %> </td>
+
             <% if logged_in? %>
               <td class="text-right">
-                <%= link_details_to '', edit_grafiara_calendario_path(c) %>
+                <%= link_details_to '', edit_grafiara_luto_path(l), remote: true %>
               </td>
             <% end %>
           </tr>
@@ -54,7 +61,7 @@
 <!-- pagination -->
 <div class="row">
   <div class="col-lg-6">
-    <%= paginate @calendarios, remote: true %>
+    <%= paginate @lutos, remote: true %>
   </div>
 </div>
 <!-- /.row -->

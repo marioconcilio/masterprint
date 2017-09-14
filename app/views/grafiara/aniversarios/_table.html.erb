@@ -23,7 +23,7 @@
           <th class="w-10 text-center">
             <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
           </th>
-          <% if @logged_in %>
+          <% if logged_in? %>
             <th><br></th>
           <% end %>
         </tr>
@@ -35,7 +35,7 @@
             <td> <%= a.codigo %> </td>
             <td class="text-right"> <%= format_currency a.preco %> </td>
             <td class="text-center"> <%= a.un %> </td>
-            <% if @logged_in %>
+            <% if logged_in? %>
               <td class="text-right">
                 <%= link_details_to '', edit_grafiara_aniversario_path(a), remote: true %>
               </td>

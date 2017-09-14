@@ -1,0 +1,62 @@
+<%= form_for @luto, remote: true do |f| %>
+
+  <div class="modal-header">
+    <%= modal_form_header 'Nova', 'Estampa Luto' %>
+  </div>
+  <!-- /.modal-header -->
+
+  <div class="modal-body">
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <!-- pagina e referencia-->
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= form_label 'Página' %>
+        <%= f.text_field :pagina, class: 'form-control' %>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <%= form_label 'Referência' %>
+        <%= f.text_field :referencia, class: 'form-control' %>
+      </div>
+    </div>
+
+    <!-- preco e un -->
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= form_label 'Preço' %>
+        <%= f.money_field :preco, class: 'form-control' %>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <%= form_label :unidade %>
+        <%= f.text_field :un, class: 'form-control' %>
+      </div>
+    </div>
+
+    <!-- descricao -->
+    <div class="form-group">
+      <%= form_label 'Descrição' %>
+      <%= f.text_field :descricao, class: 'form-control' %>
+    </div>
+
+    <!-- qtde -->
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <%= form_label :quantidade %>
+        <%= f.number_field :qtde,
+                           value: (f.object.qtde || '0'),
+                           min: 0,
+                           class: 'form-control' %>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <%= modal_form_save f %>
+  </div>
+  <!-- /.modal-footer -->
+
+<% end %>

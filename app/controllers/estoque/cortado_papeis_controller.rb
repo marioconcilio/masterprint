@@ -4,8 +4,6 @@ class Estoque::CortadoPapeisController < ApplicationController
   def index
     @search = CortadoPapel.ransack(params[:q])
     @products = @search.result
-    @logged_in = logged_in?
-
     respond_to :html, :js
   end
 

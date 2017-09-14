@@ -9,7 +9,6 @@
       @products = @search.result.includes(:papel_tipo)
     end
 
-    @logged_in = logged_in?
     respond_to :html, :js
   end
 

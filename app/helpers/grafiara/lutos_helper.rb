@@ -1,0 +1,2 @@
+module Grafiara::LutosHelper
+end
