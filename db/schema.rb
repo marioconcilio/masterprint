@@ -164,16 +164,6 @@ ActiveRecord::Schema.define(version: 20170913205329) do
     t.datetime "updated_at",                         null: false
   end
 
-  create_table "grafiara_folhinhas", force: :cascade do |t|
-    t.string   "pagina"
-    t.text     "referencia"
-    t.text     "descricao"
-    t.string   "un"
-    t.decimal  "preco",      precision: 8, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
   create_table "grafiara_lutos", force: :cascade do |t|
     t.string   "pagina"
     t.string   "referencia"

@@ -3,12 +3,12 @@ class Painel::RecadosController < ApplicationController
 
   # GET /painel/recados
   def index
-    @search = Recado.where(['(destinatario_id = :id OR destinatario_id IS NULL)
+    @search = Recado.where(['(destinatario_id = :id  OR remetente_id = :id OR destinatario_id IS NULL)
                               AND (
                                 (done = false)
                                 OR
                                 (done = true AND updated_at > :date))',
-                              { id: current_user.id, date: 1.week.ago }])
+                              { id: current_user.id, date: Date.today.beginning_of_week }])
                     .includes(:remetente)
                     .ransack(params[:q])
     @recados = @search.result
