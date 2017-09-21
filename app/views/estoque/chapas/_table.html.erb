@@ -16,6 +16,9 @@
       <th class="text-center">
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
+      <% if logged_in? %>
+        <th><br></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +29,11 @@
         <td class="text-right"> <%= format_currency(c.preco) %> </td>
         <td class="text-right"> <%= format_currency(c.preco_avulso) %> </td>
         <td class="text-center"> <%= c.qtde %> </td>
+        <% if logged_in? %>
+          <td class="text-right">
+            <%= link_details_to '', edit_estoque_chapa_path(c), remote: true %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

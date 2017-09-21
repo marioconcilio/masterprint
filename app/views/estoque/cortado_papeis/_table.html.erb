@@ -16,6 +16,7 @@
       <th><br></th>
       <% if logged_in? %>
         <th><br></th>
+        <th><br></th>
       <% end %>
     </tr>
   </thead>
@@ -31,6 +32,9 @@
         <% if logged_in? %>
           <td class="text-right">
             <%= link_movimento_to '', movimento_estoque_cortado_papel_path(p), remote: true %>
+          </td>
+          <td class="text-right">
+            <%= link_details_to '', edit_estoque_cortado_papel_path(p), remote: true %>
           </td>
         <% end %>
       </tr>

@@ -10,13 +10,17 @@ class Blanqueta < ApplicationRecord
   default_scope -> { order(:larg, :comp) }
 
   def preco_un
-    if self.moeda == 'USD'
-      preco = self.blanqueta_lona.preco * Settings.dolar.blanquetas
-    else
-      preco = self.blanqueta_lona.preco
-    end
+    if self.blanqueta_lona
+      if self.moeda == 'USD'
+        preco = self.blanqueta_lona.preco * Settings.dolar.blanquetas
+      else
+        preco = self.blanqueta_lona.preco
+      end
 
-    (self.larg * self.comp * preco / 1000000).round(1)
+      return (self.larg * self.comp * preco / 1000000).round(1)
+    else
+      return 0
+    end
   end
 
   def size

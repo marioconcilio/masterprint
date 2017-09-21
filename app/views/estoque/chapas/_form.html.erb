@@ -38,13 +38,15 @@
     <div class="row">
       <div class="form-group col-sm-3">
         <%= form_label :quantidade %>
-        <%= f.number_field :qtde, value: '0', min: 0,class: 'form-control' %>
+        <%= f.number_field :qtde, value: (f.object.qtde || '0'), min: 0,class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
       <%= form_label 'Preço' %>
-      <p class="form-control-static font-weight-bold" id="chapa_total">R$ 0,00</p>
+      <p class="form-control-static font-weight-bold" id="chapa_total">
+        <%= format_currency f.object.preco %>
+      </p>
     </div>
 
     <%= f.hidden_field :dolar, value: Settings.dolar.chapas %>

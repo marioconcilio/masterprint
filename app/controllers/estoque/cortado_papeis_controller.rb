@@ -32,6 +32,12 @@ class Estoque::CortadoPapeisController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/cortado_papel/:id/edit
+  def edit
+    @papel = CortadoPapel.find(params[:id])
+    respond_to :js
+  end
+
   # PUT /estoque/cortado_papel/:id
   def update
     @papel = CortadoPapel.find(params[:id])
@@ -55,7 +61,7 @@ class Estoque::CortadoPapeisController < ApplicationController
       redirect_to estoque_cortado_papeis_url
     else
       respond_to do |format|
-        format.js { render 'movimento' }
+        format.js { render :edit }
       end
     end
   end

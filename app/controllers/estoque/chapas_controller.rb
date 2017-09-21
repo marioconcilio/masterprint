@@ -30,6 +30,25 @@ class Estoque::ChapasController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/chapas/:id/edit
+  def edit
+    @chapa = Chapa.find(params[:id])
+    respond_to :js
+  end
+
+  # PUT /estoque/chapas/:id
+  def update
+    @chapa = Chapa.find(params[:id])
+    if @chapa.update_attributes(chapa_params)
+      flash[:success] = 'Chapa atualizada'
+      redirect_to estoque_chapas_url
+    else
+      respond_to do |format|
+        format.js { render :edit }
+      end
+    end
+  end
+
   private
     def chapa_params
       params.require(:chapa).permit(:larg, :comp, :chapa_marca_id, :qtde, :moeda)
