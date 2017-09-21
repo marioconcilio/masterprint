@@ -27,6 +27,10 @@ class Usuario < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
+  def inspect
+    "Usuario(id: #{self.id}, usuario: #{self.usuario}, nome: #{self.nome}, object_id: #{"0x00%x" % (object_id << 1)})"
+  end
+
   # class methods
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

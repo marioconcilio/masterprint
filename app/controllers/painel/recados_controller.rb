@@ -22,9 +22,7 @@ class Painel::RecadosController < ApplicationController
       flash[:success] = 'Recado criado'
       redirect_to painel_recados_url
     else
-      respond_to do |format|
-        format.js { render 'new' }
-      end
+      render :new
     end
   end
 
@@ -45,9 +43,7 @@ class Painel::RecadosController < ApplicationController
       flash[:success] = 'Recado atualizado'
       redirect_to painel_recados_url
     else
-      respond_to do |format|
-        format.js { render 'edit' }
-      end
+      render :edit
     end
   end
 
