@@ -14,10 +14,8 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to last_visited
     else
-      @error = 'Usuário/senha inválidos'
-      respond_to do |format|
-        format.js { render :new }
-      end
+      flash[:error] = 'Usuário/senha inválidos'
+      redirect_to last_visited
     end
   end
 

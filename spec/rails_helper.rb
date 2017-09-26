@@ -36,6 +36,16 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+
+Capybara.configure do |config|
+  config.default_max_wait_time = 10 # seconds
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -70,6 +80,9 @@ RSpec.configure do |config|
 
   # add Capybara methods
   config.include Capybara::DSL
+
+  config.include WaitForAjax, type: :feature
+  config.include LoginHelper, type: :feature
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do

@@ -1,4 +1,4 @@
-<%= form_for :session, url: login_path do |f| %>
+<%= form_for :session, url: login_path, html: { id: 'form-login' } do |f| %>
 
   <div class="modal-header">
     <%= modal_form_header 'Fazer', 'Login' %>
@@ -6,14 +6,6 @@
   <!-- /.modal-header -->
 
   <div class="modal-body">
-    <% if @error %>
-      <div id="error_explanation">
-        <div class="alert alert-danger">
-          <p><%= @error %></p>
-        </div>
-      </div>
-    <% end %>
-
     <div class="form-group">
       <%= form_label 'Usuário' %>
       <%= f.text_field :user, class: 'form-control' %>

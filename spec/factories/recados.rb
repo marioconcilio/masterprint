@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :recado_old, parent: :recado do
-    updated_at { Faker::Date.between(1.year.ago, Date.today - 1) }
+    updated_at { Faker::Date.between(1.year.ago, Date.today.beginning_of_week - 2) }
   end
 
   factory :recado_done, parent: :recado do

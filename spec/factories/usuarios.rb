@@ -13,4 +13,10 @@ FactoryGirl.define do
   factory :admin, parent: :usuario do
     admin { true }
   end
+
+  factory :usuario_teste, parent: :usuario do
+    nome 'Teste da Silva'
+    usuario 'teste'
+    password 'teste123'
+  end
 end
