@@ -22,6 +22,7 @@ class Painel::RecadosController < ApplicationController
       flash[:success] = 'Recado criado'
       redirect_to painel_recados_url
     else
+      flash[:error] = 'Recado não criado'
       render :new
     end
   end
@@ -43,6 +44,7 @@ class Painel::RecadosController < ApplicationController
       flash[:success] = 'Recado atualizado'
       redirect_to painel_recados_url
     else
+      flash[:error] = 'Recado não atualizado'
       render :edit
     end
   end

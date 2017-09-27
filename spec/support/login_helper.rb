@@ -17,6 +17,14 @@ module LoginHelper
     wait_for_ajax
   end
 
+  def logout(user)
+    visit root_path
+    within 'ul.nav.navbar-nav.ml-auto' do
+      click_on user.nome
+      click_on 'Sair'
+    end
+  end
+
   def stub_login(user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
   end

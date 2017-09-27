@@ -22,11 +22,11 @@
       <main class="main">
         <div class="container-fluid pt-4">
           <div class="animated fadeIn">
-            <script type="text/javascript">
-             <% flash.each do |f| %>
+            <script type="text/javascript" id="toastr-script">
+              <% flash.each do |f| %>
                 toastr['<%= f[0] %>']('<%= f[1] %>',
                                       '<%= flash_title f[0] %>',
-                                      {"closeButton": true, "progressBar": true});
+                                      { "closeButton": true, "progressBar": true });
               <% end %>
             </script>
             <div id="content">

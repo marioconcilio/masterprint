@@ -3,9 +3,12 @@ require 'rails_helper'
 RSpec.describe Painel::RecadosController, type: :controller do
 
   context 'logged user' do
-    before do
+    before :all do
       @user = Usuario.create!(id: 0, nome: 'Test User', usuario: 'test', password: 'test123')
-      allow(controller).to receive(:current_user).and_return(@user)
+    end
+
+    before do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
     describe 'GET #index' do
@@ -71,7 +74,7 @@ RSpec.describe Painel::RecadosController, type: :controller do
 
     describe 'GET #edit' do
       let(:recado) { FactoryGirl.create(:recado) }
-      before { get :edit, params: {id: recado} }
+      before { get :edit, params: { id: recado } }
 
       it 'assigns the requested recado to @recado' do
         expect(assigns(:recado)).to eql(recado)
@@ -83,7 +86,7 @@ RSpec.describe Painel::RecadosController, type: :controller do
 
     describe 'POST #create' do
       context 'with valid attributes' do
-        let(:params) { {recado: FactoryGirl.attributes_for(:recado, remetente_id: 0)} }
+        let(:params) { { recado: FactoryGirl.attributes_for(:recado, remetente_id: 0) } }
 
         it 'creates a new recado' do
           expect {
@@ -95,10 +98,15 @@ RSpec.describe Painel::RecadosController, type: :controller do
           post :create, params: params
           expect(response).to redirect_to(painel_recados_path)
         end
+
+        it 'should set success flash' do
+          post :create, params: params
+          expect(controller).to set_flash[:success]
+        end
       end
 
       context 'with invalid attributes' do
-        let(:params) { {recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0)} }
+        let(:params) { { recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0) } }
 
         it 'does not save the new contact' do
           expect{
@@ -110,16 +118,22 @@ RSpec.describe Painel::RecadosController, type: :controller do
           post :create, params: params
           expect(response).to render_template :new
         end
+
+        it 'should set error flash' do
+          post :create, params: params
+          expect(controller).to set_flash[:error]
+        end
       end
     end
     # POST #create
 
     describe 'PATCH #update' do
-      let(:recado) { FactoryGirl.create(:recado) }
+      let!(:recado) { FactoryGirl.create(:recado) }
+      let(:params) { { id: recado, recado: recado.attributes } }
 
       context 'with valid attributes' do
         it 'locates the requested @recado' do
-          patch :update, params: { id: recado, recado: recado.attributes }
+          patch :update, params: params
           expect(assigns(:recado)).to eql(recado)
         end
 
@@ -128,20 +142,27 @@ RSpec.describe Painel::RecadosController, type: :controller do
           token = SecureRandom.uuid
           recado.titulo = token
 
-          patch :update, params: { id: recado, recado: recado.attributes }
+          patch :update, params: params
           recado.reload
           expect(recado.titulo).to eql(token)
         end
 
         it 'redirects to recados#index' do
-          patch :update, params: { id: recado, recado: recado.attributes }
-          expect(response).to redirect_to(painel_recados_path)
+          patch :update, params: params
+          expect(response).to redirect_to painel_recados_path
+        end
+
+        it 'should set success flash' do
+          patch :update, params: params
+          expect(controller).to set_flash[:success]
         end
       end
 
       context 'with invalid attributes' do
+        let(:params) { { id: recado, recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0) } }
+
         it 'locates the requested @recado' do
-          patch :update, params: { id: recado, recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0) }
+          patch :update, params: params
           expect(assigns(:recado)).to eql(recado)
         end
 
@@ -157,8 +178,13 @@ RSpec.describe Painel::RecadosController, type: :controller do
         end
 
         it 're-renders the edit method' do
-          put :update, params: { id: recado, recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0) }
+          patch :update, params: params
           expect(response).to render_template :edit
+        end
+
+        it 'should set error flash' do
+          patch :update, params: params
+          expect(controller).to set_flash[:error]
         end
       end
     end
@@ -176,7 +202,12 @@ RSpec.describe Painel::RecadosController, type: :controller do
 
       it 'redirects to recados#index' do
         delete :destroy, params: { id: recado }
-        expect(response).to redirect_to(painel_recados_path)
+        expect(response).to redirect_to painel_recados_path
+      end
+
+      it 'should set success flash' do
+        delete :destroy, params: { id: recado }
+        expect(controller).to set_flash[:success]
       end
     end
     # DELETE #destroy

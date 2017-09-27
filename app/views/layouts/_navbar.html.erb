@@ -134,17 +134,21 @@
   <% end %>
   <li class="nav-item dropdown px-4">
     <% if logged_in? %>
-      <%= link_to current_user.nome, '#', class: 'nav-link dropdown-toggle nav-link',
-          'data-toggle' => 'dropdown', role: :button %>
+      <%= link_to current_user.nome, '#',
+                  class: 'nav-link dropdown-toggle nav-link',
+                  'data-toggle' => 'dropdown',
+                  role: :button %>
 
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to logout_path, method: :delete, class: 'dropdown-item' do %>
-          <%= fa_tag 'icon-power' %>Sair
+          <%= fa_tag 'icon-power' %>
+          Sair
         <% end %>
       </div>
     <% else %>
       <%= link_to login_path, remote: true, class: 'nav-link' do %>
-        <%= fa_tag 'icon-login px-2' %>Entrar
+        <%= fa_tag 'icon-login px-2' %>
+        Entrar
       <% end %>
     <% end %>
   </li>

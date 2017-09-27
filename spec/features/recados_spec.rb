@@ -14,7 +14,7 @@ RSpec.describe 'Recados', type: :feature do
       FactoryGirl.create_list(:recado_done_recent, 5)
     end
 
-    before { visit painel_recados_url }
+    before { visit painel_recados_path }
 
     it 'should put all recados inside card class' do
       cards = all('#rec-cardsview .card-columns .card')
@@ -79,37 +79,85 @@ RSpec.describe 'Recados', type: :feature do
 
   context 'when adding new' do
     before do
-      visit painel_recados_url
+      visit painel_recados_path
       click_on 'Novo Recado'
     end
 
     it 'should accept a valid one' do
-      expect{
+      expect {
         within 'form#new_recado' do
           fill_in 'recado_titulo', with: 'Novo Título'
           fill_in 'recado_texto', with: 'Novo Texto'
           click_on 'Salvar'
         end
-      }.to change(Recado, :count).by 1
+      }.to change { Recado.count }.by 1
 
-      script = find('main script', visible: false).text(:all)
-      expect(script).to include('toastr', 'success', 'Recado criado')
+      within 'h3.card-title.clearfix' do
+        expect(page).to have_content 'Recados'
+      end
 
-      expect(page).to have_current_path painel_recados_path
+      expect(page).to have_toastr 'success'
       expect(page).to have_content 'Novo Título'
       expect(page).to have_content 'Novo Texto'
     end
 
-    it 'should reject a invalid one'
+    it 'should reject a invalid one' do
+      expect {
+        within 'form#new_recado' do
+          fill_in 'recado_titulo', with: ''
+          fill_in 'recado_texto', with: ''
+          click_on 'Salvar'
+        end
+      }.not_to change { Recado.count }
+
+      within 'div.card-header' do
+        expect(page).to have_content 'NovoRecado'
+      end
+
+      expect(page).to have_toastr 'error'
+      expect(page).to have_selector 'form#new_recado div#error_explanation'
+    end
+  end
+
+  context 'when editing' do
+    let!(:recado) { FactoryGirl.create(:recado_recent) }
+    before do
+      visit painel_recados_path
+      find(:xpath, "//a[@href='#{edit_painel_recado_path(recado)}']").click
+    end
+
+    it 'should accept a valid one' do
+      within "form#edit_recado_#{recado.id}" do
+        fill_in 'recado_texto', with: 'Texto Atualizado'
+        click_on 'Salvar'
+      end
+
+      within 'h3.card-title.clearfix' do
+        expect(page).to have_content 'Recados'
+      end
+
+      expect(page).to have_toastr 'success'
+      expect(page).to have_content 'Texto Atualizado'
+    end
+
+    it 'should reject a invalid one' do
+      within "form#edit_recado_#{recado.id}" do
+        fill_in 'recado_titulo', with: ''
+        click_on 'Salvar'
+      end
+
+      within 'div.card-header' do
+        expect(page).to have_content 'EditandoRecado'
+      end
+
+      expect(page).to have_toastr 'error'
+      expect(page).to have_selector "form#edit_recado_#{recado.id} div#error_explanation"
+    end
   end
 
   context 'when managing existing' do
     let!(:recado) { FactoryGirl.create(:recado_recent) }
-    before { visit painel_recados_url }
-
-    it 'should edit and update recado' do
-      find(:xpath, "//a[@href='#{edit_painel_recado_path(recado)}']").click
-    end
+    before { visit painel_recados_path }
 
     it 'should mark recado as done'
     it 'should delete recado'
