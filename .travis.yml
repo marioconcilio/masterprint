@@ -1,0 +1,25 @@
+language: ruby
+rvm: 2.3.1
+
+sudo: false
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - bin/rake db:migrate RAILS_ENV=test
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - rackup  # start a Web server
+  - sleep 3 # give Web server some time to bind to sockets, etc
+
+script:
+  - 'bin/rake'
+
+services:
+  - postgresql
+
+addons:
+  postgresql: '9.5'
+
+dist: trusty
