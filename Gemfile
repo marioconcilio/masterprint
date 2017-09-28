@@ -124,6 +124,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'coveralls', require: false
 end
 
 group :development, :test do
