@@ -2,10 +2,10 @@ FactoryGirl.define do
   factory :recado do
     titulo { Faker::Lorem.word }
     texto { Faker::Lorem.paragraph }
-
-    remetente do
-      FactoryGirl.create(:usuario)
-    end
+    remetente { FactoryGirl.create(:usuario) }
+    destinatario nil
+    done false
+    updated_at { Faker::Date.between(1.year.ago, Date.today) }
   end
 
   factory :recado_recent, parent: :recado do
@@ -17,7 +17,7 @@ FactoryGirl.define do
   end
 
   factory :recado_done, parent: :recado do
-    done { true }
+    done true
   end
 
   factory :recado_done_recent, parent: :recado_done do
@@ -25,10 +25,11 @@ FactoryGirl.define do
   end
 
   factory :recado_done_old, parent: :recado_done do
-    updated_at { Faker::Date.between(1.year.ago, Date.today - 1) }
+    updated_at { Faker::Date.between(1.year.ago, Date.today.beginning_of_week - 2) }
   end
 
   factory :invalid_recado, parent: :recado do
-    texto { nil }
+    titulo nil
+    texto nil
   end
 end

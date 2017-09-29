@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Recados', type: :feature do
-  before :all do
+  before do
     @user = FactoryGirl.create(:usuario_teste)
+    stub_login @user
   end
-
-  before { stub_login @user }
 
   context 'when displaying' do
     let!(:list) do
@@ -50,7 +49,7 @@ RSpec.describe 'Recados', type: :feature do
 
   context 'when querying', js: true do
     before :all do
-      @list = FactoryGirl.create_list(:recado_recent, 100)
+      @list = FactoryGirl.create_list(:recado, 100)
     end
 
     before do
@@ -120,7 +119,7 @@ RSpec.describe 'Recados', type: :feature do
   end
 
   context 'when editing' do
-    let!(:recado) { FactoryGirl.create(:recado_recent) }
+    let!(:recado) { FactoryGirl.create(:recado) }
     before do
       visit painel_recados_path
       find(:xpath, "//a[@href='#{edit_painel_recado_path(recado)}']").click
@@ -155,12 +154,34 @@ RSpec.describe 'Recados', type: :feature do
     end
   end
 
-  context 'when managing existing' do
-    let!(:recado) { FactoryGirl.create(:recado_recent) }
-    before { visit painel_recados_path }
+  context 'when deleting', js: true do
+    before :all do
+      @recado = FactoryGirl.create(:recado)
+    end
 
-    it 'should mark recado as done'
-    it 'should delete recado'
+    before do
+      login @user
+      visit painel_recados_path
+      find(:xpath, "//a[@href='#{edit_painel_recado_path(@recado)}']").click
+    end
+
+    it 'should show alert' do
+      expect {
+        within "form#edit_recado_#{@recado.id}" do
+          click_on 'Excluir'
+        end
+
+        alert = page.driver.browser.switch_to.alert
+        alert.accept
+      }.to change { Recado.count }.by 0
+
+      within 'h3.card-title.clearfix' do
+        expect(page).to have_content 'Recados'
+      end
+
+      expect(page).to have_toastr 'success'
+      expect(page).not_to have_content @recado.texto
+    end
   end
 
 end

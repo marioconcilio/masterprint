@@ -10220,7 +10220,7 @@ body > .ui-select-bootstrap.open {
     outline: 0; }
 
 select {
-  background: white url("../img/select.png") no-repeat !important;
+  /*background: white url("../img/select.png") no-repeat !important;*/
   background-size: 24px 20px !important;
   background-position: right center !important;
   border-radius: 0px !important;
