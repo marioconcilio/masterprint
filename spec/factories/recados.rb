@@ -3,7 +3,6 @@ FactoryGirl.define do
     titulo { Faker::Lorem.word }
     texto { Faker::Lorem.paragraph }
     remetente { FactoryGirl.create(:usuario) }
-    destinatario nil
     done false
     updated_at { Faker::Date.between(1.year.ago, Date.today) }
   end

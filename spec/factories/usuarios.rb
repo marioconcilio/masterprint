@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :usuario do
     transient do
-      name { Faker::Name.name_with_middle }
+      name { Faker::Name.name_with_middle().split(' ').drop(1).join(' ') }
     end
 
     # to ensure uniqueness, since usuario must be unique
@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :admin, parent: :usuario do
-    admin { true }
+    admin true
   end
 
   factory :usuario_teste, parent: :usuario do

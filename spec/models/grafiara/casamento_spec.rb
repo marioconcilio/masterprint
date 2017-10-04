@@ -2,22 +2,33 @@ require 'rails_helper'
 
 module Grafiara
   RSpec.describe Casamento, type: :model do
-    let(:casamentos) { create_list(:grafiara_casamento, 3) }
-
     it { should validate_presence_of(:codigo) }
     it { should validate_presence_of(:descricao) }
     it { should validate_presence_of(:preco) }
     it { should validate_presence_of(:un) }
 
-    it 'orders by pagina nulls last' do
-      casamentos.first.update(pagina: nil)
-      casamentos.second.update(pagina: '02 à 04')
-      casamentos.last.update(pagina: '01')
+    context 'when ordering' do
+      let!(:casamentos) { create_list(:grafiara_casamento, 3) }
+      let(:sorted) { Casamento.all }
 
-      sorted = Casamento.all
-      expect(sorted.first).to eql casamentos.last
-      expect(sorted.second).to eql casamentos.second
-      expect(sorted.last).to eql casamentos.first
+      before do
+        casamentos.first.update(pagina: nil)
+        casamentos.second.update(pagina: '02 à 04')
+        casamentos.last.update(pagina: '01')
+      end
+
+      it 'should put the first page first' do
+        expect(sorted.first).to eql casamentos.last
+      end
+
+      it 'should put the second page second' do
+        expect(sorted.second).to eql casamentos.second
+      end
+
+      it 'sohuld put null page last' do
+        expect(sorted.last).to eql casamentos.first
+      end
     end
+
   end
 end

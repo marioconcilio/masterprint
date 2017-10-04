@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'routing to recados', type: :routing do
+RSpec.describe 'Routing to recados', type: :routing do
 
   it 'routes /painel/recados to painel/recados#index' do
     expect(get: '/painel/recados').to route_to(

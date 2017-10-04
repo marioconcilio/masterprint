@@ -15,6 +15,7 @@ module LoginHelper
     end
 
     wait_for_ajax
+    mock_login(user)
   end
 
   def logout(user)
@@ -25,8 +26,26 @@ module LoginHelper
     end
   end
 
-  def stub_login(user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  def mock_login(user)
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(user)
+  end
+
+  def mock_logout
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(nil)
+  end
+
+  def login_test_user
+    user = FactoryGirl.create(:usuario_teste)
+    login user
+    return user
+  end
+
+  def mock_login_test_user
+    user = FactoryGirl.create(:usuario_teste)
+    mock_login user
+    return user
   end
 
 end
