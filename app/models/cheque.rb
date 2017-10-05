@@ -19,7 +19,7 @@ class Cheque < ApplicationRecord
                         :cliente,
                         :status
 
-  belongs_to :cliente, optional: true
+  belongs_to :cliente
   belongs_to :deposito, optional: true
 
   def self.search(number)
