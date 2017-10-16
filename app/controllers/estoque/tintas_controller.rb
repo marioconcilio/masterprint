@@ -30,6 +30,25 @@ class Estoque::TintasController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/tintas/:id/edit
+  def edit
+    @tinta = Tinta.find(params[:id])
+    respond_to :js
+  end
+
+  # PUT /estoque/tintas/:id
+  def update
+    @tinta = Tinta.find(params[:id])
+    if @tinta.update_attributes(tinta_params)
+      flash[:success] = 'Tinta atualizada'
+      redirect_to estoque_tintas_url
+    else
+      respond_to do |format|
+        format.js { render :edit }
+      end
+    end
+  end
+
   private
     def tinta_params
       params[:tinta][:preco_kg].gsub!('.', '')

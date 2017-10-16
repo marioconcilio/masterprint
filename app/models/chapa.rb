@@ -9,17 +9,15 @@ class Chapa < ApplicationRecord
   default_scope -> { order(:larg, :comp) }
 
   def preco
-    if self.chapa_marca
-      if self.moeda == 'USD'
-        preco = self.chapa_marca.preco * Settings.dolar.chapas
-      else
-        preco = self.chapa_marca.preco
-      end
+    return 0 unless self.chapa_marca
 
-      return (self.larg * self.comp * preco / 1000000).round(1)
+    if self.moeda == 'USD'
+      preco = self.chapa_marca.preco * Settings.dolar.chapas
     else
-      return 0
+      preco = self.chapa_marca.preco
     end
+
+    return (self.larg * self.comp * preco / 1000000).round(1)
   end
 
   def preco_avulso

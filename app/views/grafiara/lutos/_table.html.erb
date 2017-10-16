@@ -26,12 +26,12 @@
           <th class="w-10 text-center">
             <%= sort_link @search, :un, 'Unidade', {}, { remote: true, method: :get } %>
           </th>
-          <th class="w-10 text-center">
+          <th class="w-5 text-center">
             <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
           </th>
-          <th><br></th>
+          <th class="w-1"><br></th>
           <% if logged_in? %>
-            <th><br></th>
+            <th class="w-5"><br></th>
           <% end %>
         </tr>
       </thead>

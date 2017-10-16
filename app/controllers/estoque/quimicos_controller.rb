@@ -30,6 +30,25 @@ class Estoque::QuimicosController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/quimicos/:id/edit
+  def edit
+    @quimico = Quimico.find(params[:id])
+    respond_to :js
+  end
+
+  # PUT /estoque/quimicos/:id
+  def update
+    @quimico = Quimico.find(params[:id])
+    if @quimico.update_attributes(quimico_params)
+      flash[:success] = 'Quimico atualizado'
+      redirect_to estoque_quimicos_url
+    else
+      respond_to do |format|
+        format.js { render :edit }
+      end
+    end
+  end
+
   private
     def quimico_params
       params[:quimico][:preco].gsub!('.', '')

@@ -16,9 +16,13 @@
       <th class="text-right">
         <%= sort_link @search, :preco_kg, 'Preço Kg', {}, { remote: true, method: :get } %>
       </th>
-      <th class="text-center">
+      <th class="text-center w-5">
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
+      <th class="w-1"><br></th>
+      <% if logged_in? %>
+        <th class="w-5"><br></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +34,13 @@
         <td class="text-right"> <%= format_currency(t.preco_un) %> </td>
         <td class="text-right"> <%= format_currency(t.preco_kg, t.moeda) %> </td>
         <td class="text-center"> <%= t.qtde %> </td>
+        <td class="text-right"> <%= qtde_badge(t) %> </td>
+
+        <% if logged_in? %>
+          <td class="text-right">
+            <%= link_details_to '', edit_estoque_tinta_path(t), remote: true %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

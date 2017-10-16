@@ -37,6 +37,12 @@
     respond_to :js
   end
 
+  # GET /estoque/papel/:id/edit
+  def edit
+    @papel = Papel.includes(:papel_tipo).find(params[:id])
+    respond_to :js
+  end
+
   # PUT /estoque/papel/:id
   def update
     @papel = Papel.includes(:papel_tipo).find(params[:id])

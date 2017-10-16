@@ -31,11 +31,38 @@ class Estoque::EnvelopesController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/envelopes/:id/edit
+  def edit
+    @envelope = Envelope.find(params[:id])
+    respond_to :js
+  end
+
+  # PUT /estoque/envelopes/:id
+  def update
+    @envelope = Envelope.find(params[:id])
+    if @envelope.update_attributes(envelope_params)
+      flash[:success] = 'Envelope atualizado'
+      redirect_to estoque_envelopes_url
+    else
+      respond_to do |format|
+        format.js { render :edit }
+      end
+    end
+  end
+
   private
     def envelope_params
       params[:envelope][:preco_milheiro].gsub!('.', '')
       params[:envelope][:preco_milheiro].gsub!(',', '.')
-      params.require(:envelope).permit(:larg, :comp, :grs, :nome, :tipo, :preco_milheiro, :qtde, :moeda, :un)
+      params.require(:envelope).permit(:larg,
+                                       :comp,
+                                       :grs,
+                                       :nome,
+                                       :tipo,
+                                       :preco_milheiro,
+                                       :qtde,
+                                       :moeda,
+                                       :un)
     end
 
 end

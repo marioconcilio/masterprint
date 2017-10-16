@@ -19,6 +19,8 @@ class Papel < ApplicationRecord
   scope :tipo, -> (tipo) { where('papel_tipos.tipo ilike ?', "#{tipo}%") }
 
   def preco_un
+    return 0 unless self.papel_tipo
+
     if self.papel_tipo.moeda == 'USD'
       preco = self.papel_tipo.preco_kg * Settings.dolar.papeis
     else

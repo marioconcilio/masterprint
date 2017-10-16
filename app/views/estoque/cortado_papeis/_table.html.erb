@@ -10,13 +10,12 @@
       <th class="text-right">
         <%= sort_link @search, :preco_un, 'Preço', {}, { remote: true, method: :get } %>
       </th>
-      <th class="text-center">
+      <th class="text-center w-5">
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
-      <th><br></th>
+      <th class="w-1"><br></th>
       <% if logged_in? %>
-        <th><br></th>
-        <th><br></th>
+        <th class="w-5"><br></th>
       <% end %>
     </tr>
   </thead>
@@ -30,9 +29,6 @@
         <td class="text-right"> <%= qtde_badge(p) %> </td>
 
         <% if logged_in? %>
-          <td class="text-right">
-            <%= link_movimento_to '', movimento_estoque_cortado_papel_path(p), remote: true %>
-          </td>
           <td class="text-right">
             <%= link_details_to '', edit_estoque_cortado_papel_path(p), remote: true %>
           </td>

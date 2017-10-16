@@ -30,6 +30,25 @@ class Estoque::VariadosController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/variados/:id/edit
+  def edit
+    @variado = Variado.find(params[:id])
+    respond_to :js
+  end
+
+  # PUT /estoque/variados/:id
+  def update
+    @variado = Variado.find(params[:id])
+    if @variado.update_attributes(variado_params)
+      flash[:success] = 'Produto atualizado'
+      redirect_to estoque_variados_url
+    else
+      respond_to do |format|
+        format.js { render :edit }
+      end
+    end
+  end
+
   private
     def variado_params
       params[:variado][:preco].gsub!('.', '')

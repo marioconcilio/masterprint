@@ -28,12 +28,12 @@
       <th class="text-right">
         <%= sort_link @search, :preco_un, 'Preço Pacote', {}, { remote: true, method: :get } %>
       </th>
-      <th class="text-center">
+      <th class="text-center w-5">
         <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
       </th>
-      <th><br></th>
+      <th class="w-1"><br></th>
       <% if logged_in? %>
-        <th><br></th>
+        <th class="w-5"><br></th>
       <% end %>
     </tr>
   </thead>
@@ -54,7 +54,7 @@
 
         <% if logged_in? %>
           <td class="text-right">
-            <%= link_movimento_to '', movimento_estoque_papel_path(p), remote: true %>
+            <%= link_details_to '', edit_estoque_papel_path(p), remote: true %>
           </td>
         <% end %>
       </tr>
