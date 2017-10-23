@@ -1,0 +1,57 @@
+<%= form_for @calendario do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row">
+    <!-- pagina -->
+    <div class="form-group col-sm-4">
+      <%= form_label 'Página' %>
+      <%= f.text_field :pagina, class: 'form-control' %>
+    </div>
+
+    <!-- preco e un -->
+    <div class="form-group col-sm-4">
+      <%= form_label 'Preço' %>
+      <%= f.money_field :preco, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-4">
+      <%= form_label :unidade %>
+      <%= f.text_field :un, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- referencia -->
+    <div class="form-group col-sm-6">
+      <%= form_label 'Referência' %>
+      <%= f.cktext_area :referencia,
+                        rows: 5,
+                        class: 'form-control not-resizable',
+                        ckeditor: { toolbar: 'mini' } %>
+    </div>
+
+    <!-- descricao -->
+    <div class="form-group col-sm-6">
+      <%= form_label 'Descrição' %>
+      <%= f.cktext_area :descricao,
+                        rows: 5,
+                        class: 'form-control not-resizable',
+                        ckeditor: { toolbar: 'mini' } %>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="btn-group pull-right">
+      <%= link_to 'Voltar', grafiara_calendarios_path, class: 'btn btn-secondary' %>
+      <% if @calendario.id %>
+        <%= link_to 'Excluir',
+              grafiara_calendario_path(@calendario),
+              method: :delete,
+              data: { confirm: 'Deseja excluir o calendario?' },
+              class: 'btn btn-danger' %>
+      <% end %>
+      <%= f.submit 'Salvar', class: 'btn btn-success' %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,55 @@
+<li class="divider"></li>
+<li class="nav-title">Tiktak</li>
+
+<li class="nav-item nav-dropdown">
+  <%= link_tiktak_to 'Calendários', '#', class: 'nav-link nav-dropdown-toggle' %>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Todos', tiktak_calendarios_path,
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Parede', tiktak_calendarios_path(cal_tipo: :parede),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Linha Comercial', tiktak_calendarios_path(tipo: :comercial),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Mesa', tiktak_calendarios_path(tipo: :mesa),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Mini Calendário', tiktak_calendarios_path(tipo: :mini),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Carteiras Despachante', tiktak_calendarios_path(tipo: :carteira),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_tiktak_to 'Cartão de Natal', tiktak_calendarios_path(tipo: 'cartão natal'),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
+</li>

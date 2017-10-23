@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913205329) do
+ActiveRecord::Schema.define(version: 20171023182509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,17 @@ ActiveRecord::Schema.define(version: 20170913205329) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["cliente_id"], name: "index_recebimentos_on_cliente_id", using: :btree
+  end
+
+  create_table "tiktak_calendarios", force: :cascade do |t|
+    t.string   "pagina"
+    t.string   "referencia"
+    t.string   "tipo"
+    t.text     "descricao"
+    t.decimal  "preco",      precision: 8, scale: 2
+    t.string   "un"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "tintas", force: :cascade do |t|
