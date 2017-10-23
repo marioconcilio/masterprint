@@ -8,7 +8,7 @@ RSpec.describe Grafiara::Calendario, type: :model do
 
   context 'when ordering' do
     let!(:calendarios) { create_list(:grafiara_calendario, 3) }
-    let(:sorted) { Calendario.all }
+    let(:sorted) { Grafiara::Calendario.all }
 
     before do
       calendarios.first.update(pagina: nil)
