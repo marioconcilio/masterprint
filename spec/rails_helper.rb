@@ -82,6 +82,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL, type: :feature
   config.include WaitForAjax, type: :feature
   config.include LoginHelper, type: :feature
+  config.include LoginHelper, type: :controller
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

@@ -38,7 +38,7 @@
         <% @calendarios.each do |c| %>
           <tr>
             <td> <%= c.pagina %> </td>
-            <td> <%= c.tipo %> </td>
+            <td> <%= Tiktak::Calendario.tipos[c.tipo] %> </td>
             <td> <%= c.referencia %> </td>
             <td> <%= raw c.descricao %> </td>
             <td class="text-right"> <%= format_currency c.preco %> </td>

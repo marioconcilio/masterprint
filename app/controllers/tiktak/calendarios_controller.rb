@@ -1,5 +1,6 @@
 module Tiktak
   class CalendariosController < ApplicationController
+    before_action :auth_user!, except: :index
 
     # GET /tiktak/calendarios
     def index
@@ -20,9 +21,8 @@ module Tiktak
         flash[:success] = 'Calendário adicionado'
         redirect_to tiktak_calendarios_url
       else
-        respond_to do |format|
-          format.js { render :new }
-        end
+        flash[:error] = 'Calendário não adicionado'
+        render :new
       end
     end
 
@@ -43,9 +43,8 @@ module Tiktak
         flash[:success] = 'Calendário atualizado'
         redirect_to tiktak_calendarios_url
       else
-        respond_to do |format|
-          format.js { render 'edit' }
-        end
+        flash[:error] = 'Calendário não atualizado'
+        render 'edit'
       end
     end
 

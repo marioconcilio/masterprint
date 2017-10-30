@@ -108,7 +108,7 @@ RSpec.describe Painel::RecadosController, type: :controller do
       context 'with invalid attributes' do
         let(:params) { { recado: FactoryGirl.attributes_for(:invalid_recado, remetente_id: 0) } }
 
-        it 'does not save the new contact' do
+        it 'does not save the new recado' do
           expect{
             post :create, params: params
           }.to_not change(Recado, :count)
