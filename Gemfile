@@ -99,6 +99,8 @@ gem 'active_hash'
 # https://github.com/galetahub/ckeditor
 gem 'ckeditor'
 
+gem 'nokogiri'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 

@@ -345,6 +345,7 @@ DEPENDENCIES
   kaminari-bootstrap
   launchy
   listen (~> 3.0.5)
+  nokogiri
   pace-rails
   pg
   puma (~> 3.0)

@@ -73,6 +73,13 @@ Rails.application.routes.draw do
         get   :summary
       end
     end
+
+    resources :cartoes, controller: :pag_seguro, only: [:index, :show, :update] do
+      collection do
+        get   :import
+        post  :import, to: 'pag_seguro#import_xml'
+      end
+    end
   end
 
   match "/403", to: "errors#forbidden", as: :forbidden, via: :all

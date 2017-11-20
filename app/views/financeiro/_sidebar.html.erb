@@ -31,6 +31,10 @@
   <%= link_financeiro_to 'A Pagar', '#', class: 'nav-link' %>
 </li>
 
+<li class="nav-item">
+  <%= link_financeiro_to 'Cartões', financeiro_cartoes_path, class: 'nav-link' %>
+</li>
+
 <% if admin? %>
   <li class="nav-item nav-dropdown">
     <%= link_financeiro_to 'Cheques', '#', class: 'nav-link nav-dropdown-toggle' %>

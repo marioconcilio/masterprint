@@ -25,6 +25,11 @@ module Custom::HtmlHelper
                     options, html_options, &block)
   end
 
+  def link_check_to(name=nil, options=nil, html_options=nil, &block)
+    link_tooltip_to(name, { title: 'Conferido', class: 'fa fa-check btn btn-info' },
+                    options, html_options, &block)
+  end
+
   def link_estoque_to(name=nil, options=nil, html_options=nil, &block)
     link_to options, html_options do
       content_tag(:i, nil, class: 'icon-tag') + name

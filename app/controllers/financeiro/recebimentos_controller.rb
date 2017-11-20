@@ -32,14 +32,12 @@ class Financeiro::RecebimentosController < ApplicationController
     begin
       Recebimento.transaction { list.each(&:save!) }
       flash[:success] = "#{list.count} #{'boleto'.pluralize(list.count)} #{'importado'.pluralize(list.count)}"
-      redirect_back fallback_location: financeiro_recebimentos_path
 
     rescue ActiveRecord::RecordNotUnique
-      @error = 'Remessa já processada'
-      respond_to do |format|
-        format.js { render :remessa }
-      end
+      flash[:error] = 'Remessa já processada'
     end
+
+    redirect_back fallback_location: financeiro_recebimentos_path
   end
 
   # GET /financeiro/recebimentos/retorno
@@ -69,10 +67,8 @@ class Financeiro::RecebimentosController < ApplicationController
       redirect_to summary_financeiro_recebimentos_path
 
     rescue ActiveRecord::RecordNotFound
-      @error = 'Boleto não encontrado'
-      respond_to do |format|
-        format.js { render :remessa }
-      end
+      flash[:error] = 'Boleto não encontrado'
+      redirect_back fallback_location: financeiro_recebimentos_path
     end
   end
 
