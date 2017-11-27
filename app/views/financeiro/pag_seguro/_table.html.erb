@@ -41,13 +41,25 @@
             <td class="text-right"> <%= format_currency(c.valor_taxa) %> </td>
             <td class="text-right"> <%= format_currency(c.valor_bruto) %> </td>
             <td class="text-right">
-              <% if c.is_ok? %>
-                <span class="badge badge-success">Ok</span>
-              <% end %>
+              <%= pagseguro_cc_tag c %>
             </td>
             <td class="text-right">
-              <% unless c.is_ok? %>
-                <%= link_check_to '', financeiro_cartao_path(c), remote: true %>
+              <% if c.is_ok? %>
+                <%= link_to 'Ok',
+                            '#' ,
+                            class: 'btn btn-success',
+                            remote: true,
+                            disabled: true %>
+              <% else %>
+                <% if params[:q] %>
+                  <%= link_check_to '',
+                                    financeiro_cartao_path(c, q: params[:q][:valor_bruto_cont]),
+                                    remote: true %>
+                <% else %>
+                  <%= link_check_to '',
+                                    financeiro_cartao_path(c),
+                                    remote: true %>
+                <% end %>
               <% end %>
             </td>
           </tr>

@@ -46,7 +46,7 @@ module Financeiro
         flash[:danger] = 'Erro ao atualizar pagamento'
       end
 
-      redirect_to financeiro_cartoes_path
+      redirect_to financeiro_cartoes_path q: { valor_bruto_cont: '120' }
     end
 
   end

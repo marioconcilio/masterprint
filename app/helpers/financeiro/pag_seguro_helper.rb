@@ -40,6 +40,23 @@ module Financeiro::PagSeguroHelper
     end
   end
 
+  def pagseguro_cc_tag(card)
+    return fa_tag 'fa fa-credit-card-alt fa-lg' if card.debito?
+
+    case card.bandeira.downcase
+    when 'visa'
+      fa_tag 'fa fa-cc-visa fa-lg'
+    when 'diners'
+      fa_tag 'fa fa-cc-diners-club fa-lg'
+    when 'american express'
+      fa_tag 'fa fa-cc-amex fa-lg'
+    when 'mastercard'
+      fa_tag 'fa fa-cc-mastercard fa-lg'
+    else
+      fa_tag 'fa fa-cc fa-lg'
+    end
+  end
+
   private
     def string_to_decimal(str)
       str.gsub(/[.,]/, '.' => '', ',' => '.').to_f
