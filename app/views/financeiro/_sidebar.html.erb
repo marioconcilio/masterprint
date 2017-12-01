@@ -21,6 +21,10 @@
                   class: 'nav-link' %>
     </li>
     <li class="nav-item">
+      <%= link_financeiro_to 'Em Mãos', financeiro_recebimentos_path(rcb_status: :titulo_maos),
+                  class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
       <%= link_financeiro_to 'Pagos', financeiro_recebimentos_path(rcb_status: :pago),
                   class: 'nav-link' %>
     </li>
