@@ -6,6 +6,10 @@ module Financeiro
     def index
       @search = PagSeguro.ransack(params[:q])
       @cards = @search.result.page(params[:page])
+      @search_field = :valor_bruto_cont
+      @z = { page: params[:page] }
+      @z[:q] = params[:q][@search_field] if params[:q]
+
       respond_to :html, :js
     end
 
@@ -46,7 +50,7 @@ module Financeiro
         flash[:danger] = 'Erro ao atualizar pagamento'
       end
 
-      redirect_to financeiro_cartoes_path q: { valor_bruto_cont: '120' }
+      redirect_to financeiro_cartoes_path(page: params[:z][:page], q: { valor_bruto_cont: params[:z][:q] })
     end
 
   end

@@ -12,7 +12,7 @@ class Financeiro::PagSeguro < ApplicationRecord
                         :parcelas,
                         :bandeira
 
-  default_scope { order(data: :desc) }
+  default_scope { order(data: :desc, valor_bruto: :desc) }
   paginates_per 20
 
   private

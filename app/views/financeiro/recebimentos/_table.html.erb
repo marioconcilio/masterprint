@@ -40,7 +40,7 @@
               <span class="<%= bill_label b %>"><%= Recebimento.status[b.status] %></span>
             </td>
             <td class="text-right">
-              <%= link_details_to '', financeiro_recebimento_path(b), remote: true %>
+              <%= link_details_to '', financeiro_recebimento_path(b, z: @z), remote: true %>
             </td>
           </tr>
         <% end %>

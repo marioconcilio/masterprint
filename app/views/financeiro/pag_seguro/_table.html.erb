@@ -51,15 +51,9 @@
                             remote: true,
                             disabled: true %>
               <% else %>
-                <% if params[:q] %>
-                  <%= link_check_to '',
-                                    financeiro_cartao_path(c, q: params[:q][:valor_bruto_cont]),
-                                    remote: true %>
-                <% else %>
-                  <%= link_check_to '',
-                                    financeiro_cartao_path(c),
-                                    remote: true %>
-                <% end %>
+                <%= link_check_to '',
+                                  financeiro_cartao_path(c, z: @z),
+                                  remote: true %>
               <% end %>
             </td>
           </tr>

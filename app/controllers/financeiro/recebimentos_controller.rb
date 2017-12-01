@@ -5,7 +5,13 @@ class Financeiro::RecebimentosController < ApplicationController
   # GET /financeiro/recebimentos
   def index
     @search = Recebimento.joins(:cliente).ransack(params[:q])
+    @search_field = :numero_or_cliente_nome_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+
     if params[:rcb_status]
+      @z[:s] = params[:rcb_status]
+
       @bills = @search.result
         .includes(:cliente)
         .s(params[:rcb_status])
@@ -102,7 +108,10 @@ class Financeiro::RecebimentosController < ApplicationController
       flash[:danger] = "Erro ao atualizar boleto → #{Recebimento.status[params[:recebimento][:status]]}"
     end
 
-    redirect_to financeiro_recebimentos_path
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to financeiro_recebimentos_path(page: params[:z][:page],
+                                             rcb_status: params[:z][:s],
+                                             q: { numero_or_cliente_nome_cont: params[:z][:q] })
   end
 
   private
