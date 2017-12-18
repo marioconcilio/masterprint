@@ -74,4 +74,14 @@ module Custom::HtmlHelper
     end
   end
 
+  def cartao_badge(card)
+    if card.is_ok?
+      content_tag :span, nil, class: 'badge badge-success' do
+        'Ok'
+      end
+    else
+      tag(:br)
+    end
+  end
+
 end

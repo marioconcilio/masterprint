@@ -4,7 +4,8 @@ module Financeiro
 
     # GET /financeiro/cartoes
     def index
-      @search = PagSeguro.ransack(params[:q])
+      @search = PagSeguro.where(['(is_ok is false)
+                                  OR (is_ok is true AND data > :date)', date: Date.today.beginning_of_week]).ransack(params[:q])
       @cards = @search.result.page(params[:page])
       @search_field = :valor_bruto_cont
       @z = { page: params[:page] }

@@ -7,6 +7,7 @@ module Financeiro::PagSeguroHelper
     arr = []
     doc.css('Table').each do |card|
       next if card.css('Tipo_Transacao').text != 'Pagamento'
+      next if card.css('Status').text != 'Aprovada'
 
       transacao_id = card.css('Transacao_ID').text
       tipo_pagamento = card.css('Tipo_Pagamento').text

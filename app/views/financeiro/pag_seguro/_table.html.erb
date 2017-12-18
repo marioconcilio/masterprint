@@ -32,7 +32,7 @@
       </thead>
       <tbody>
         <% @cards.each do |c| %>
-          <tr>
+          <tr style="height: 60px">
             <td> <%= format_date(c.data) %> </td>
             <td> <%= Financeiro::PagSeguro.tipo_pagamentos[c.tipo_pagamento] %> </td>
             <td class="text-center">
@@ -41,16 +41,10 @@
             <td class="text-right"> <%= format_currency(c.valor_taxa) %> </td>
             <td class="text-right"> <%= format_currency(c.valor_bruto) %> </td>
             <td class="text-right">
-              <%= pagseguro_cc_tag c %>
+              <%= cartao_badge(c) %>
             </td>
             <td class="text-right">
-              <% if c.is_ok? %>
-                <%= link_to 'Ok',
-                            '#' ,
-                            class: 'btn btn-success',
-                            remote: true,
-                            disabled: true %>
-              <% else %>
+              <% unless c.is_ok? %>
                 <%= link_check_to '',
                                   financeiro_cartao_path(c, z: @z),
                                   remote: true %>
