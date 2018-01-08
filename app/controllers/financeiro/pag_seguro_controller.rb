@@ -24,11 +24,19 @@ module Financeiro
     def import_xml
       list = helpers.pagseguro_import(params[:financeiro_pag_seguro][:import_file].tempfile)
 
-      begin
-        PagSeguro.transaction { list.each(&:save!) }
-        flash[:success] = "#{list.count} #{'entrada'.pluralize(list.count)} #{'importada'.pluralize(list.count)}"
+      count = 0
+      list.each do |c|
+        begin
+          c.save
+          count += 1
 
-      rescue ActiveRecord::RecordNotUnique
+        rescue ActiveRecord::RecordNotUnique
+        end
+      end
+
+      if count > 0
+        flash[:success] = "#{count} #{'entrada'.pluralize(count)} #{'importada'.pluralize(count)}"
+      else
         flash[:error] = 'Arquivo já processado'
       end
 
