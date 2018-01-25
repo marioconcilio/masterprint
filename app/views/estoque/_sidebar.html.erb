@@ -44,36 +44,6 @@
     </li>
 
     <li class="nav-item">
-      <%= link_estoque_to 'Offset', estoque_papeis_path(tipo: :offset),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_estoque_to 'Couche', estoque_papeis_path(tipo: :couche),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_estoque_to 'Copiativo', estoque_papeis_path(tipo: :copiativo),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_estoque_to 'Duplex', estoque_papeis_path(tipo: :duplex),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_estoque_to 'Triplex', estoque_papeis_path(tipo: :triplex),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_estoque_to 'Superbond', estoque_papeis_path(tipo: :superbond),
-                  class: 'nav-link' %>
-    </li>
-
-    <li class="nav-item">
       <%= link_estoque_to 'Capa AG', estoque_papeis_path(tipo: :capa),
                   class: 'nav-link' %>
     </li>
@@ -84,7 +54,22 @@
     </li>
 
     <li class="nav-item">
-      <%= link_estoque_to 'Reciclato', estoque_papeis_path(tipo: :reciclato),
+      <%= link_estoque_to 'Copiativo', estoque_papeis_path(tipo: :copiativo),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Couche', estoque_papeis_path(tipo: :couche),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Duplex', estoque_papeis_path(tipo: :duplex),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Jornal', estoque_papeis_path(tipo: :jornal),
                   class: 'nav-link' %>
     </li>
 
@@ -92,13 +77,95 @@
       <%= link_estoque_to 'Kraft', estoque_papeis_path(tipo: :kraft),
                   class: 'nav-link' %>
     </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Offset', estoque_papeis_path(tipo: :offset),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Reciclato', estoque_papeis_path(tipo: :reciclato),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Superbond', estoque_papeis_path(tipo: :superbond),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Triplex', estoque_papeis_path(tipo: :triplex),
+                  class: 'nav-link' %>
+    </li>
   </ul>
 </li>
 <!-- papeis -->
 
-<li class="nav-item">
-  <%= link_estoque_to 'Papéis Cortados', estoque_cortado_papeis_path, class: 'nav-link' %>
+<li class="nav-item nav-dropdown">
+  <%= link_estoque_to 'Papéis Cortados', '#', class: 'nav-link nav-dropdown-toggle' %>
+  <ul class="nav-dropdown-items">
+    <li class="nav-item">
+      <%= link_estoque_to 'Todos', estoque_cortado_papeis_path,
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Adesivo', estoque_cortado_papeis_path(tipo: :adesivo),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Capa', estoque_cortado_papeis_path(tipo: :capa),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Carbono', estoque_cortado_papeis_path(tipo: :carbono),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Copiativo', estoque_cortado_papeis_path(tipo: :copiativo),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Couche', estoque_cortado_papeis_path(tipo: :couche),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Jornal', estoque_cortado_papeis_path(tipo: :jornal),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Laser Film', estoque_cortado_papeis_path(tipo: :laser),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Offset', estoque_cortado_papeis_path(tipo: :offset),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Superbond', estoque_cortado_papeis_path(tipo: :superbond),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Vegetal', estoque_cortado_papeis_path(tipo: :vegetal),
+                  class: 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_estoque_to 'Vergê', estoque_cortado_papeis_path(tipo: :verge),
+                  class: 'nav-link' %>
+    </li>
+  </ul>
 </li>
+<!-- papeis cortados -->
 
 <li class="nav-item">
   <%= link_estoque_to 'Químicos', estoque_quimicos_path, class: 'nav-link' %>

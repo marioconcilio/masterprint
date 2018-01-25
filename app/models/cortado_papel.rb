@@ -6,6 +6,7 @@ class CortadoPapel < ApplicationRecord
                         :moeda
 
   default_scope -> { order(:nome) }
+  scope :tipo, -> (tipo) { where('nome ilike ?', "%#{tipo}%") }
 
   def preco_un
     if self.moeda == 'USD'

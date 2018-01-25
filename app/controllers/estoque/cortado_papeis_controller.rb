@@ -3,7 +3,12 @@ class Estoque::CortadoPapeisController < ApplicationController
   # GET /estoque/cortado_papeis
   def index
     @search = CortadoPapel.ransack(params[:q])
-    @products = @search.result
+    if params[:tipo]
+      @products = @search.result.tipo(params[:tipo])
+    else
+      @products = @search.result
+    end
+
     respond_to :html, :js
   end
 
