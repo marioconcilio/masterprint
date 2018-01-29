@@ -13,6 +13,8 @@ class Envelope < ApplicationRecord
   scope :tipo, -> (tipo) { where('tipo ilike ?', "#{tipo}") }
 
   def preco_un
+    return 0 unless self.preco_milheiro
+
     (self.preco_milheiro * self.un / 1000).round(1)
   end
 

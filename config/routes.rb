@@ -11,20 +11,23 @@ Rails.application.routes.draw do
   end
 
   namespace :estoque do
-    [:blanquetas,
-     :chapas,
-     :envelopes,
-     :papeis,
-     :cortado_papeis,
-     :quimicos,
-     :tintas,
-     :variados].each do |r|
+    resources :blanquetas
+    resources :chapas
+    resources :papeis
+    resources :cortado_papeis
+    resources :variados
+
+    [:envelopes,
+      :quimicos,
+      :tintas].each do |r|
         resources r do
-          member do
-            get :movimento
+          collection do
+            get   :prices
+            post  :prices, to: "#{r}#update_prices"
           end
         end
-    end
+      end
+
   end
 
   namespace :grafiara do

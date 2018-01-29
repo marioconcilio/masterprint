@@ -37,6 +37,26 @@ class Estoque::EnvelopesController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/envelopes/prices
+  def prices
+    respond_to :js
+  end
+
+  # POST /estoque/envelopes/prices
+  def update_prices
+    rate = params[:rate].to_f / 100 + 1
+
+    begin
+      Envelope.update_all "preco_milheiro = preco_milheiro * #{rate}"
+      flash[:success] = 'Preços alterados'
+
+    rescue StandardError
+      flash[:error] = 'Erro ao alterar os preços'
+    end
+
+    redirect_to estoque_envelopes_url
+  end
+
   # PUT /estoque/envelopes/:id
   def update
     @envelope = Envelope.find(params[:id])
