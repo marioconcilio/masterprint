@@ -1,4 +1,4 @@
-<% provide(:url, estoque_envelopes_path) %>
+<% provide(:url, estoque_envelopes_path(tipo: params[:tipo])) %>
 <% provide(:search_field, :nome_or_larg_or_comp_cont) %>
 <% provide(:placeholder, 'Nome ou tamanho') %>
 

@@ -1,4 +1,4 @@
-<% provide(:url, estoque_cortado_papeis_path) %>
+<% provide(:url, estoque_cortado_papeis_path(tipo: params[:tipo])) %>
 <% provide(:search_field, :nome_cont) %>
 <% provide(:placeholder, 'Nome') %>
 

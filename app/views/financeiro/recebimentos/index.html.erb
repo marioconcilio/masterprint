@@ -1,4 +1,4 @@
-<% provide(:url, financeiro_recebimentos_path) %>
+<% provide(:url, financeiro_recebimentos_path(rcb_status: params[:rcb_status])) %>
 <% provide(:search_field, @search_field) %>
 <% provide(:placeholder, 'Número ou cliente') %>
 

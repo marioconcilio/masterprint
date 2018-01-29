@@ -1,4 +1,4 @@
-<% provide(:url, estoque_papeis_path) %>
+<% provide(:url, estoque_papeis_path(tipo: params[:tipo])) %>
 <% provide(:search_field, :papel_tipo_tipo_or_grs_cont) %>
 <% provide(:placeholder, 'Tipo ou gramatura') %>
 

@@ -1,4 +1,4 @@
-<% provide(:url, financeiro_cheques_path) %>
+<% provide(:url, financeiro_cheques_path(chq_status: params[:chq_status])) %>
 <% provide(:search_field, :numero_text_or_emitente_cont) %>
 <% provide(:placeholder, 'Número ou emitente') %>
 
