@@ -48,7 +48,7 @@
 
             <% if logged_in? %>
               <td class="text-right">
-                <%= link_details_to '', edit_grafiara_luto_path(l), remote: true %>
+                <%= link_details_to '', edit_grafiara_luto_path(l, z: @z), remote: true %>
               </td>
             <% end %>
           </tr>

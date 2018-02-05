@@ -3,7 +3,10 @@ class Estoque::BlanquetasController < ApplicationController
   # GET /estoque/blanquetas
   def index
     @search = Blanqueta.joins(:blanqueta_lona).ransack(params[:q])
-    @products = @search.result.includes(:blanqueta_lona)
+    @search_field = :nome_or_larg_or_comp_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+    @products = @search.result.includes(:blanqueta_lona).page(params[:page])
 
     respond_to :html, :js
   end
@@ -38,12 +41,14 @@ class Estoque::BlanquetasController < ApplicationController
     @blanqueta = Blanqueta.find(params[:id])
     if @blanqueta.update_attributes(blanqueta_params)
       flash[:success] = 'Blanqueta atualizada'
-      redirect_to estoque_blanquetas_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar blanqueta'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_blanquetas_path(page: params[:z][:page],
+                                       tipo: params[:z][:s],
+                                       q: { nome_or_larg_or_comp_cont: params[:z][:q] })
   end
 
   private

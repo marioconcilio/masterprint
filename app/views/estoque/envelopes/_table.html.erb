@@ -46,7 +46,7 @@
 
         <% if logged_in? %>
           <td class="text-right">
-            <%= link_details_to '', edit_estoque_envelope_path(e), remote: true %>
+            <%= link_details_to '', edit_estoque_envelope_path(e, z: @z), remote: true %>
           </td>
         <% end %>
       </tr>

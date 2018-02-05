@@ -111,6 +111,10 @@
       <!-- /.card -->
     <% end %>
     <!-- if @deposito -->
+
+    <%= hidden_field_tag 'z[s]', params[:z][:s] %>
+    <%= hidden_field_tag 'z[q]', params[:z][:q] %>
+    <%= hidden_field_tag 'z[page]', params[:z][:page] %>
   </div>
   <!-- /.modal-body -->
 

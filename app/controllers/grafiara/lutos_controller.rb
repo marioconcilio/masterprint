@@ -4,7 +4,11 @@ module Grafiara
     # GET /grafiara/lutos
     def index
       @search = Luto.ransack(params[:q])
+      @search_field = :referencia_cont
+      @z = { page: params[:page] }
+      @z[:q] = params[:q][@search_field] if params[:q]
       @lutos = @search.result.page(params[:page])
+
       respond_to :html, :js
     end
 
@@ -37,13 +41,15 @@ module Grafiara
     def update
       @luto = Luto.find(params[:id])
       if @luto.update_attributes(lutos_params)
-        flash[:success] = 'Estampa atualizada'
-        redirect_to grafiara_lutos_url
+        flash[:success] = 'Estampa de luto atualizada'
       else
-        respond_to do |format|
-          format.js { render :edit }
-        end
+        flash[:danger] = 'Erro ao atualizar estampa de luto'
       end
+
+      params[:z][:s] = nil if params[:z][:s].empty?
+      redirect_to grafiara_lutos_path(page: params[:z][:page],
+                                       tipo: params[:z][:s],
+                                       q: { referencia_cont: params[:z][:q] })
     end
 
     private

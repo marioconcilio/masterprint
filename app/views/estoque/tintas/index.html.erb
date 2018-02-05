@@ -1,5 +1,5 @@
 <% provide(:url, estoque_tintas_path) %>
-<% provide(:search_field, :nome_or_marca_cont) %>
+<% provide(:search_field, @search_field) %>
 <% provide(:placeholder, 'Nome ou marca') %>
 
 <div class="row">
@@ -22,6 +22,11 @@
                           new_estoque_tinta_path,
                           remote: true,
                           class: 'btn btn-success' %>
+
+              <%= link_to 'Alterar Preços',
+                          prices_estoque_tintas_path,
+                          remote: true,
+                          class: 'btn btn-info' %>
             </div>
           <% end %>
         </div>

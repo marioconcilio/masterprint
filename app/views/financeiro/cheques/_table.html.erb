@@ -50,7 +50,7 @@
               <span class="<%= cheque_label c %>"><%= Cheque.status[c.status] %></span>
             </td>
             <td class="text-right">
-              <%= link_details_to '', financeiro_cheque_path(c), remote: true %>
+              <%= link_details_to '', financeiro_cheque_path(c, z: @z), remote: true %>
             </td>
           </tr>
         <% end %>

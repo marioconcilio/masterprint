@@ -3,12 +3,12 @@ class Estoque::ChapasController < ApplicationController
   # GET /estoque/chapas
   def index
     @search = Chapa.joins(:chapa_marca).ransack(params[:q])
-    @products = @search.result.includes(:chapa_marca)
+    @search_field = :larg_or_comp_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+    @products = @search.result.includes(:chapa_marca).page(params[:page])
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   # POST /estoque/chapas
@@ -41,12 +41,14 @@ class Estoque::ChapasController < ApplicationController
     @chapa = Chapa.find(params[:id])
     if @chapa.update_attributes(chapa_params)
       flash[:success] = 'Chapa atualizada'
-      redirect_to estoque_chapas_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar chapa'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_chapas_path(page: params[:z][:page],
+                                     tipo: params[:z][:s],
+                                     q: { larg_or_comp_cont: params[:z][:q] })
   end
 
   private

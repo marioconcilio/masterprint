@@ -37,7 +37,7 @@
             <td class="text-center"> <%= a.un %> </td>
             <% if logged_in? %>
               <td class="text-right">
-                <%= link_details_to '', edit_grafiara_aniversario_path(a), remote: true %>
+                <%= link_details_to '', edit_grafiara_aniversario_path(a, z: @z), remote: true %>
               </td>
             <% end %>
           </tr>

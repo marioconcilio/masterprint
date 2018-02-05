@@ -5,7 +5,13 @@ class Financeiro::ChequesController < ApplicationController
   # GET /financeiro/cheques
   def index
     @search = Cheque.left_joins(:cliente).ransack(params[:q])
+    @search_field = :numero_text_or_emitente_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+
     if params[:chq_status]
+      @z[:s] = params[:chq_status]
+
       @cheques = @search.result
         .includes(:cliente)
         .s(params[:chq_status])
@@ -54,7 +60,10 @@ class Financeiro::ChequesController < ApplicationController
       flash[:danger] = "Erro ao atualizar cheque → #{params[:cheque][:status]}"
     end
 
-    redirect_to financeiro_cheques_path
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to financeiro_cheques_path(page: params[:z][:page],
+                                         tipo: params[:z][:s],
+                                         q: { numero_text_or_emitente_cont: params[:z][:q] })
   end
 
   private

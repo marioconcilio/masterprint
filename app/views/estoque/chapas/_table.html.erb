@@ -34,7 +34,7 @@
 
         <% if logged_in? %>
           <td class="text-right">
-            <%= link_details_to '', edit_estoque_chapa_path(c), remote: true %>
+            <%= link_details_to '', edit_estoque_chapa_path(c, z: @z), remote: true %>
           </td>
         <% end %>
       </tr>

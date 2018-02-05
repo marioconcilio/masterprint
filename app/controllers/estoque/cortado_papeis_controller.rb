@@ -3,10 +3,19 @@ class Estoque::CortadoPapeisController < ApplicationController
   # GET /estoque/cortado_papeis
   def index
     @search = CortadoPapel.ransack(params[:q])
+    @search_field = :nome_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+
     if params[:tipo]
-      @products = @search.result.tipo(params[:tipo])
+      @z[:s] = params[:tipo]
+
+      @products = @search.result
+        .tipo(params[:tipo])
+        .page(params[:page])
     else
       @products = @search.result
+        .page(params[:page])
     end
 
     respond_to :html, :js
@@ -63,12 +72,14 @@ class Estoque::CortadoPapeisController < ApplicationController
 
     if @papel.update_attributes(papel_params)
       flash[:success] = 'Papel atualizado'
-      redirect_to estoque_cortado_papeis_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar papel'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_cortado_papeis_path(page: params[:z][:page],
+                                             tipo: params[:z][:s],
+                                             q: { nome_cont: params[:z][:q] })
   end
 
   private

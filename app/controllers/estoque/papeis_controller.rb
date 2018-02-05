@@ -3,10 +3,21 @@
   # GET /estoque/papeis
   def index
     @search = Papel.joins(:papel_tipo).ransack(params[:q])
+    @search_field = :papel_tipo_tipo_or_grs_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+
     if params[:tipo]
-      @products = @search.result.includes(:papel_tipo).tipo(params[:tipo])
+      @z[:s] = params[:tipo]
+
+      @products = @search.result
+        .includes(:papel_tipo)
+        .tipo(params[:tipo])
+        .page(params[:page])
     else
-      @products = @search.result.includes(:papel_tipo)
+      @products = @search.result
+        .includes(:papel_tipo)
+        .page(params[:page])
     end
 
     respond_to :html, :js
@@ -63,12 +74,14 @@
 
     if @papel.update_attributes(papel_params)
       flash[:success] = 'Papel atualizado'
-      redirect_to estoque_papeis_url
     else
-      respond_to do |format|
-        format.js { render 'movimento' }
-      end
+      flash[:danger] = 'Erro ao atualizar papel'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_papeis_path(page: params[:z][:page],
+                                     tipo: params[:z][:s],
+                                     q: { papel_tipo_tipo_or_grs_cont: params[:z][:q] })
   end
 
   private

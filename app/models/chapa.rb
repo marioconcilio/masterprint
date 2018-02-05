@@ -6,7 +6,7 @@ class Chapa < ApplicationRecord
 
   belongs_to :chapa_marca
 
-  default_scope -> { order(:larg, :comp) }
+  default_scope -> { order(:larg, :comp, 'chapa_marcas.marca') }
 
   def preco
     return 0 unless self.chapa_marca

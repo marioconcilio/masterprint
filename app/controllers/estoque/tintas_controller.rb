@@ -3,12 +3,12 @@ class Estoque::TintasController < ApplicationController
   # GET /estoque/tintas
   def index
     @search = Tinta.ransack(params[:q])
-    @products = @search.result
+    @search_field = :nome_or_marca_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+    @products = @search.result.page(params[:page])
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   # POST /estoque/tintas
@@ -36,17 +36,24 @@ class Estoque::TintasController < ApplicationController
     respond_to :js
   end
 
+  # GET /estoque/tintas/prices
+  def prices
+    respond_to :js
+  end
+
   # PUT /estoque/tintas/:id
   def update
     @tinta = Tinta.find(params[:id])
     if @tinta.update_attributes(tinta_params)
       flash[:success] = 'Tinta atualizada'
-      redirect_to estoque_tintas_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar tinta'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_tintas_path(page: params[:z][:page],
+                                     tipo: params[:z][:s],
+                                     q: { nome_or_marca_cont: params[:z][:q] })
   end
 
   private

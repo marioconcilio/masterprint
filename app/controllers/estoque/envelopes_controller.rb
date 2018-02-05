@@ -3,10 +3,19 @@ class Estoque::EnvelopesController < ApplicationController
   # GET /estoque/envelopes
   def index
     @search = Envelope.ransack(params[:q])
+    @search_field = :nome_or_larg_or_comp_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+
     if params[:tipo]
-      @products = @search.result.tipo(params[:tipo])
+      @z[:s] = params[:tipo]
+
+      @products = @search.result
+        .tipo(params[:tipo])
+        .page(params[:page])
     else
       @products = @search.result
+        .page(params[:page])
     end
 
     respond_to :html, :js
@@ -62,12 +71,14 @@ class Estoque::EnvelopesController < ApplicationController
     @envelope = Envelope.find(params[:id])
     if @envelope.update_attributes(envelope_params)
       flash[:success] = 'Envelope atualizado'
-      redirect_to estoque_envelopes_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar envelope'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_envelopes_path(page: params[:z][:page],
+                                       tipo: params[:z][:s],
+                                       q: { nome_or_larg_or_comp_cont: params[:z][:q] })
   end
 
   private

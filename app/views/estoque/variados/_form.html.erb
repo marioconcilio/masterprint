@@ -41,6 +41,10 @@
         <%= f.number_field :qtde, value: (f.object.qtde || '0'), min: 0,class: 'form-control' %>
       </div>
     </div>
+
+    <%= hidden_field_tag 'z[s]', params[:z][:s] %>
+    <%= hidden_field_tag 'z[q]', params[:z][:q] %>
+    <%= hidden_field_tag 'z[page]', params[:z][:page] %>
   </div>
   <!-- /.modal-body -->
 

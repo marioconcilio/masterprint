@@ -3,12 +3,12 @@ class Estoque::QuimicosController < ApplicationController
   # GET /estoque/quimicos
   def index
     @search = Quimico.ransack(params[:q])
-    @products = @search.result
+    @search_field = :nome_or_marca_cont
+    @z = { page: params[:page] }
+    @z[:q] = params[:q][@search_field] if params[:q]
+    @products = @search.result.page(params[:page])
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   # POST /estoque/quimicos
@@ -41,12 +41,14 @@ class Estoque::QuimicosController < ApplicationController
     @quimico = Quimico.find(params[:id])
     if @quimico.update_attributes(quimico_params)
       flash[:success] = 'Quimico atualizado'
-      redirect_to estoque_quimicos_url
     else
-      respond_to do |format|
-        format.js { render :edit }
-      end
+      flash[:danger] = 'Erro ao atualizar quimico'
     end
+
+    params[:z][:s] = nil if params[:z][:s].empty?
+    redirect_to estoque_quimicos_path(page: params[:z][:page],
+                                       tipo: params[:z][:s],
+                                       q: { nome_or_marca_cont: params[:z][:q] })
   end
 
   private

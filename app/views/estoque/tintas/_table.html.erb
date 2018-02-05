@@ -38,7 +38,7 @@
 
         <% if logged_in? %>
           <td class="text-right">
-            <%= link_details_to '', edit_estoque_tinta_path(t), remote: true %>
+            <%= link_details_to '', edit_estoque_tinta_path(t, z: @z), remote: true %>
           </td>
         <% end %>
       </tr>
