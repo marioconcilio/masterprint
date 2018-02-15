@@ -1,4 +1,5 @@
 class Envelope < ApplicationRecord
+  paginates_per 10
   validates_presence_of :preco_milheiro,
                         :moeda,
                         :qtde,

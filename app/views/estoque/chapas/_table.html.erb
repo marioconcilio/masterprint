@@ -1,43 +1,63 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>
-        <%= sort_link @search, :larg, [:larg, :comp], 'Tamanho', {}, { remote: true, method: :get } %>
-      </th>
-      <th>
-        <%= sort_link @search, :chapa_marca_marca, 'Marca', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="text-right">
-        <%= sort_link @search, :preco_un, 'Preço Unidade', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="text-right">
-        <%= sort_link @search, :preco_un, 'Preço Avulso', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="text-center w-5">
-        <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
-      </th>
-      <th class="w-1"><br></th>
-      <% if logged_in? %>
-        <th class="w-5"><br></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |c| %>
-      <tr>
-        <td> <%= c.size %> </td>
-        <td> <%= c.chapa_marca.marca %> </td>
-        <td class="text-right"> <%= format_currency(c.preco) %> </td>
-        <td class="text-right"> <%= format_currency(c.preco_avulso) %> </td>
-        <td class="text-center"> <%= c.qtde %> </td>
-        <td class="text-right"> <%= qtde_badge(c) %> </td>
+<!-- pagination and filter btn-group -->
+<div class="row">
+  <div class="col-lg-6">
+    <%= paginate @products, remote: true %>
+  </div>
+</div>
+<!-- /.row -->
 
-        <% if logged_in? %>
-          <td class="text-right">
-            <%= link_details_to '', edit_estoque_chapa_path(c, z: @z), remote: true %>
-          </td>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            <%= sort_link @search, :larg, [:larg, :comp], 'Tamanho', {}, { remote: true, method: :get } %>
+          </th>
+          <th>
+            <%= sort_link @search, :chapa_marca_marca, 'Marca', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-right">
+            <%= sort_link @search, :preco_un, 'Preço Unidade', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-right">
+            <%= sort_link @search, :preco_un, 'Preço Avulso', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="text-center w-5">
+            <%= sort_link @search, :qtde, 'Qtde', {}, { remote: true, method: :get } %>
+          </th>
+          <th class="w-1"><br></th>
+          <% if logged_in? %>
+            <th class="w-5"><br></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |c| %>
+          <tr>
+            <td> <%= c.size %> </td>
+            <td> <%= c.chapa_marca.marca %> </td>
+            <td class="text-right"> <%= format_currency(c.preco) %> </td>
+            <td class="text-right"> <%= format_currency(c.preco_avulso) %> </td>
+            <td class="text-center"> <%= c.qtde %> </td>
+            <td class="text-right"> <%= qtde_badge(c) %> </td>
+
+            <% if logged_in? %>
+              <td class="text-right">
+                <%= link_details_to '', edit_estoque_chapa_path(c, z: @z), remote: true %>
+              </td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <%= paginate @products, remote: true %>
+  </div>
+</div>

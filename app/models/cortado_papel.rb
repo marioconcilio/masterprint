@@ -1,4 +1,5 @@
 class CortadoPapel < ApplicationRecord
+  paginates_per 10
   validates_presence_of :nome,
                         :preco,
                         :qtde,

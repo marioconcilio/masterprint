@@ -9,7 +9,7 @@ RSpec.describe Chapa, type: :model do
 
   context 'when ordering' do
     let!(:chapas) { FactoryGirl.create_list(:chapa, 100) }
-    let(:sorted) { Chapa.all }
+    let(:sorted) { Chapa.all.includes(:chapa_marca) }
 
     it 'should sort by larg and comp asc' do
       arr = chapas.sort_by { |c| [c.larg, c.comp] }

@@ -5,13 +5,10 @@ FactoryGirl.define do
     valor_liquido { Faker::Number.decimal(10, 2) }
     data { Faker::Date.backward(30) }
     parcelas { Faker::Number.between(1, 10) }
+    bandeira { Faker::Lorem.word }
 
     tipo_pagamento do
       Financeiro::PagSeguro.tipo_pagamentos.keys.sample
-    end
-
-    bandeira do
-      Financeiro::PagSeguro.bandeiras.keys.sample
     end
   end
 
