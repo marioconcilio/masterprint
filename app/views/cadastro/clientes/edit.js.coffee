@@ -1,5 +1,0 @@
-modal = $('#modal-window')
-modal.attr 'class', 'modal fade'
-modal.find('.modal-content').html '<%= j(render "form") %>'
-modal.find('.modal-header').html '<%= modal_form_header "Editando", "Cliente" %>'
-modal.modal()

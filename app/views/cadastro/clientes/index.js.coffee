@@ -1,1 +1,0 @@
-$('#cli-tableview').html '<%= j(render("table")) %>'
