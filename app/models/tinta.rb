@@ -10,6 +10,8 @@ class Tinta < ApplicationRecord
   default_scope -> { order(:marca, :nome) }
 
   def preco_un
+    return 0 unless self.preco_kg
+
     preco = self.preco_kg * self.un
     if self.moeda == 'USD'
       (preco * Settings.dolar.tintas).round(1)

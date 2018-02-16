@@ -12,6 +12,7 @@ class Blanqueta < ApplicationRecord
 
   def preco_un
     return 0 unless self.blanqueta_lona
+
     if self.moeda == 'USD'
       preco = self.blanqueta_lona.preco * Settings.dolar.blanquetas
     else
