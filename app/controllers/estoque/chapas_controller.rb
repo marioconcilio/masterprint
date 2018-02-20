@@ -32,7 +32,7 @@ class Estoque::ChapasController < ApplicationController
 
   # GET /estoque/chapas/:id/edit
   def edit
-    @chapa = Chapa.find(params[:id])
+    @chapa = Chapa.includes(:chapa_marca).find(params[:id])
     respond_to :js
   end
 
