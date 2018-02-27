@@ -45,10 +45,12 @@ class Estoque::VariadosController < ApplicationController
       flash[:danger] = 'Erro ao atualizar produto'
     end
 
-    params[:z][:s] = nil if params[:z][:s].empty?
-    redirect_to estoque_variados_path(page: params[:z][:page],
-                                       tipo: params[:z][:s],
-                                       q: { nome_cont: params[:z][:q] })
+    if params[:z]
+      redirect_to estoque_variados_path(page: params[:z][:page],
+                                        q: { nome_cont: params[:z][:q] })
+    else
+      redirect_to estoque_variados_path
+    end
   end
 
   private

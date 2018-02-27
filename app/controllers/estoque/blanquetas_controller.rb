@@ -45,10 +45,12 @@ class Estoque::BlanquetasController < ApplicationController
       flash[:danger] = 'Erro ao atualizar blanqueta'
     end
 
-    params[:z][:s] = nil if params[:z][:s].empty?
-    redirect_to estoque_blanquetas_path(page: params[:z][:page],
-                                       tipo: params[:z][:s],
-                                       q: { nome_or_larg_or_comp_cont: params[:z][:q] })
+    if params[:z]
+      redirect_to estoque_blanquetas_path(page: params[:z][:page],
+                                          q: { nome_or_larg_or_comp_cont: params[:z][:q] })
+    else
+      redirect_to estoque_blanquetas_path
+    end
   end
 
   private

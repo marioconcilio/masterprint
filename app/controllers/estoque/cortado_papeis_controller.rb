@@ -76,10 +76,14 @@ class Estoque::CortadoPapeisController < ApplicationController
       flash[:danger] = 'Erro ao atualizar papel'
     end
 
-    params[:z][:s] = nil if params[:z][:s].empty?
-    redirect_to estoque_cortado_papeis_path(page: params[:z][:page],
-                                             tipo: params[:z][:s],
-                                             q: { nome_cont: params[:z][:q] })
+    if params[:z]
+      params[:z][:s] = nil if params[:z][:s].empty?
+      redirect_to estoque_cortado_papeis_path(page: params[:z][:page],
+                                              tipo: params[:z][:s],
+                                              q: { nome_cont: params[:z][:q] })
+    else
+      redirect_to estoque_cortado_papeis_path
+    end
   end
 
   private

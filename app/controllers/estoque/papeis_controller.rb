@@ -78,10 +78,14 @@
       flash[:danger] = 'Erro ao atualizar papel'
     end
 
-    params[:z][:s] = nil if params[:z][:s].empty?
-    redirect_to estoque_papeis_path(page: params[:z][:page],
-                                     tipo: params[:z][:s],
-                                     q: { papel_tipo_tipo_or_grs_cont: params[:z][:q] })
+    if params[:z]
+      params[:z][:s] = nil if params[:z][:s].empty?
+      redirect_to estoque_papeis_path(page: params[:z][:page],
+                                      tipo: params[:z][:s],
+                                      q: { papel_tipo_tipo_or_grs_cont: params[:z][:q] })
+    else
+      redirect_to estoque_papeis_path
+    end
   end
 
   private

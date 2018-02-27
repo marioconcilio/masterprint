@@ -52,7 +52,7 @@
     <%= f.hidden_field :dolar, value: Settings.dolar.chapas %>
     <%= f.hidden_field :moeda, value: 'USD' %>
 
-    <% if @z %>
+    <% if params[:z] %>
       <%= hidden_field_tag 'z[q]', params[:z][:q] %>
       <%= hidden_field_tag 'z[page]', params[:z][:page] %>
     <% end %>
