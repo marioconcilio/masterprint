@@ -38,17 +38,19 @@ class Estoque::ChapasController < ApplicationController
 
   # PUT /estoque/chapas/:id
   def update
-    @chapa = Chapa.find(params[:id])
+    @chapa = Chapa.includes(:chapa_marca).find(params[:id])
     if @chapa.update_attributes(chapa_params)
       flash[:success] = 'Chapa atualizada'
     else
       flash[:danger] = 'Erro ao atualizar chapa'
     end
 
-    params[:z][:s] = nil if params[:z][:s].empty?
-    redirect_to estoque_chapas_path(page: params[:z][:page],
-                                     tipo: params[:z][:s],
-                                     q: { larg_or_comp_cont: params[:z][:q] })
+    if params[:z]
+      redirect_to estoque_chapas_path(page: params[:z][:page],
+                                      q: { larg_or_comp_cont: params[:z][:q] })
+    else
+      redirect_to estoque_chapas_path
+    end
   end
 
   private
