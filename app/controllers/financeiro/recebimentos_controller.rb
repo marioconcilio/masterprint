@@ -41,6 +41,13 @@ class Financeiro::RecebimentosController < ApplicationController
 
     rescue ActiveRecord::RecordNotUnique
       flash[:error] = 'Remessa já processada'
+
+    rescue ActiveRecord::RecordInvalid => invalid
+      if invalid.record.errors.details[:cliente] == [{:error=>:blank}]
+        flash[:error] = "Cliente do boleto #{invalid.record.id} não localizado"
+      else
+        flash[:error] = "Problema ao adicionar boleto #{invalid.record.id}"
+      end
     end
 
     redirect_back fallback_location: financeiro_recebimentos_path
